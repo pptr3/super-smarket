@@ -1,3 +1,4 @@
+package model;
 /*
  * A standard generic Pair<X,Y>, with getters, hashCode, equals, and toString well implemented. 
  */

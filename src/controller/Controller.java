@@ -1,6 +1,10 @@
+package controller;
 import java.util.List;
 
-public interface Controller {
+import model.Lotto;
+import model.Pair;
+
+public interface Controller<Lotto> {
 
 	/**
 	 * carica il file 

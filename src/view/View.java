@@ -1,6 +1,10 @@
+package view;
 import java.util.List;
 
-public interface View {
+import model.Lotto;
+import model.Pair;
+
+public interface View<Lotto> {
 	
 	/*
 	 * called to advice possible discounts

@@ -1,6 +1,7 @@
+package model;
 import java.util.List;
 
-public interface Model {
+public interface Model<Lotto, ModifyList> {
 
 	/**
 	 * 
