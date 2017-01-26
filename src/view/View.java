@@ -6,7 +6,7 @@ import model.Pair;
 
 public interface View<Lotto> {
 	
-	/*
+	/**
 	 * called to advice possible discounts
 	 * @param lotti
 	 */
