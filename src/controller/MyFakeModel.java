@@ -1,8 +1,12 @@
-package model;
+package controller;
+
 import java.util.List;
 
-public interface Model {
+import model.Lotto;
+import model.ModifyList;
+import model.Pair;
 
+public interface MyFakeModel {
 	/**
 	 * 
 	 * @param serializedModel content of the Filepath where the state is saved

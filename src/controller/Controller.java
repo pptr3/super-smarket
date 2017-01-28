@@ -4,7 +4,7 @@ import java.util.List;
 import model.Lotto;
 import model.Pair;
 
-public interface Controller<Lotto> {
+public interface Controller {
 
 	/**
 	 * carica il file 
@@ -20,6 +20,10 @@ public interface Controller<Lotto> {
 	 * @param filepath
 	 */
 	void saveFile(String filepath);
+	
+	/**
+	 * @return a modify list of Lotto
+	 */
 	
 	List<Lotto> getList();
 	/**

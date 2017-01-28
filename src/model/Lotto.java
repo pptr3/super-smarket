@@ -6,7 +6,7 @@ public interface Lotto {
 	
 	void scadenza();
 	
-	void quantit‡();
+	void quantit√†();
 	
 	void dataArrivo();
 	
