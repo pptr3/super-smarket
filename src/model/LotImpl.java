@@ -14,7 +14,7 @@ public class LotImpl implements Lot {
     
     
     
-    public LotImpl(String name, Date expirationDate, Date checkInDate, int quantity,
+    public LotImpl(String name, Date checkInDate, Date expirationDate, int quantity,
             int pricePerSingleItem) {
         this.name = name;
         this.expirationDate = expirationDate;
