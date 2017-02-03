@@ -2,7 +2,7 @@ package controller;
 
 import java.util.List;
 
-import model.Lotto;
+import model.Lot;
 import model.ModifyList;
 import model.Pair;
 
@@ -25,9 +25,9 @@ public interface MyFakeModel {
 	 * 
 	 * @return
 	 */
-	List<Lotto> getList(ModifyList mfl);
+	List<Lot> getList(ModifyList mfl);
 	
-	void addLotto(Lotto lotto);
+	void addLotto(Lot lotto);
 
 	/**
 	 * Removes n elements from the lotto. If the lotto has 0 items it gets removed 
@@ -41,7 +41,7 @@ public interface MyFakeModel {
 	 * @param s strategy for deciding discount
 	 * @return
 	 */
-	List<Pair<Lotto, Integer>> getDiscountable(String s);
+	List<Pair<Lot, Integer>> getDiscountable(String s);
 	
 	void setOnSale(List<Pair<Integer, Integer>> list);
 	

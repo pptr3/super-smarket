@@ -1,7 +1,7 @@
 package controller;
 import java.util.List;
 
-import model.Lotto;
+import model.Lot;
 import model.Pair;
 
 public interface Controller {
@@ -11,7 +11,7 @@ public interface Controller {
 	 */
 	void initialize(String filepath);
 	/**@param ModifyList
-	 * ModifyList è un interfaccia con un metodo che mi ritornerà: o la lista dei Lotti ordinati, 
+	 * ModifyList ï¿½ un interfaccia con un metodo che mi ritornerï¿½: o la lista dei Lotti ordinati, 
 	 * od eliminare dei lotti
 	 * @return
 	 */
@@ -25,12 +25,12 @@ public interface Controller {
 	 * @return a modify list of Lotto
 	 */
 	
-	List<Lotto> getList();
+	List<Lot> getList();
 	/**
 	 * aggiungo un lotto
 	 * @param lotto
 	 */
-	void addLotto(Lotto lotto);
+	void addLotto(Lot lotto);
 	/**
 	 * rimuove un elemento dal lotto con id ID
 	 * @param ID
@@ -39,10 +39,10 @@ public interface Controller {
 	void removeFromLotto(int ID, int n);
 	/**
 	 * 
-	 * @param s prende una stringa, e dipendentemente da questa metterà i lotti in sconto
+	 * @param s prende una stringa, e dipendentemente da questa metterï¿½ i lotti in sconto
 	 * @return lista di lotti aggiornata con gli sconti
 	 */
-	List<Pair<Lotto, Integer>> getDiscountable(String s);
+	List<Pair<Lot, Integer>> getDiscountable(String s);
 	/**
 	 * metti in sconto i prodotti con id X e sconto Y
 	 * @param list

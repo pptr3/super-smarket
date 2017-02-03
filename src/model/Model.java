@@ -21,23 +21,23 @@ public interface Model {
 	 * 
 	 * @return
 	 */
-	List<Lotto> getList(ModifyList mfl);
+	List<Lot> getList(ModifyList mfl);
 	
-	void addLotto(Lotto lotto);
+	void addLotto(Lot lot);
 
 	/**
 	 * Removes n elements from the lotto. If the lotto has 0 items it gets removed 
 	 * @param ID
 	 * @param n
 	 */
-	void removeFromLotto(int ID, int n);
+	void removeFromLot(int ID, int n);
 	
 	/**
 	 * 
 	 * @param s strategy for deciding discount
 	 * @return
 	 */
-	List<Pair<Lotto, Integer>> getDiscountable(String s);
+	List<Pair<Lot, Integer>> getDiscountable(String s);
 	
 	void setOnSale(List<Pair<Integer, Integer>> list);
 	
