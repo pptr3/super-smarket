@@ -8,7 +8,9 @@ public interface Lot {
 	
 	Date getExpirationDate();
 	
-	int getQuantity();
+	int getCurrentQuantity();
+	
+	int getInitialQuantity();
 	
 	Date getCheckInDate();
 	
@@ -19,5 +21,7 @@ public interface Lot {
 	int getPricePerSingleItem();
 	
 	boolean isOnSale();
+	
+	void removeElements(int n);
 	
 }
