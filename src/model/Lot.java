@@ -1,16 +1,22 @@
 package model;
 
+import java.util.Date;
+
 public interface Lot {
 
-	void name();
+	String getName();
 	
-	void expirationDate();
+	Date getExpirationDate();
 	
-	void quantity();
+	int getQuantity();
 	
-	void checkInDate();
+	Date getCheckInDate();
 	
-	void pricePerItem();
+	/**
+	 * Price is in cents of euro
+	 * @return cents of euro
+	 */
+	int getPricePerSingleItem();
 	
 	boolean isOnSale();
 	
