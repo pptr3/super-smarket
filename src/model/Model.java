@@ -1,11 +1,12 @@
 package model;
 import java.util.List;
+import java.util.Map;
 
 public interface Model {
 
 	/**
 	 * 
-	 * @param serializedModel content of the Filepath where the state is saved
+	 * @param serializedModel content of the file where the state is saved
 	 */
 	void initialize(String serializedModel);
 	
@@ -26,7 +27,7 @@ public interface Model {
 	void addLotto(Lot lot);
 
 	/**
-	 * Removes n elements from the lotto. If the lotto has 0 items it gets removed 
+	 * Removes n elements from the lot. If the lot has 0 items it gets removed 
 	 * @param ID
 	 * @param n
 	 */
@@ -34,11 +35,11 @@ public interface Model {
 	
 	/**
 	 * 
-	 * @param s strategy for deciding discount
+	 * @param ds strategy for deciding discount
 	 * @return
 	 */
-	List<Pair<Lot, Integer>> getDiscountable(String s);
+	Map<Lot, Integer> getDiscountable(DiscountStrategy ds);
 	
-	void setOnSale(List<Pair<Integer, Integer>> list);
+	void setOnSale(Map<Integer, Integer> list);
 	
 }
