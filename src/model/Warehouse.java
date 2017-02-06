@@ -38,18 +38,23 @@ public class Warehouse implements Model{
 
     @Override
     public void removeFromLot(int ID, int n) {
-        Lot target = null;
-        for (Lot l : lotsAndDiscounts.keySet()) {
-            if (l.getId() == ID) {
-                target = l;
-            }
-        }
+        Lot target = findLotById(ID);
         if (target!=null) {
             target.removeElements(n);
             if (target.getCurrentQuantity() == 0 ) {
                 lotsAndDiscounts.remove(target);
             }
         }
+    }
+
+    private Lot findLotById(int ID) {
+        Lot target = null;
+        for (Lot l : lotsAndDiscounts.keySet()) {
+            if (l.getId() == ID) {
+                target = l;
+            }
+        }
+        return target;
     }
 
     @Override
