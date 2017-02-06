@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.Optional;
 
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ public class BasicModelTest {
     @Test
     public void test() {
         Model m = new Warehouse(); 
-        Lot l = new LotImpl(0,"Latte a", new Date(2017,2,3),new Date(2017,2,13), 30, 60 );
+        Lot l = new LotImpl(0,"Latte a", new Date(2017,2,3), Optional.of(new Date(2017,2,13)), 30, 60 );
         assertEquals(0, m.getList(null).size());
         m.addLotto(l);
         assertEquals(1, m.getList(null).size());
@@ -30,7 +31,7 @@ public class BasicModelTest {
         assertEquals(0, l.getId());
         assertFalse(l.isOnSale());
         assertEquals(new Date(2017,2,3),l.getCheckInDate());
-        assertEquals(new Date(2017,2,13),l.getExpirationDate());
+        assertEquals(Optional.of(new Date(2017,2,13)),l.getExpirationDate());
         assertEquals(50,l.getPricePerSingleItem());
         assertEquals(36,l.getInitialQuantity());
         assertEquals(36,l.getCurrentQuantity());

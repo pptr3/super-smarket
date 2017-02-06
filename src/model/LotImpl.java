@@ -1,12 +1,13 @@
 package model;
 
 import java.util.Date;
+import java.util.Optional;
 
 public class LotImpl implements Lot {
 
     private int id;
     private String name;
-    private Date expirationDate;
+    private Optional<Date> expirationDate;
     private Date checkInDate;
     private int initialQuantity;
     private int currentQuantity;
@@ -15,7 +16,7 @@ public class LotImpl implements Lot {
     
     
     
-    public LotImpl(int id, String name, Date checkInDate, Date expirationDate, int quantity,
+    public LotImpl(int id, String name, Date checkInDate, Optional<Date> expirationDate, int quantity,
             int pricePerSingleItem) {
         this.id = id;
         this.name = name;
@@ -33,7 +34,7 @@ public class LotImpl implements Lot {
     }
 
     @Override
-    public Date getExpirationDate() {
+    public Optional<Date> getExpirationDate() {
         return expirationDate;
     }
 

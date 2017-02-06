@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.Optional;
 
 public interface Lot {
 
@@ -8,14 +9,14 @@ public interface Lot {
     
 	String getName();
 	
-	Date getExpirationDate();
-	
-	int getCurrentQuantity();
-	
-	int getInitialQuantity();
+	Optional<Date> getExpirationDate();
 	
 	Date getCheckInDate();
-	
+
+	int getInitialQuantity();
+
+	int getCurrentQuantity();
+
 	/**
 	 * Price is in cents of euro
 	 * @return cents of euro

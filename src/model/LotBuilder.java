@@ -56,7 +56,7 @@ public class LotBuilder {
     }
     
     public Lot build() {
-        return new LotImpl(this.id, this.name, this.checkInDate, this.expirationDate.get(), this.initialQuantity, this.pricePerSingleItem);
+        return new LotImpl(this.id, this.name, this.checkInDate, this.expirationDate, this.initialQuantity, this.pricePerSingleItem);
     }
     
 }
