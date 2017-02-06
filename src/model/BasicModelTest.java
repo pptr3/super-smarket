@@ -16,7 +16,24 @@ public class BasicModelTest {
         assertEquals(0, m.getList(null).size());
         m.addLotto(l);
         assertEquals(1, m.getList(null).size());
-        
+    }
+    
+    @Test
+    public void lotBuilderTest() {
+        Lot l = new LotBuilder()
+                .name("Milk - brand")
+                .checkInDate(new Date(2017,2,3))
+                .expirationDate(new Date(2017,2,13))
+                .quantity(36)
+                .pricePerSingleItem(50)
+                .build();
+        assertEquals(0, l.getId());
+        assertFalse(l.isOnSale());
+        assertEquals(new Date(2017,2,3),l.getCheckInDate());
+        assertEquals(new Date(2017,2,13),l.getExpirationDate());
+        assertEquals(50,l.getPricePerSingleItem());
+        assertEquals(36,l.getInitialQuantity());
+        assertEquals(36,l.getCurrentQuantity());
     }
 
 }
