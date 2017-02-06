@@ -38,8 +38,18 @@ public class Warehouse implements Model{
 
     @Override
     public void removeFromLot(int ID, int n) {
-        // TODO Auto-generated method stub
-        
+        Lot target = null;
+        for (Lot l : lotsAndDiscounts.keySet()) {
+            if (l.getId() == ID) {
+                target = l;
+            }
+        }
+        if (target!=null) {
+            target.removeElements(n);
+            if (target.getCurrentQuantity() == 0 ) {
+                lotsAndDiscounts.remove(target);
+            }
+        }
     }
 
     @Override

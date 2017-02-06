@@ -37,5 +37,25 @@ public class BasicModelTest {
         assertEquals(36,l.getInitialQuantity());
         assertEquals(36,l.getCurrentQuantity());
     }
+    
+    @Test
+    public void removeLotTest() {
+        Lot l = new LotBuilder()
+                .name("Milk - brand")
+                .checkInDate(new Date(2017,2,3))
+                .expirationDate(new Date(2017,2,13))
+                .quantity(36)
+                .pricePerSingleItem(50)
+                .build();
+        Model m = new Warehouse();
+        m.addLotto(l);
+        assertEquals(1, m.getList(null).size());
+        m.removeFromLot(l.getId(), 20);
+        assertEquals(1, m.getList(null).size());
+        m.removeFromLot(l.getId(), 16);
+        assertEquals(0, m.getList(null).size());
+        
+        
+    }
 
 }
