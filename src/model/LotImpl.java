@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class LotImpl implements Lot {
 
+    private int id;
     private String name;
     private Date expirationDate;
     private Date checkInDate;
@@ -14,8 +15,9 @@ public class LotImpl implements Lot {
     
     
     
-    public LotImpl(String name, Date checkInDate, Date expirationDate, int quantity,
+    public LotImpl(int id, String name, Date checkInDate, Date expirationDate, int quantity,
             int pricePerSingleItem) {
+        this.id = id;
         this.name = name;
         this.expirationDate = expirationDate;
         this.checkInDate = checkInDate;
@@ -63,6 +65,11 @@ public class LotImpl implements Lot {
     @Override
     public void removeElements(int n) {
         currentQuantity -= n;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
 }

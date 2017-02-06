@@ -4,6 +4,8 @@ import java.util.Date;
 
 public interface Lot {
 
+        int getId(); 
+    
 	String getName();
 	
 	Date getExpirationDate();
