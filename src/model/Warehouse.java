@@ -1,15 +1,17 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Warehouse implements Model{
 
-    List<Lot> lots;
+    Map<Lot,Integer> lotsAndDiscounts;
     
     public Warehouse() {
-        lots = new ArrayList<>();
+        lotsAndDiscounts = new HashMap<>();
     }
     
     @Override
@@ -26,12 +28,12 @@ public class Warehouse implements Model{
 
     @Override
     public List<Lot> getList(ModifyList mfl) {
-        return lots;
+        return lotsAndDiscounts.keySet().stream().collect(Collectors.toList());
     }
 
     @Override
     public void addLotto(Lot lot) {
-        lots.add(lot);
+        lotsAndDiscounts.put(lot, 0);
     }
 
     @Override

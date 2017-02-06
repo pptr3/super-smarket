@@ -28,6 +28,7 @@ public class BasicModelTest {
                 .quantity(36)
                 .pricePerSingleItem(50)
                 .build();
+        
         assertEquals(0, l.getId());
         assertFalse(l.isOnSale());
         assertEquals(new Date(2017,2,3),l.getCheckInDate());
