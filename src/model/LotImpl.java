@@ -37,32 +37,32 @@ public class LotImpl implements Lot {
 
     @Override
     public Date getCheckInDate() {
-        return checkInDate;
+        return this.checkInDate;
     }
 
     @Override
     public int getPricePerSingleItem() {
-        return pricePerSingleItem;
+        return this.pricePerSingleItem;
     }
 
     @Override
     public boolean isOnSale() {
-        return onSale;
+        return this.onSale;
     }
 
     @Override
     public int getCurrentQuantity() {
-        return currentQuantity;
+        return this.currentQuantity;
     }
 
     @Override
     public int getInitialQuantity() {
-        return initialQuantity;
+        return this.initialQuantity;
     }
 
     @Override
     public void removeElements(int n) {
-        currentQuantity -= n;
+        this.currentQuantity -= n;
     }
 
 }
