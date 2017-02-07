@@ -6,10 +6,10 @@ import java.util.Map;
 
 public class Warehouse implements Model{
 
-    List<Lot> lots;
+    private List<Lot> lots;
     
     public Warehouse() {
-        lots = new ArrayList<>();
+        this.lots = new ArrayList<>();
     }
     
     @Override
@@ -26,12 +26,12 @@ public class Warehouse implements Model{
 
     @Override
     public List<Lot> getList(ModifyList mfl) {
-        return lots;
+        return this.lots;
     }
 
     @Override
     public void addLotto(Lot lot) {
-        lots.add(lot);
+        this.lots.add(lot);
     }
 
     @Override

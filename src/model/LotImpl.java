@@ -22,17 +22,17 @@ public class LotImpl implements Lot {
         this.initialQuantity = quantity;
         this.currentQuantity = quantity;
         this.pricePerSingleItem = pricePerSingleItem;
-        onSale = false;
+        this.onSale = false;
     }
 
     @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
     @Override
     public Date getExpirationDate() {
-        return expirationDate;
+        return this.expirationDate;
     }
 
     @Override
