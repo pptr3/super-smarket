@@ -8,17 +8,10 @@ import java.util.stream.Collectors;
 
 public class Warehouse implements Model{
 
-<<<<<<< HEAD
     Map<Lot,Integer> lotsAndDiscounts;
     
     public Warehouse() {
         lotsAndDiscounts = new HashMap<>();
-=======
-    private List<Lot> lots;
-    
-    public Warehouse() {
-        this.lots = new ArrayList<>();
->>>>>>> 0fbfb963be4b44babac862d1adc793af2effd3c5
     }
     
     @Override
@@ -35,20 +28,12 @@ public class Warehouse implements Model{
 
     @Override
     public List<Lot> getList(ModifyList mfl) {
-<<<<<<< HEAD
         return lotsAndDiscounts.keySet().stream().collect(Collectors.toList());
-=======
-        return this.lots;
->>>>>>> 0fbfb963be4b44babac862d1adc793af2effd3c5
     }
 
     @Override
     public void addLotto(Lot lot) {
-<<<<<<< HEAD
         lotsAndDiscounts.put(lot, 0);
-=======
-        this.lots.add(lot);
->>>>>>> 0fbfb963be4b44babac862d1adc793af2effd3c5
     }
 
     @Override
