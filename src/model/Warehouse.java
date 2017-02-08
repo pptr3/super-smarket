@@ -55,8 +55,11 @@ public class Warehouse implements Model{
 
     @Override
     public void setOnSale(int id, int discountAmount) {
-        // TODO Auto-generated method stub
-        
+        lots.forEach(l -> {
+            if (l.getId() == id) {
+                l.setOnSale(discountAmount);
+            }
+        });
     }
 
 }
