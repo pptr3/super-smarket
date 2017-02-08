@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 
 public class Warehouse implements Model{
 
-    Map<Lot,Integer> lotsAndDiscounts;
+    List<Lot> lots;
     
     public Warehouse() {
-        lotsAndDiscounts = new HashMap<>();
+        lots = new ArrayList<>();
     }
     
     @Override
@@ -28,33 +28,25 @@ public class Warehouse implements Model{
 
     @Override
     public List<Lot> getList(ModifyList mfl) {
-        return lotsAndDiscounts.keySet().stream().collect(Collectors.toList());
+        return lots;
     }
 
     @Override
     public void addLotto(Lot lot) {
-        lotsAndDiscounts.put(lot, 0);
+        lots.add(lot);
     }
 
     @Override
     public void removeFromLot(int ID, int n) {
-        Lot target = findLotById(ID);
-        if (target!=null) {
-            target.removeElements(n);
-            if (target.getCurrentQuantity() == 0 ) {
-                lotsAndDiscounts.remove(target);
-            }
-        }
-    }
-
-    private Lot findLotById(int ID) {
-        Lot target = null;
-        for (Lot l : lotsAndDiscounts.keySet()) {
+        lots.forEach(l -> {
             if (l.getId() == ID) {
-                target = l;
+                l.removeElements(n);
+                if (l.getCurrentQuantity() == 0) {
+                    lots.remove(l);
+                }
             }
-        }
-        return target;
+        });
+
     }
 
     @Override

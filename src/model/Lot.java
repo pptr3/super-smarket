@@ -25,6 +25,12 @@ public interface Lot {
 	
 	boolean isOnSale();
 	
+	void setOnSale(int amount);
+	
+	void removeFromSale();
+	
+	int getSalePercentage(); 
+	
 	void removeElements(int n);
 	
 }

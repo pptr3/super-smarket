@@ -13,6 +13,7 @@ public class LotImpl implements Lot {
     private int currentQuantity;
     private int pricePerSingleItem;
     private boolean onSale;
+    private int salePercentage;
     
     
     
@@ -26,6 +27,7 @@ public class LotImpl implements Lot {
         this.currentQuantity = quantity;
         this.pricePerSingleItem = pricePerSingleItem;
         this.onSale = false;
+        this.salePercentage = 0;
     }
 
     @Override
@@ -71,6 +73,23 @@ public class LotImpl implements Lot {
     @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public void setOnSale(int amount) {
+        this.onSale = true;
+        this.salePercentage = amount;
+    }
+
+    @Override
+    public void removeFromSale() {
+        this.onSale = false;
+        this.salePercentage = 0;
+    }
+    
+    @Override
+    public int getSalePercentage() {
+        return this.salePercentage;
     }
 
 }
