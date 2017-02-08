@@ -41,11 +41,9 @@ public class Warehouse implements Model{
         lots.forEach(l -> {
             if (l.getId() == ID) {
                 l.removeElements(n);
-                if (l.getCurrentQuantity() == 0) {
-                    lots.remove(l);
-                }
             }
         });
+        lots = lots.stream().filter(l -> l.getCurrentQuantity() > 0).collect(Collectors.toList());
 
     }
 
