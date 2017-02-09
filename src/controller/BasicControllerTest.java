@@ -57,9 +57,27 @@ public class BasicControllerTest {
         controller2.removeFromLotto(controller2.getList().get(0).getId(), 10); 
         assertEquals(controller2.getList().get(0).getCurrentQuantity(), 26);
         assertEquals(controller2.getList().get(2).getCurrentQuantity(), 26); // need to change the id number for lots with
-        //the same id number
+        //the same product
     }
 
+    @org.junit.Test
+    public void C_testSetOnSale() {
+
+        buildPasta();
+
+        Controller controller3 = new ControllerImpl();
+        controller3.addLotto(lot2);
+        assertEquals(controller3.getList().size(), 1);
+        assertEquals(controller3.getList().get(0).getId(),3); // mi ha messo com ID 3, perchè ?
+        assertFalse(controller3.getList().get(0).isOnSale());
+        controller3.setOnSale(lot2.getId(), 20);
+        assertTrue(controller3.getList().get(0).isOnSale());
+        assertEquals(controller3.getList().get(0).getSalePercentage(), 20);
+        assertEquals(controller3.getList().get(0).getPricePerSingleItem(), 60);
+        assertEquals(controller3.getList().get(0).getName(), "Pasta - brand2");
+        
+    }
+    
     private void buildMilk() {
         lot = new LotBuilder()
                 .name("Milk - brand")
