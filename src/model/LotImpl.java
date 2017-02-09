@@ -94,4 +94,11 @@ public class LotImpl implements LotWithActions {
     public int getSalePercentage() {
         return this.salePercentage;
     }
+
+    @Override
+    public String toString() {
+        return "LotImpl [id=" + id + ", name=" + name + "]";
+    }
+    
+    
 }
