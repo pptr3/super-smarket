@@ -1,54 +1,44 @@
 package model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import java.time.Instant;
 import java.util.Date;
 import java.util.Optional;
 
-import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BasicModelTest {
 
     Lot l = null;
     Lot p = null;
-    
-    public BasicModelTest() {
-            
-        l = new LotBuilder()
-                    .name("Milk - brand")
-                    .checkInDate(new Date(2017,2,3))
-                    .expirationDate(new Date(2017,2,13))
-                    .quantity(36)
-                    .pricePerSingleItem(50)
-                    .build();
-            
-        
-        p = new LotBuilder()
-                    .name("Pasta - brand2")
-                    .checkInDate(new Date(2017,2,8))
-                    .quantity(72)
-                    .pricePerSingleItem(60)
-                    .build();
-     
-    }
       
     @Test
-    public void lotBuilderTest() {
+    public void A_lotBuilderTest() {
         
+        buildMilk();
+        buildPasta();
+
+        assertEquals(0, l.getId());
         assertEquals(1, p.getId());
         assertFalse(p.isOnSale());
         assertEquals(new Date(2017,2,8),p.getCheckInDate());
-        assertEquals(Optional.of(null),l.getExpirationDate());
-        assertEquals(60,l.getPricePerSingleItem());
-        assertEquals(72,l.getInitialQuantity());
-        assertEquals(72,l.getCurrentQuantity());
+        assertEquals(Optional.empty(),p.getExpirationDate());
+        assertEquals(60,p.getPricePerSingleItem());
+        assertEquals(72,p.getInitialQuantity());
+        assertEquals(72,p.getCurrentQuantity());
     }
+
+
     
     @Test
-    public void removeLotTest() {
+    public void B_removeLotTest() {
+        buildMilk();
+        
         Model m = new Warehouse();
         m.addLotto(l);
         assertEquals(1, m.getList(null).size());
@@ -59,7 +49,9 @@ public class BasicModelTest {
     }
 
     @Test
-    public void setOnSaleTest() {
+    public void C_setOnSaleTest() {
+        buildMilk();
+        
         Model m = new Warehouse();
         m.addLotto(l);
         assertFalse(l.isOnSale());
@@ -67,5 +59,23 @@ public class BasicModelTest {
         assertTrue(l.isOnSale());
     }
 
+    private void buildMilk() {
+        l = new LotBuilder()
+                .name("Milk - brand")
+                .checkInDate(new Date(2017,2,3))
+                .expirationDate(new Date(2017,2,13))
+                .quantity(36)
+                .pricePerSingleItem(50)
+                .build();
+    }
+    
+    private void buildPasta() {
+        p = new LotBuilder()
+                .name("Pasta - brand2")
+                .checkInDate(new Date(2017,2,8))
+                .quantity(72)
+                .pricePerSingleItem(60)
+                .build();
+    }
     
 }
