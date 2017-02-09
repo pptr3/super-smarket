@@ -40,7 +40,7 @@ public class LotImpl implements LotWithActions {
 
     @Override
     public Optional<Date> getExpirationDate() {
-        return expirationDate;
+        return this.expirationDate;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class LotImpl implements LotWithActions {
 
     @Override
     public int getId() {
-        return id;
+        return this.id;
     }
 
     @Override
