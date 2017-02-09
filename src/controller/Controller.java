@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Map;
 
 import model.Lot;
+import model.LotWithActions;
 import model.Pair;
 
 public interface Controller {
@@ -29,6 +30,7 @@ public interface Controller {
 	/**
 	 * aggiungo un lotto
 	 * @param lotto
+	 * @return 
 	 */
 	void addLotto(Lot lotto);
 	/**
@@ -48,7 +50,7 @@ public interface Controller {
 	 * @param list
 	 */
 	
-	void setOnSale(List<Pair<Integer, Integer>> list);
+	void setOnSale(int id, int discountAmount);
 	/**
 	 * faccio partire la strategia che mi guarda se determinati prodotti sono da mettere
 	 * in sconto

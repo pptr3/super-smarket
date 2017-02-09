@@ -33,7 +33,7 @@ public class ControllerImpl implements Controller {
 /* ambigua signature del metodo.. mettersi d'accordo prima di implementarlo*/
     @Override
     public List<Lot> getList() {
-       return null;
+       return this.model.getList(null);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void removeFromLotto(int ID, int n) {
-        this.model.removeFromLot(ID, n);
+    public void removeFromLotto(int id, int n) {
+        this.model.removeFromLot(id, n);
     }
 /*ambiguità signature..wait*/
     @Override
@@ -52,9 +52,8 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void setOnSale(List<Pair<Integer, Integer>> list) {
-        // TODO Auto-generated method stub
-
+    public void setOnSale(int id, int discountAmount) {
+        this.model.setOnSale(id, discountAmount);
     }
 
     @Override
