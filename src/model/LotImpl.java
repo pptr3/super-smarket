@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 import java.util.Optional;
 
-public class LotImpl implements Lot {
+public class LotImpl implements LotWithActions {
 
     private int id;
     private String name;
@@ -14,8 +14,6 @@ public class LotImpl implements Lot {
     private int pricePerSingleItem;
     private boolean onSale;
     private int salePercentage;
-    
-    
     
     public LotImpl(int id, String name, Date checkInDate, Optional<Date> expirationDate, int quantity,
             int pricePerSingleItem) {
@@ -28,6 +26,11 @@ public class LotImpl implements Lot {
         this.pricePerSingleItem = pricePerSingleItem;
         this.onSale = false;
         this.salePercentage = 0;
+    }
+
+    public LotImpl(Lot lot) {
+        this(lot.getId(), lot.getName(), lot.getCheckInDate(), 
+                lot.getExpirationDate(), lot.getCurrentQuantity(), lot.getPricePerSingleItem());
     }
 
     @Override

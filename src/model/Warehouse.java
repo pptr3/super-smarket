@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Warehouse implements Model{
 
-    List<Lot> lots;
+    List<LotWithActions> lots;
     
     public Warehouse() {
         lots = new ArrayList<>();
@@ -28,12 +28,14 @@ public class Warehouse implements Model{
 
     @Override
     public List<Lot> getList(ModifyList mfl) {
-        return lots;
+        List<Lot> toReturn = new ArrayList<Lot>();
+        lots.forEach(l -> toReturn.add(l.getLot()));
+        return toReturn;
     }
 
     @Override
     public void addLotto(Lot lot) {
-        lots.add(lot);
+        lots.add(new LotImpl(lot));
     }
 
     @Override

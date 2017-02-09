@@ -56,7 +56,7 @@ public class BasicModelTest {
         m.addLotto(l);
         assertFalse(l.isOnSale());
         m.setOnSale(l.getId(), 10);
-        assertTrue(l.isOnSale());
+        assertTrue(m.getList(null).get(0).isOnSale());
     }
 
     private void buildMilk() {
