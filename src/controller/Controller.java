@@ -1,11 +1,11 @@
 package controller;
 import java.util.List;
+import java.util.Map;
 
 import model.Lot;
 import model.Pair;
 
 public interface Controller {
-
 	/**
 	 * carica il file 
 	 */
@@ -32,7 +32,7 @@ public interface Controller {
 	 */
 	void addLotto(Lot lotto);
 	/**
-	 * rimuove un elemento dal lotto con id ID
+	 * rimuove n elementi dal lotto con identificatore ID
 	 * @param ID
 	 * @param n numero di elementi da rimuovere dal lotto
 	 */ 
@@ -42,7 +42,7 @@ public interface Controller {
 	 * @param s prende una stringa, e dipendentemente da questa metter� i lotti in sconto
 	 * @return lista di lotti aggiornata con gli sconti
 	 */
-	List<Pair<Lot, Integer>> getDiscountable(String s);
+	Map<Lot, Integer> getDiscountable(String s);
 	/**
 	 * metti in sconto i prodotti con id X e sconto Y
 	 * @param list
