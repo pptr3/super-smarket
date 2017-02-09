@@ -63,5 +63,4 @@ public class Warehouse implements Model {
             }
         });
     }
-
 }

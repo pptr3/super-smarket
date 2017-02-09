@@ -94,5 +94,4 @@ public class LotImpl implements LotWithActions {
     public int getSalePercentage() {
         return this.salePercentage;
     }
-
 }
