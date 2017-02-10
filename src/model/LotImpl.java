@@ -7,15 +7,15 @@ public class LotImpl implements LotWithActions {
 
     private int id;
     private String name;
-    private Optional<Date> expirationDate;
-    private Date checkInDate;
+    private Optional<MyCustomDate> expirationDate;
+    private MyCustomDate checkInDate;
     private int initialQuantity;
     private int currentQuantity;
     private int pricePerSingleItem;
     private boolean onSale;
     private int salePercentage;
     
-    public LotImpl(int id, String name, Date checkInDate, Optional<Date> expirationDate, int quantity,
+    public LotImpl(int id, String name, MyCustomDate checkInDate, Optional<MyCustomDate> expirationDate, int quantity,
             int pricePerSingleItem) {
         this.id = id;
         this.name = name;
@@ -39,12 +39,12 @@ public class LotImpl implements LotWithActions {
     }
 
     @Override
-    public Optional<Date> getExpirationDate() {
+    public Optional<MyCustomDate> getExpirationDate() {
         return this.expirationDate;
     }
 
     @Override
-    public Date getCheckInDate() {
+    public MyCustomDate getCheckInDate() {
         return this.checkInDate;
     }
 

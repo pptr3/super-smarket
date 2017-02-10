@@ -9,9 +9,9 @@ public interface Lot {
     
 	String getName();
 	
-	Optional<Date> getExpirationDate();
+	Optional<MyCustomDate> getExpirationDate();
 	
-	Date getCheckInDate();
+	MyCustomDate getCheckInDate();
 
 	int getInitialQuantity();
 

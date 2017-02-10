@@ -9,8 +9,8 @@ public class LotBuilder {
     
     private int id;
     private String name;
-    private Optional<Date> expirationDate;
-    private Date checkInDate;
+    private Optional<MyCustomDate> expirationDate;
+    private MyCustomDate checkInDate;
     private int initialQuantity;
     private int currentQuantity;
     private int pricePerSingleItem;
@@ -29,12 +29,12 @@ public class LotBuilder {
         return this;
     }
     
-    public LotBuilder expirationDate(Date expirationDate) {
+    public LotBuilder expirationDate(MyCustomDate expirationDate) {
         this.expirationDate = Optional.of(expirationDate);
         return this;
     }
     
-    public LotBuilder checkInDate(Date checkInDate) {
+    public LotBuilder checkInDate(MyCustomDate checkInDate) {
         this.checkInDate = checkInDate;
         return this;
     }
