@@ -17,12 +17,12 @@ public class OverFiftyDiscount implements DiscountStrategy {
         List<Lot> qualifiedLots;
         qualifiedLots = lots.stream().filter(l -> l.getExpirationDate().isPresent())
                         .filter(l -> 
-                                    (l.getInitialQuantity() - l.getCurrentQuantity())
+                                    (l.getCurrentQuantity())
                                     > 
                                     (l.getInitialQuantity() / 2)
                         )
                         .filter(l -> 
-                        (l.getCheckInDate().getDifferenceInDays(MyCustomDateImpl.today()))
+                        (MyCustomDateImpl.today().getDifferenceInDays(l.getCheckInDate()))
                         >
                         (l.getExpirationDate().get().getDifferenceInDays(l.getCheckInDate()) / 2)
                         )

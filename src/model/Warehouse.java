@@ -51,8 +51,7 @@ public class Warehouse implements Model {
 
     @Override
     public Map<Lot, Integer> getDiscountable(DiscountStrategy ds) {
-        // TODO Auto-generated method stub
-        return null;
+        return ds.suggestDiscounts(this.getList(null));
     }
 
     @Override
