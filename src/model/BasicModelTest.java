@@ -26,7 +26,7 @@ public class BasicModelTest {
         assertEquals(0, l.getId());
         assertEquals(1, p.getId());
         assertFalse(p.isOnSale());
-        assertEquals(new Date(2017,2,8),p.getCheckInDate());
+        assertEquals(new MyCustomDateImpl(2017,2,8),p.getCheckInDate());
         assertEquals(Optional.empty(),p.getExpirationDate());
         assertEquals(60,p.getPricePerSingleItem());
         assertEquals(72,p.getInitialQuantity());
@@ -62,8 +62,8 @@ public class BasicModelTest {
     private void buildMilk() {
         l = new LotBuilder()
                 .name("Milk - brand")
-                .checkInDate(new Date(2017,2,3))
-                .expirationDate(new Date(2017,2,13))
+                .checkInDate(new MyCustomDateImpl(2017,2,3))
+                .expirationDate(new MyCustomDateImpl(2017,2,13))
                 .quantity(36)
                 .pricePerSingleItem(50)
                 .build();
@@ -72,7 +72,7 @@ public class BasicModelTest {
     private void buildPasta() {
         p = new LotBuilder()
                 .name("Pasta - brand2")
-                .checkInDate(new Date(2017,2,8))
+                .checkInDate(new MyCustomDateImpl(2017,2,8))
                 .quantity(72)
                 .pricePerSingleItem(60)
                 .build();

@@ -10,6 +10,7 @@ import org.junit.runners.MethodSorters;
 
 import model.Lot;
 import model.LotBuilder;
+import model.MyCustomDateImpl;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BasicControllerTest {
@@ -82,8 +83,8 @@ public class BasicControllerTest {
     private void buildMilk() {
         lot = new LotBuilder()
                 .name("Milk - brand")
-                .checkInDate(new Date(2017, 2, 3))
-                .expirationDate(new Date(2017, 2, 13))
+                .checkInDate(new MyCustomDateImpl(2017, 2, 3))
+                .expirationDate(new MyCustomDateImpl(2017, 2, 13))
                 .quantity(36)
                 .pricePerSingleItem(50)
                 .build();
@@ -92,7 +93,7 @@ public class BasicControllerTest {
         private void buildPasta() {
             lot2 = new LotBuilder()
                     .name("Pasta - brand2")
-                    .checkInDate(new Date(2017,2,8))
+                    .checkInDate(new MyCustomDateImpl(2017,2,8))
                     .quantity(72)
                     .pricePerSingleItem(60)
                     .build();
