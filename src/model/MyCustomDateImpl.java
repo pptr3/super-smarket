@@ -54,6 +54,11 @@ public class MyCustomDateImpl implements MyCustomDate {
         return (this.getDifferenceInDays(o) == 0);
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(this.date);
+    }
+
     /**
      * Return the current date.
      * @return A MyCustomDate object representing today's date

@@ -10,6 +10,7 @@ import javax.swing.*;
 
 import model.Lot;
 import model.LotBuilder;
+import model.MyCustomDateImpl;
 import model.Pair;
 
 import java.util.stream.*;
@@ -103,8 +104,8 @@ public class ViewImpl implements MyFakeView {
                
                Lot l = new LotBuilder()
                         .name(this.jtext.get(0).getText())
-                        .checkInDate(new Date(2017,2,3))
-                        .expirationDate(new Date(2017,2,3))
+                        .checkInDate(new MyCustomDateImpl(2017,2,3))
+                        .expirationDate(new MyCustomDateImpl(2017,2,13))
                         .quantity(Integer.parseInt(this.jtext.get(3).getText()))
                         .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText()))
                         .build();

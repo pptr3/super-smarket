@@ -98,7 +98,7 @@ public class LotImpl implements LotWithActions {
     @Override
     public String toString() {
         return " Id=" + id +"\n"+"Name=" + name +"\n"+"ExpirationDate=" + expirationDate +"\n"+ "CheckInDate="
-                + checkInDate + "\n"+" InitialQuantity=" + initialQuantity + "\n"+"CurrentQuantity=" + currentQuantity
+                + checkInDate+ "\n"+" InitialQuantity=" + initialQuantity + "\n"+"CurrentQuantity=" + currentQuantity
                 + "\n"+"PricePerSingleItem=" + pricePerSingleItem + "\n"+"OnSale=" + onSale + "\n"+"SalePercentage="
                 + salePercentage+"\n\n";
     }
