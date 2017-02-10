@@ -22,7 +22,6 @@ public class ControllerImpl implements Controller {
     @Override
     public void initialize(String filepath) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -30,7 +29,7 @@ public class ControllerImpl implements Controller {
         // TODO Auto-generated method stub
 
     }
-/* ambigua signature del metodo.. mettersi d'accordo prima di implementarlo*/
+/* aspettare ad implementarlo */
     @Override
     public List<Lot> getList() {
        return this.model.getList(null);
@@ -45,7 +44,7 @@ public class ControllerImpl implements Controller {
     public void removeFromLotto(int id, int n) {
         this.model.removeFromLot(id, n);
     }
-/*ambiguità signature..wait*/
+/*aspettare ad implementarlo*/
     @Override
     public Map<Lot, Integer> getDiscountable(String s) {
         return null;
