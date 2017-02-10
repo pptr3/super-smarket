@@ -16,7 +16,7 @@ public class ControllerImpl implements Controller {
 
     public ControllerImpl() {
         this.model = new Warehouse();
-        this.fakeView = new ViewImpl();
+        
     }
 
     @Override
