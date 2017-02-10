@@ -19,6 +19,10 @@ public class MyCustomDateImpl implements MyCustomDate {
         this.date = LocalDate.of(year, month, day);
     }
 
+    private MyCustomDateImpl(final LocalDate now) {
+        this(now.getYear(), now.getMonthValue(), now.getDayOfMonth());
+    }
+
     @Override
     public int getDifferenceInDays(final MyCustomDate other) {
         int daysOfThis = this.date.getYear() * 365 + this.date.getDayOfYear();
@@ -48,6 +52,14 @@ public class MyCustomDateImpl implements MyCustomDate {
 
         final MyCustomDateImpl o = (MyCustomDateImpl) obj;
         return (this.getDifferenceInDays(o) == 0);
+    }
+
+    /**
+     * Return the current date.
+     * @return A MyCustomDate object representing today's date
+     */
+    public static MyCustomDate today() {
+        return new MyCustomDateImpl(LocalDate.now());
     }
 
 }
