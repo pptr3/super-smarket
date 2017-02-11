@@ -24,6 +24,7 @@ public class ViewImpl implements MyFakeView {
     private List<Lot> lots = new ArrayList<>();
     private List<JTextField> jtext = new ArrayList<>(); 
     private JTextArea ta = new JTextArea(80,59);
+    private List<JTextField> remove = new ArrayList<>();
     
     
     public ViewImpl() {
@@ -126,11 +127,53 @@ public class ViewImpl implements MyFakeView {
             secondFrame.getContentPane().add(panel, BorderLayout.SOUTH);
             secondFrame.pack();
         });
-      
+        // Remove from lots
+        remove.addActionListener(e -> {
+            JFrame fourthFrame = new JFrame();
+            mainFrame.setVisible(false);
+            fourthFrame.setVisible(true);
+            fourthFrame.setSize(400, 500);
+            fourthFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            fourthFrame.setLayout(new FlowLayout());
+            JPanel center = new JPanel(new GridLayout(0, 2));
+            for (int i = 0; i < 2; i++) {
+                if(i==0) {
+                    center.add(wrapperPanel(new JLabel("ID:"), FlowLayout.LEFT));
+                } else {
+                    center.add(wrapperPanel(new JLabel("How much:"), FlowLayout.LEFT));
+                }
+                JTextField jText = new JTextField(3);
+                this.remove.add(jText);
+                center.add(wrapperPanel(jText, FlowLayout.CENTER));
+            }
+
+            JButton confirm = new JButton("Confirm Remotion");
+
+            JButton back = new JButton("Back");
+            JPanel south = new JPanel();
+            south.add(back, BorderLayout.SOUTH);
+            south.add(confirm, BorderLayout.SOUTH);
+
+            ActionListener alRemove = e3 ->{
+                this.controller.removeFromLotto(Integer.parseInt(this.remove.get(0).getText()),
+                        Integer.parseInt(this.remove.get(1).getText()));
+                mainFrame.setVisible(true);
+                fourthFrame.setVisible(false);
+            };
+            
+            ActionListener al = e2 -> {
+                mainFrame.setVisible(true);
+                fourthFrame.setVisible(false);
+            };
+            confirm.addActionListener(alRemove);
+            back.addActionListener(al);
+            fourthFrame.getContentPane().add(center);
+            fourthFrame.getContentPane().add(south);
+            fourthFrame.pack();
+        });
 
     }
 
-    
     private static JPanel wrapperPanel(final JComponent component, final int orientation) {
         final JPanel panel = new JPanel(new FlowLayout(orientation));
         panel.add(component);
