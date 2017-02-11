@@ -25,7 +25,7 @@ public class ViewImpl implements MyFakeView {
     private List<JTextField> jtext = new ArrayList<>(); 
     private JTextArea ta = new JTextArea(80,59);
     private List<JTextField> remove = new ArrayList<>();
-    
+    private List<JTextField> sale = new ArrayList<>();
     
     public ViewImpl() {
         JFrame mainFrame = new JFrame();
@@ -155,8 +155,11 @@ public class ViewImpl implements MyFakeView {
             south.add(confirm, BorderLayout.SOUTH);
 
             ActionListener alRemove = e3 ->{
+//                System.out.println(Integer.parseInt(this.remove.get(0).getText()));
+//                System.out.println(Integer.parseInt(this.remove.get(1).getText()));
                 this.controller.removeFromLotto(Integer.parseInt(this.remove.get(0).getText()),
                         Integer.parseInt(this.remove.get(1).getText()));
+                this.remove.clear();
                 mainFrame.setVisible(true);
                 fourthFrame.setVisible(false);
             };
@@ -170,6 +173,52 @@ public class ViewImpl implements MyFakeView {
             fourthFrame.getContentPane().add(center);
             fourthFrame.getContentPane().add(south);
             fourthFrame.pack();
+        });
+        
+        setOnSale.addActionListener( al -> {
+            JFrame fifthFrame = new JFrame();
+            fifthFrame.setVisible(false);
+            fifthFrame.setVisible(true);
+            fifthFrame.setSize(800, 700);
+            fifthFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            fifthFrame.setLayout(new FlowLayout());
+            JPanel center = new JPanel(new GridLayout(0, 2));
+            for (int i = 0; i < 2; i++) {
+                if(i==0) {
+                    center.add(wrapperPanel(new JLabel("ID:"), FlowLayout.LEFT));
+                } else {
+                    center.add(wrapperPanel(new JLabel("% Sale:"), FlowLayout.LEFT));
+                }
+                JTextField jText = new JTextField(3);
+                this.sale.add(jText);
+                center.add(wrapperPanel(jText, FlowLayout.CENTER));
+            }
+
+            JButton sale = new JButton("Confirm Sale");
+
+            JButton back = new JButton("Back");
+            JPanel south = new JPanel();
+            south.add(back, BorderLayout.SOUTH);
+            south.add(sale, BorderLayout.SOUTH);
+
+            ActionListener alRemove = e3 ->{
+                this.controller.setOnSale(Integer.parseInt(this.sale.get(0).getText()),
+                        Integer.parseInt(this.sale.get(1).getText()));
+                this.sale.clear();
+                mainFrame.setVisible(true);
+                fifthFrame.setVisible(false);
+            };
+            
+            ActionListener al4 = e2 -> {
+                mainFrame.setVisible(true);
+                fifthFrame.setVisible(false);
+            };
+            sale.addActionListener(alRemove);
+            back.addActionListener(al4);
+            fifthFrame.getContentPane().add(center);
+            fifthFrame.getContentPane().add(south);
+            fifthFrame.pack();
+            
         });
 
     }
