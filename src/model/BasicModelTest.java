@@ -104,6 +104,24 @@ public class BasicModelTest {
         assertEquals(o.getId(), x2.get(1).getId());
         assertEquals(p.getId(), x2.get(2).getId());
         
+    }
+
+    @Test
+    public void F_modifyListOnlyExpiringTest() {
+        buildMilk();
+        buildPasta();
+        buildOnion();
+        
+        Model m = new Warehouse();
+        m.addLotto(p);
+        m.addLotto(l);
+        m.addLotto(o);
+
+        List<Lot> x = m.getList(null);
+        assertEquals(3, x.size());
+        
+        List<Lot> x2 = m.getList(new OnlyExpiring());
+        assertEquals(2, x2.size());
         
     }
     
