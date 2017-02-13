@@ -37,6 +37,9 @@ public class Warehouse implements Model {
     public List<Lot> getList(final ModifyList mfl) {
         final List<Lot> toReturn = new ArrayList<Lot>();
         this.lots.forEach(l -> toReturn.add(l.getLot()));
+        if (mfl != null) {
+            return mfl.modify(toReturn);
+        }
         return toReturn;
     }
 

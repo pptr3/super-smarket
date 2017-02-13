@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -81,6 +82,31 @@ public class BasicModelTest {
         assertEquals(1, map.size());
     }
 
+
+    @Test
+    public void E_modifyListTest() {
+        buildMilk();
+        buildPasta();
+        buildOnion();
+        
+        Model m = new Warehouse();
+        m.addLotto(p);
+        m.addLotto(l);
+        m.addLotto(o);
+
+        List<Lot> x = m.getList(null);
+        assertEquals(p.getId(), x.get(0).getId());
+        assertEquals(l.getId(), x.get(1).getId());
+        assertEquals(o.getId(), x.get(2).getId());
+        
+        List<Lot> x2 = m.getList(new AlphabeticalSorting());
+        assertEquals(l.getId(), x2.get(0).getId());
+        assertEquals(o.getId(), x2.get(1).getId());
+        assertEquals(p.getId(), x2.get(2).getId());
+        
+        
+    }
+    
     private void buildOnion() {
         o = new LotBuilder()
                 .name("Onions - brand 3")
