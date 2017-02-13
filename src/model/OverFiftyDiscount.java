@@ -11,23 +11,27 @@ import java.util.stream.Collectors;
  */
 public class OverFiftyDiscount implements DiscountStrategy {
 
+    private final int discountAmount = 50;
+
     @Override
-    public Map<Lot, Integer> suggestDiscounts(List<Lot> lots) {
-        Map<Lot, Integer> m = new HashMap<>();
+    public Map<Lot, Integer> suggestDiscounts(final List<Lot> lots) {
+        final Map<Lot, Integer> m = new HashMap<>();
         List<Lot> qualifiedLots;
         qualifiedLots = lots.stream().filter(l -> l.getExpirationDate().isPresent())
+                        //only items that haven't sold 50% of the total amount yet
                         .filter(l -> 
-                                    (l.getCurrentQuantity())
-                                    > 
-                                    (l.getInitialQuantity() / 2)
+                            (l.getCurrentQuantity())
+                            > 
+                            (l.getInitialQuantity() / 2)
                         )
+                        //only items that have been in the warehouse for more than 50% of their lifetime
                         .filter(l -> 
-                        (MyCustomDateImpl.today().getDifferenceInDays(l.getCheckInDate()))
-                        >
-                        (l.getExpirationDate().get().getDifferenceInDays(l.getCheckInDate()) / 2)
+                            (MyCustomDateImpl.today().getDifferenceInDays(l.getCheckInDate()))
+                            >
+                            (l.getExpirationDate().get().getDifferenceInDays(l.getCheckInDate()) / 2)
                         )
                         .collect(Collectors.toList());
-        qualifiedLots.forEach(l -> m.put(l, 50));
+        qualifiedLots.forEach(l -> m.put(l, discountAmount));
         return m;
     }
 

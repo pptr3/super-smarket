@@ -1,8 +1,16 @@
 package model;
 import java.util.List;
 
+/**
+ * One-method interface that modifies the list of lots by either sorting it or removing some elements.
+ */
 public interface ModifyList {
 
-	List<Lot> modify(List<Lot> lotti);
-	
+    /**
+     * filters and/or sorts the given list of lots.
+     * @param lot the initial list
+     * @return the modified list
+     */
+    List<Lot> modify(List<Lot> lot);
+
 }

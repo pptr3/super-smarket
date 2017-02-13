@@ -93,7 +93,7 @@ public class BasicControllerTest {
         private void buildPasta() {
             lot2 = new LotBuilder()
                     .name("Pasta - brand2")
-                    .checkInDate(new MyCustomDateImpl(2017,2,8))
+                    .checkInDate(new MyCustomDateImpl(2017, 2, 8))
                     .quantity(72)
                     .pricePerSingleItem(60)
                     .build();

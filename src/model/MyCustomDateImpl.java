@@ -25,8 +25,9 @@ public class MyCustomDateImpl implements MyCustomDate {
 
     @Override
     public int getDifferenceInDays(final MyCustomDate other) {
-        int daysOfThis = this.date.getYear() * 365 + this.date.getDayOfYear();
-        int daysOfOther = other.getYear() * 365 + other.getDayOfYear();
+        //TODO: take care of leap years
+        final int daysOfThis = this.date.getYear() * 365 + this.date.getDayOfYear();
+        final int daysOfOther = other.getYear() * 365 + other.getDayOfYear();
         return daysOfThis - daysOfOther;
     }
 

@@ -15,7 +15,7 @@ public class LotBuilder {
     private int currentQuantity;
     private int pricePerSingleItem;
     private boolean onSale;
-    
+
     public LotBuilder() {
         this.id = nextId++;
         this.expirationDate = Optional.empty();

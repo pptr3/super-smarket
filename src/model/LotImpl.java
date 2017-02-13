@@ -1,8 +1,12 @@
 package model;
 
-import java.util.Date;
 import java.util.Optional;
 
+/**
+ * Implementation of the LotWithActions interface. This should be used inside the Model implementation
+ * but not in the view, since it also has methods for modifying the content of the lot. 
+ * In the view LotImpl objects should be cast to Lot
+ */
 public class LotImpl implements LotWithActions {
 
     private int id;
@@ -14,9 +18,19 @@ public class LotImpl implements LotWithActions {
     private int pricePerSingleItem;
     private boolean onSale;
     private int salePercentage;
-    
-    public LotImpl(int id, String name, MyCustomDate checkInDate, Optional<MyCustomDate> expirationDate, int quantity,
-            int pricePerSingleItem) {
+
+    /**
+     * Basic constructor with all the needed parameters.
+     * @param id given by the builder
+     * @param name name of the product and brand
+     * @param checkInDate when it's been delivered to the warehouse
+     * @param expirationDate optional, not all items have expiration date
+     * @param quantity how many items were in the lot when it arrived in the warehouse
+     * @param pricePerSingleItem in euro cents
+     */
+    public LotImpl(final int id, final String name, final MyCustomDate checkInDate, 
+            final Optional<MyCustomDate> expirationDate, 
+            final int quantity, final int pricePerSingleItem) {
         this.id = id;
         this.name = name;
         this.expirationDate = expirationDate;
@@ -28,7 +42,11 @@ public class LotImpl implements LotWithActions {
         this.salePercentage = 0;
     }
 
-    public LotImpl(Lot lot) {
+    /**
+     * Creates a LotImpl starting with the information inside a Lot.
+     * @param lot initial information
+     */
+    public LotImpl(final Lot lot) {
         this(lot.getId(), lot.getName(), lot.getCheckInDate(), 
                 lot.getExpirationDate(), lot.getCurrentQuantity(), lot.getPricePerSingleItem());
     }
@@ -69,7 +87,7 @@ public class LotImpl implements LotWithActions {
     }
 
     @Override
-    public void removeElements(int n) {
+    public void removeElements(final int n) {
         this.currentQuantity -= n;
     }
 
@@ -79,7 +97,7 @@ public class LotImpl implements LotWithActions {
     }
 
     @Override
-    public void setOnSale(int amount) {
+    public void setOnSale(final int amount) {
         this.onSale = true;
         this.salePercentage = amount;
     }
@@ -89,7 +107,7 @@ public class LotImpl implements LotWithActions {
         this.onSale = false;
         this.salePercentage = 0;
     }
-    
+
     @Override
     public int getSalePercentage() {
         return this.salePercentage;
@@ -97,10 +115,10 @@ public class LotImpl implements LotWithActions {
 
     @Override
     public String toString() {
-        return " Id=" + id +"\n"+"Name=" + name +"\n"+"ExpirationDate=" + expirationDate +"\n"+ "CheckInDate="
-                + checkInDate+ "\n"+" InitialQuantity=" + initialQuantity + "\n"+"CurrentQuantity=" + currentQuantity
-                + "\n"+"PricePerSingleItem=" + pricePerSingleItem + "\n"+"OnSale=" + onSale + "\n"+"SalePercentage="
-                + salePercentage+"\n\n";
+        return " Id=" + id + "\n" + "Name=" + name + "\n" + "ExpirationDate=" + expirationDate + "\n" + "CheckInDate="
+                + checkInDate + "\n" + " InitialQuantity=" + initialQuantity + "\n" + "CurrentQuantity=" + currentQuantity
+                + "\n" + "PricePerSingleItem=" + pricePerSingleItem + "\n" + "OnSale=" + onSale + "\n" + "SalePercentage="
+                + salePercentage + "\n\n";
     }
 
 }

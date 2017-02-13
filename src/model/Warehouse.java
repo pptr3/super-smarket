@@ -1,23 +1,30 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Model implementation representing a warehouse in which lots are stored.
+ * Can also perform other actions as described by the interface
+ */
+
 public class Warehouse implements Model {
 
     private List<LotWithActions> lots;
-    
+
+    /**
+     * Default constructor that initializes the internal list.
+     */
     public Warehouse() {
         this.lots = new ArrayList<>();
     }
-    
+
     @Override
-    public void initialize(String serializedModel) {
+    public void initialize(final String serializedModel) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -27,21 +34,21 @@ public class Warehouse implements Model {
     }
 
     @Override
-    public List<Lot> getList(ModifyList mfl) {
-        List<Lot> toReturn = new ArrayList<Lot>();
+    public List<Lot> getList(final ModifyList mfl) {
+        final List<Lot> toReturn = new ArrayList<Lot>();
         this.lots.forEach(l -> toReturn.add(l.getLot()));
         return toReturn;
     }
 
     @Override
-    public void addLotto(Lot lot) {
+    public void addLotto(final Lot lot) {
         this.lots.add(new LotImpl(lot));
     }
 
     @Override
-    public void removeFromLot(int ID, int n) {
+    public void removeFromLot(final int id, final int n) {
         this.lots.forEach(l -> {
-            if (l.getId() == ID) {
+            if (l.getId() == id) {
                 l.removeElements(n);
             }
         });
@@ -50,12 +57,12 @@ public class Warehouse implements Model {
     }
 
     @Override
-    public Map<Lot, Integer> getDiscountable(DiscountStrategy ds) {
+    public Map<Lot, Integer> getDiscountable(final DiscountStrategy ds) {
         return ds.suggestDiscounts(this.getList(null));
     }
 
     @Override
-    public void setOnSale(int id, int discountAmount) {
+    public void setOnSale(final int id, final int discountAmount) {
         this.lots.forEach(l -> {
             if (l.getId() == id) {
                 l.setOnSale(discountAmount);
