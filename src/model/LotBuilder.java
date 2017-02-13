@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class LotBuilder {
 
-    private static int nextId = 0;
+    public static int nextId = 0;
     
     private int id;
     private String name;

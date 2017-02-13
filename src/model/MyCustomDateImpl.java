@@ -1,12 +1,17 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /** 
  * Basic implementation of MyCustomDate, using java.time.LocalDate class.
  */
-public class MyCustomDateImpl implements MyCustomDate {
+public class MyCustomDateImpl implements MyCustomDate, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3098079862058120408L;
     private LocalDate date;
 
     /**
@@ -57,7 +62,7 @@ public class MyCustomDateImpl implements MyCustomDate {
 
     @Override
     public String toString() {
-        return String.valueOf(this.date);
+        return "year: " + date.getYear() + "dayOfYear: " + date.getDayOfYear();
     }
 
     /**

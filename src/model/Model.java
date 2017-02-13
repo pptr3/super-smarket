@@ -1,4 +1,6 @@
 package model;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -10,17 +12,18 @@ public interface Model {
 
         /**
          * Initializes the content of the warehouse.
-         * 
-         * @param serializedModel content of the file where the state is saved
+         * @param serializedModel ObjectInputStream
+         * @param lastId lastId for the lotBuilder
          */
-        void initialize(String serializedModel);
+        void initialize(ObjectInputStream serializedModel, int lastId);
+
 
         /**
-         * Creates a serialized version of the content of the warehouse.
-         * 
-         * @return the serialized version of the Model, to save in a file
+         * Writes the serialized version of the warehouse in the output stream.
+         * @param output ObjectOutputStream decorating some file stream given by the controller
+         * @return current id from the builder
          */
-        String serializeModel();
+        int serializeModel(ObjectOutputStream output);
 
         /**
          * Returns the content of the warehouse after modifying its content.
@@ -57,5 +60,7 @@ public interface Model {
          * @param discountAmount the discount amount in percentage
          */
         void setOnSale(int id, int discountAmount);
+
+
 
 }

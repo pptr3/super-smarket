@@ -1,5 +1,9 @@
 package model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.attribute.AclEntry.Builder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,15 +26,28 @@ public class Warehouse implements Model {
     }
 
     @Override
-    public void initialize(final String serializedModel) {
-        // TODO Auto-generated method stub
+    public void initialize(final ObjectInputStream serializedModel, final int lastId) {
+        try {
+            lots.add((LotWithActions) serializedModel.readObject());
+        } catch (ClassNotFoundException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        LotBuilder.nextId = lastId;
 
     }
 
     @Override
-    public String serializeModel() {
-        // TODO Auto-generated method stub
-        return null;
+    public int serializeModel(final ObjectOutputStream output) {
+        getList(null).forEach(l -> {
+            try {
+                output.writeObject(l);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        });
+        return LotBuilder.nextId;
     }
 
     @Override

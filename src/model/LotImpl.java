@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 /**
@@ -7,8 +8,12 @@ import java.util.Optional;
  * but not in the view, since it also has methods for modifying the content of the lot. 
  * In the view LotImpl objects should be cast to Lot
  */
-public class LotImpl implements LotWithActions {
+public class LotImpl implements LotWithActions, Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4379413488270752232L;
     private int id;
     private String name;
     private Optional<MyCustomDate> expirationDate;
