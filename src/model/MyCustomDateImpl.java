@@ -12,6 +12,7 @@ public class MyCustomDateImpl implements MyCustomDate, Serializable {
      * 
      */
     private static final long serialVersionUID = 3098079862058120408L;
+    private static final int DAYS_IN_A_YEAR = 365;
     private LocalDate date;
 
     /**
@@ -30,9 +31,9 @@ public class MyCustomDateImpl implements MyCustomDate, Serializable {
 
     @Override
     public int getDifferenceInDays(final MyCustomDate other) {
-        //TODO: take care of leap years
-        final int daysOfThis = this.date.getYear() * 365 + this.date.getDayOfYear();
-        final int daysOfOther = other.getYear() * 365 + other.getDayOfYear();
+        // getYear % 4 adds one day every 4 years, taking care of leap years
+        final int daysOfThis = this.getYear() * DAYS_IN_A_YEAR + this.getYear() % 4 + this.getDayOfYear();
+        final int daysOfOther = other.getYear() * DAYS_IN_A_YEAR + other.getYear() % 4 + other.getDayOfYear();
         return daysOfThis - daysOfOther;
     }
 
