@@ -33,7 +33,7 @@ public class Warehouse implements Model {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        LotBuilder.nextId = lastId;
+        LotBuilder.setNextId(lastId);
 
     }
 
@@ -47,7 +47,7 @@ public class Warehouse implements Model {
                 e.printStackTrace();
             }
         });
-        return LotBuilder.nextId;
+        return LotBuilder.getNextId();
     }
 
     @Override
