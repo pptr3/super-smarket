@@ -7,6 +7,7 @@ import java.nio.file.attribute.AclEntry.Builder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -26,19 +27,33 @@ public class Warehouse implements Model {
     }
 
     @Override
-    public void initialize(final ObjectInputStream serializedModel, final int lastId) {
-        try {
-            lots.add((LotWithActions) serializedModel.readObject());
-        } catch (ClassNotFoundException | IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+    public void initialize(final Optional<ObjectInputStream> serializedModel) {
+        if (!serializedModel.isPresent()) {
+            LotBuilder.setNextId(0);
+        } else {
+            ObjectInputStream buffer = serializedModel.get();
+            try {
+                LotBuilder.setNextId(buffer.readInt());
+                //TODO: loop this
+                lots.add((LotWithActions) buffer.readObject());
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
-        LotBuilder.setNextId(lastId);
-
     }
 
     @Override
-    public int serializeModel(final ObjectOutputStream output) {
+    public void serializeModel(final ObjectOutputStream output) {
+        try {
+            output.writeInt(LotBuilder.getNextId());
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
         getList(null).forEach(l -> {
             try {
                 output.writeObject(l);
@@ -47,7 +62,7 @@ public class Warehouse implements Model {
                 e.printStackTrace();
             }
         });
-        return LotBuilder.getNextId();
+
     }
 
     @Override

@@ -3,6 +3,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * The model of the MVC pattern for supersmarket.
@@ -13,17 +14,15 @@ public interface Model {
         /**
          * Initializes the content of the warehouse.
          * @param serializedModel ObjectInputStream
-         * @param lastId lastId for the lotBuilder
          */
-        void initialize(ObjectInputStream serializedModel, int lastId);
+        void initialize(Optional<ObjectInputStream> serializedModel);
 
 
         /**
          * Writes the serialized version of the warehouse in the output stream.
          * @param output ObjectOutputStream decorating some file stream given by the controller
-         * @return current id from the builder
          */
-        int serializeModel(ObjectOutputStream output);
+        void serializeModel(ObjectOutputStream output);
 
         /**
          * Returns the content of the warehouse after modifying its content.
