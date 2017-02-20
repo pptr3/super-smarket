@@ -18,12 +18,18 @@ public class ControllerImpl implements Controller {
         this.model = new Warehouse();
         
     }
-
+/**
+ * se il file effettivamente esiste ti passero Opzionale ObjectInputStream, senno Optional.empty
+ */
     @Override
     public void initialize(String filepath) {
         // TODO Auto-generated method stub
     }
 
+   /*
+    *Passo un ObjectOutputStream
+    * @see controller.Controller#saveFile(java.lang.String)
+    */
     @Override
     public void saveFile(String filepath) {
         // TODO Auto-generated method stub
