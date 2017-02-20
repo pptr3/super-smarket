@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.*;
+
 import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +12,7 @@ import javax.swing.*;
 import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDateImpl;
-import model.Pair;
+
 
 import java.util.stream.*;
 
@@ -230,7 +231,7 @@ public class ViewImpl implements MyFakeView {
     }
 
     @Override
-    public void discountAdvice(List<Pair<Lot, Integer>> lotti) {
+    public void discountAdvice(Map<Lot, Integer> lotti) {
         // TODO Auto-generated method stub
 
     }

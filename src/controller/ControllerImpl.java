@@ -1,11 +1,11 @@
 package controller;
 
 import java.util.List;
+
 import java.util.Map;
 
 import model.Lot;
 import model.Model;
-import model.Pair;
 import model.Warehouse;
 
 
@@ -27,7 +27,7 @@ public class ControllerImpl implements Controller {
     @Override
     public void saveFile(String filepath) {
         // TODO Auto-generated method stub
-
+        
     }
 /* aspettare ad implementarlo */
     @Override

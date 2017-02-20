@@ -1,9 +1,10 @@
 package controller;
 
 import java.util.List;
+import java.util.Map;
 
 import model.Lot;
-import model.Pair;
+
 
 public interface MyFakeView {
 
@@ -11,5 +12,5 @@ public interface MyFakeView {
 	 * called to advice possible discounts
 	 * @param lotti
 	 */
-	void discountAdvice(List<Pair<Lot, Integer>> lotti);
+	void discountAdvice(Map<Lot, Integer> lotti);
 }
