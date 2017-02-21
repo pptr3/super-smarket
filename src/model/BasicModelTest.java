@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.naming.directory.ModificationItem;
+
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -123,6 +125,24 @@ public class BasicModelTest {
         List<Lot> x2 = m.getList(new OnlyExpiring());
         assertEquals(2, x2.size());
         
+    }
+    
+    @Test
+    public void G_accessingStrategiesFromEnumTest() {
+        buildMilk();
+        buildPasta();
+        buildOnion();
+        
+        Model m = new Warehouse();
+        m.addLotto(p);
+        m.addLotto(l);
+        m.addLotto(o);
+
+        List<Lot> x = m.getList(null);
+        assertEquals(3, x.size());
+        
+        List<Lot> x2 = m.getList(ModifyLists.ONLY_EXPIRING.getMfl());
+        assertEquals(2, x2.size());
     }
     
     private void buildOnion() {
