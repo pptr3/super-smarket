@@ -26,23 +26,23 @@ public class LotImpl implements LotWithActions, Serializable {
 
     /**
      * Basic constructor with all the needed parameters.
-     * @param id given by the builder
-     * @param name name of the product and brand
-     * @param checkInDate when it's been delivered to the warehouse
-     * @param expirationDate optional, not all items have expiration date
-     * @param quantity how many items were in the lot when it arrived in the warehouse
-     * @param pricePerSingleItem in euro cents
+     * @param iid given by the builder
+     * @param iname name of the product and brand
+     * @param icheckInDate when it's been delivered to the warehouse
+     * @param iexpirationDate optional, not all items have expiration date
+     * @param iquantity how many items were in the lot when it arrived in the warehouse
+     * @param ipricePerSingleItem in euro cents
      */
-    public LotImpl(final int id, final String name, final MyCustomDate checkInDate, 
-            final Optional<MyCustomDate> expirationDate, 
-            final int quantity, final int pricePerSingleItem) {
-        this.id = id;
-        this.name = name;
-        this.expirationDate = expirationDate;
-        this.checkInDate = checkInDate;
-        this.initialQuantity = quantity;
-        this.currentQuantity = quantity;
-        this.pricePerSingleItem = pricePerSingleItem;
+    public LotImpl(final int iid, final String iname, final MyCustomDate icheckInDate, 
+            final Optional<MyCustomDate> iexpirationDate, 
+            final int iquantity, final int ipricePerSingleItem) {
+        this.id = iid;
+        this.name = iname;
+        this.expirationDate = iexpirationDate;
+        this.checkInDate = icheckInDate;
+        this.initialQuantity = iquantity;
+        this.currentQuantity = iquantity;
+        this.pricePerSingleItem = ipricePerSingleItem;
         this.onSale = false;
         this.salePercentage = 0;
     }

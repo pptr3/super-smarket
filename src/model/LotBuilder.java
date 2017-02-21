@@ -29,51 +29,51 @@ public class LotBuilder {
 
     /**
      * Initializes the name of the product.
-     * @param name Name and brand
+     * @param pname Name and brand
      * @return LotBuilder for builder pattern
      */
-    public LotBuilder name(String name) {
-        this.name = name;
+    public LotBuilder name(final String pname) {
+        this.name = pname;
         return this;
     }
 
     /**
      * Initializes the expiration date of the product.
-     * @param expirationDate date in which the product will expire
+     * @param pexpirationDate date in which the product will expire
      * @return LotBuilder for builder pattern
      */
-    public LotBuilder expirationDate(MyCustomDate expirationDate) {
-        this.expirationDate = Optional.of(expirationDate);
+    public LotBuilder expirationDate(final MyCustomDate pexpirationDate) {
+        this.expirationDate = Optional.of(pexpirationDate);
         return this;
     }
 
     /**
      * Initializes the check in date of the product.
-     * @param checkInDate date in which the product was put into the warehouse
+     * @param pcheckInDate date in which the product was put into the warehouse
      * @return LotBuilder for builder pattern
      */
-    public LotBuilder checkInDate(MyCustomDate checkInDate) {
-        this.checkInDate = checkInDate;
+    public LotBuilder checkInDate(final MyCustomDate pcheckInDate) {
+        this.checkInDate = pcheckInDate;
         return this;
     }
 
     /**
      * Initializes the number of items of the lot.
-     * @param quantity number of items
+     * @param pquantity number of items
      * @return LotBuilder for builder pattern
      */
-    public LotBuilder quantity(int quantity) {
-        this.initialQuantity = quantity;
+    public LotBuilder quantity(final int pquantity) {
+        this.initialQuantity = pquantity;
         return this;
     }
 
     /**
      * Initializes the price for each item of the lot.
-     * @param pricePerSingleItem in cents of euro
+     * @param ppricePerSingleItem in cents of euro
      * @return LotBuilder for builder pattern
      */
-    public LotBuilder pricePerSingleItem(int pricePerSingleItem) {
-        this.pricePerSingleItem = pricePerSingleItem;
+    public LotBuilder pricePerSingleItem(final int ppricePerSingleItem) {
+        this.pricePerSingleItem = ppricePerSingleItem;
         return this;
     }
 
@@ -98,10 +98,10 @@ public class LotBuilder {
 
     /**
      * setter for nextId.
-     * @param nextId the value of nextId
+     * @param newNextId the value of nextId
      */
-    protected static void setNextId(int nextId) {
-        LotBuilder.nextId = nextId;
+    protected static void setNextId(final int newNextId) {
+        LotBuilder.nextId = newNextId;
     }
 
 }

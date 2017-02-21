@@ -16,8 +16,8 @@ public enum ModifyLists {
 
         private ModifyList mfl;
 
-        ModifyLists (ModifyList mfl) {
-            this.mfl = mfl;
+        ModifyLists(final ModifyList imfl) {
+            this.mfl = imfl;
         }
 
         /**
