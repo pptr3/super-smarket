@@ -22,8 +22,7 @@ public class LotBuilder {
      */
     public LotBuilder() {
         this.expirationDate = Optional.empty();
-        //this.checkInDate = today;
-        //TODO: find a way to set the checkInDate to today's date by default
+        this.checkInDate = MyCustomDateImpl.today();
     }
 
 
