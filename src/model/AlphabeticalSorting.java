@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 /**
  * Sorts the lots in alphabetical order.
  */
-public class AlphabeticalSorting implements ModifyList {
+class AlphabeticalSorting implements ModifyList {
 
     @Override
     public List<Lot> modify(final List<Lot> lot) {

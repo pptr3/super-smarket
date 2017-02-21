@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 /**
  * Removes all non-expiring elements from the list.
  */
-public class OnlyExpiring implements ModifyList {
+class OnlyExpiring implements ModifyList {
 
     @Override
     public List<Lot> modify(final List<Lot> lot) {

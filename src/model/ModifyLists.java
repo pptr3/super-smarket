@@ -20,7 +20,11 @@ public enum ModifyLists {
             this.mfl = mfl;
         }
 
-        ModifyList getMfl() {
+        /**
+         * getter for the modifyList.
+         * @return mfl
+         */
+        public ModifyList getMfl() {
             return this.mfl;
         }
 
