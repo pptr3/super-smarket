@@ -5,7 +5,13 @@ package model;
  */
 public enum ModifyLists {
 
+        /**
+         * Alphabetical sorting.
+         */
         ALPHABETICAL_SORTING(new AlphabeticalSorting()),
+        /**
+         * Removes all items that don't have an expiration date.
+         */
         ONLY_EXPIRING(new OnlyExpiring());
 
         private ModifyList mfl;
