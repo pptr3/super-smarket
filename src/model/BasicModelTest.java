@@ -27,6 +27,7 @@ public class BasicModelTest {
     Lot o = null;
     Lot c = null;
     Lot s = null;
+    Lot b = null;
 
     /**
      * Tests the Builder, creating two lots and checking the ids and content.
@@ -183,18 +184,16 @@ public class BasicModelTest {
      */
     @Test 
     public void H_expiresWithinNDaysTest() {
-        buildMilk();
         buildPasta();
-        buildOnion();
         buildCarrot();
         buildSalad();
+        buildBread();
 
         Model m = new Warehouse();
         m.addLotto(p);
-        //m.addLotto(l);
-        //m.addLotto(o);
         m.addLotto(c);
         m.addLotto(s);
+        m.addLotto(b);
 
         DiscountStrategyFactory factory = new DiscountStrategyFactoryImpl();
 
@@ -203,6 +202,15 @@ public class BasicModelTest {
 
         map = m.getDiscountable(factory.expiresWithinOneDay());
         assertEquals(1, map.size());
+    }
+
+    private void buildBread() {
+        b = new LotBuilder()
+                .name("Bread - brand 2")
+                .expirationDate(new MyCustomDateImpl(LocalDate.now(), 10))
+                .quantity(20)
+                .pricePerSingleItem(100)
+                .build();
     }
 
     private void buildSalad() {
