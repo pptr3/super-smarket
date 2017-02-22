@@ -4,12 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import javax.naming.directory.ModificationItem;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -84,12 +81,16 @@ public class BasicModelTest {
         m.addLotto(p);
         m.addLotto(l);
         m.addLotto(o);
-        Map<Lot, Integer> map = m.getDiscountable(new OverFiftyDiscount());
+        
+        DiscountStrategyFactory factory = new DiscountStrategyFactoryImpl();
+
+        Map<Lot, Integer> map = m.getDiscountable(factory.overFiftyDiscount());
 
         assertEquals(2, map.size());
 
+        
         m.removeFromLot(l.getId(), l.getInitialQuantity() - 1);
-        map = m.getDiscountable(new OverFiftyDiscount());
+        map = m.getDiscountable(factory.overFiftyDiscount());
 
         assertEquals(1, map.size());
     }
