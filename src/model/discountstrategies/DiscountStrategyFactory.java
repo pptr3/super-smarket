@@ -1,4 +1,4 @@
-package model;
+package model.discountstrategies;
 
 /**
  * Factory that instantiates DiscountStrategy objects.

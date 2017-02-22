@@ -1,4 +1,4 @@
-package model;
+package model.modifylists;
 
 /**
  * Factory that instantiates ModifyList objects.

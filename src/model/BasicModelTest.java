@@ -12,6 +12,11 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import model.discountstrategies.DiscountStrategyFactory;
+import model.discountstrategies.DiscountStrategyFactoryImpl;
+import model.modifylists.ModifyListFactory;
+import model.modifylists.ModifyListFactoryImpl;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BasicModelTest {
 
@@ -81,14 +86,13 @@ public class BasicModelTest {
         m.addLotto(p);
         m.addLotto(l);
         m.addLotto(o);
-        
+
         DiscountStrategyFactory factory = new DiscountStrategyFactoryImpl();
 
         Map<Lot, Integer> map = m.getDiscountable(factory.overFiftyDiscount());
 
         assertEquals(2, map.size());
 
-        
         m.removeFromLot(l.getId(), l.getInitialQuantity() - 1);
         map = m.getDiscountable(factory.overFiftyDiscount());
 
@@ -114,7 +118,9 @@ public class BasicModelTest {
         assertEquals(l.getId(), x.get(1).getId());
         assertEquals(o.getId(), x.get(2).getId());
 
-        final List<Lot> x2 = m.getList(new AlphabeticalSorting());
+        ModifyListFactory factory = new ModifyListFactoryImpl();
+        
+        final List<Lot> x2 = m.getList(factory.alphabeticalSorting());
         assertEquals(l.getId(), x2.get(0).getId());
         assertEquals(o.getId(), x2.get(1).getId());
         assertEquals(p.getId(), x2.get(2).getId());
@@ -135,10 +141,12 @@ public class BasicModelTest {
         m.addLotto(l);
         m.addLotto(o);
 
+        ModifyListFactory factory = new ModifyListFactoryImpl();
+
         List<Lot> x = m.getList(null);
         assertEquals(3, x.size());
 
-        List<Lot> x2 = m.getList(new OnlyExpiring());
+        List<Lot> x2 = m.getList(factory.onlyExpiring());
         assertEquals(2, x2.size());
 
     }

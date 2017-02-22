@@ -1,7 +1,9 @@
-package model;
+package model.modifylists;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import model.Lot;
 
 
 /**

@@ -1,4 +1,4 @@
-package model;
+package model.modifylists;
 
 /**
  * Basic implementation of ModifyListFactory, that has all the ModifyLists of the model.

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import model.discountstrategies.DiscountStrategy;
+import model.modifylists.ModifyList;
+
 /**
  * The model of the MVC pattern for supersmarket.
  * Represents a warehouse that has various operations on lots.

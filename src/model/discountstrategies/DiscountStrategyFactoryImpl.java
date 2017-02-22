@@ -1,4 +1,4 @@
-package model;
+package model.discountstrategies;
 
 /**
  * Basic implementation of DiscountStrategyFactory, with all the discount strategies of the model.

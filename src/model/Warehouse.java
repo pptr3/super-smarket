@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import model.discountstrategies.DiscountStrategy;
+import model.modifylists.ModifyList;
+
 /**
  * Model implementation representing a warehouse in which lots are stored.
  * Can also perform other actions as described by the interface

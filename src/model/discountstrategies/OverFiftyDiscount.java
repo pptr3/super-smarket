@@ -1,15 +1,18 @@
-package model;
+package model.discountstrategies;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import model.Lot;
+import model.MyCustomDateImpl;
+
 /**
  * Discount strategy that suggests all the products that are over 50% of their time without
  * having sold 50% or more of the quantity to be put in discount.
  */
-public class OverFiftyDiscount implements DiscountStrategy {
+class OverFiftyDiscount implements DiscountStrategy {
 
     private final int discountAmount = 50;
 

@@ -1,7 +1,9 @@
-package model;
+package model.discountstrategies;
 
 import java.util.List;
 import java.util.Map;
+
+import model.Lot;
 
 /**
  * Interface with one method that suggests which items should be discounted.
