@@ -29,6 +29,15 @@ public class MyCustomDateImpl implements MyCustomDate, Serializable {
         this(now.getYear(), now.getMonthValue(), now.getDayOfMonth());
     }
 
+    /**
+     * Creates the customDate after n days after the starting date.
+     * @param now the starting date
+     * @param daysToAdd how many days after the date
+     */
+    public MyCustomDateImpl(final LocalDate now, final long daysToAdd) {
+        this(now.plusDays(daysToAdd));
+    }
+
     @Override
     public int getDifferenceInDays(final MyCustomDate other) {
         // getYear / 4 adds one day every 4 years, taking care of leap years

@@ -13,17 +13,17 @@ import model.MyCustomDateImpl;
  */
 public class ExpiresWithinNDays implements DiscountStrategy {
 
-    private int discountAmount;
     private int numberOfDays;
+    private int discountAmount;
 
     /**
      * Basic constructor for ExpiresWithinNDays.
      * @param idiscountAmount in percentage
      * @param inumberOfDays every day of the week counts
      */
-    public ExpiresWithinNDays(final int idiscountAmount, final int inumberOfDays) {
-        this.discountAmount = idiscountAmount;
+    public ExpiresWithinNDays(final int inumberOfDays, final int idiscountAmount) {
         this.numberOfDays = inumberOfDays;
+        this.discountAmount = idiscountAmount;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class ExpiresWithinNDays implements DiscountStrategy {
         qualifiedLots = lots.stream().filter(l -> l.getExpirationDate().isPresent())
                         .filter(l -> 
                             (l.getExpirationDate().get().getDifferenceInDays(MyCustomDateImpl.today())
-                            <
+                            <=
                             (numberOfDays))
                         )
                         .collect(Collectors.toList());

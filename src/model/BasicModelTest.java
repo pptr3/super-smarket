@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import model.MyCustomDateImpl;
 import model.discountstrategies.DiscountStrategyFactory;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import model.modifylists.ModifyListFactory;
@@ -23,6 +25,8 @@ public class BasicModelTest {
     Lot l = null;
     Lot p = null;
     Lot o = null;
+    Lot c = null;
+    Lot s = null;
 
     /**
      * Tests the Builder, creating two lots and checking the ids and content.
@@ -119,7 +123,7 @@ public class BasicModelTest {
         assertEquals(o.getId(), x.get(2).getId());
 
         ModifyListFactory factory = new ModifyListFactoryImpl();
-        
+
         final List<Lot> x2 = m.getList(factory.alphabeticalSorting());
         assertEquals(l.getId(), x2.get(0).getId());
         assertEquals(o.getId(), x2.get(1).getId());
@@ -174,6 +178,54 @@ public class BasicModelTest {
         assertEquals(2, x2.size());
     }
 
+    /**
+     * Tests both the expires within the week and the expires within tomorrow strategies.
+     */
+    @Test 
+    public void H_expiresWithinNDaysTest() {
+        buildMilk();
+        buildPasta();
+        buildOnion();
+        buildCarrot();
+        buildSalad();
+
+        Model m = new Warehouse();
+        m.addLotto(p);
+        //m.addLotto(l);
+        //m.addLotto(o);
+        m.addLotto(c);
+        m.addLotto(s);
+
+        DiscountStrategyFactory factory = new DiscountStrategyFactoryImpl();
+
+        Map<Lot, Integer> map = m.getDiscountable(factory.expiresWithinAWeek());
+        assertEquals(2, map.size());
+
+        map = m.getDiscountable(factory.expiresWithinOneDay());
+        assertEquals(1, map.size());
+    }
+
+    private void buildSalad() {
+
+        s = new LotBuilder()
+                .name("Salad - brand 4")
+                .expirationDate(new MyCustomDateImpl(LocalDate.now(), 1))
+                .quantity(20)
+                .pricePerSingleItem(100)
+                .build();
+
+    }
+
+    private void buildCarrot() {
+
+        c = new LotBuilder()
+                .name("Carrots - brand 4")
+                .expirationDate(new MyCustomDateImpl(LocalDate.now(),4))
+                .quantity(20)
+                .pricePerSingleItem(100)
+                .build();
+    }
+
     private void buildOnion() {
         o = new LotBuilder()
                 .name("Onions - brand 3")
@@ -184,8 +236,6 @@ public class BasicModelTest {
                 .build();
 
     }
-
-
 
     private void buildMilk() {
         l = new LotBuilder()
