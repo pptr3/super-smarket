@@ -12,4 +12,18 @@ public interface DiscountStrategyFactory {
      */
     DiscountStrategy overFiftyDiscount();
 
+    /**
+     * Returns a strategy that suggests to discount lots that have less 
+     * than one week of lifetime.
+     * @return an ExpiresWithinNDays object
+     */
+    DiscountStrategy expiresWithinAWeek();
+
+    /**
+     * Returns a strategy that suggests to discount lots that are
+     * expiring within one day.
+     * @return an ExpiresWithinNDays object
+     */
+    DiscountStrategy expiresWithinOneDay();
+
 }
