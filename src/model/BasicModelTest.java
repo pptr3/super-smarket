@@ -13,7 +13,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import model.MyCustomDateImpl;
 import model.discountstrategies.DiscountStrategyFactory;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import model.modifylists.ModifyListFactory;
@@ -41,11 +40,11 @@ public class BasicModelTest {
         assertEquals(0, l.getId());
         assertEquals(1, p.getId());
         assertFalse(p.isOnSale());
-        assertEquals(new MyCustomDateImpl(2017,2,8),p.getCheckInDate());
-        assertEquals(Optional.empty(),p.getExpirationDate());
-        assertEquals(60,p.getPricePerSingleItem());
-        assertEquals(72,p.getInitialQuantity());
-        assertEquals(72,p.getCurrentQuantity());
+        assertEquals(new MyCustomDateImpl(2017, 2, 8), p.getCheckInDate());
+        assertEquals(Optional.empty(), p.getExpirationDate());
+        assertEquals(60, p.getPricePerSingleItem());
+        assertEquals(72, p.getInitialQuantity());
+        assertEquals(72, p.getCurrentQuantity());
     }
 
     /**
@@ -228,7 +227,7 @@ public class BasicModelTest {
 
         c = new LotBuilder()
                 .name("Carrots - brand 4")
-                .expirationDate(new MyCustomDateImpl(LocalDate.now(),4))
+                .expirationDate(new MyCustomDateImpl(LocalDate.now(), 4))
                 .quantity(20)
                 .pricePerSingleItem(100)
                 .build();

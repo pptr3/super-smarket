@@ -1,5 +1,6 @@
 package model;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -33,16 +34,20 @@ public class Warehouse implements Model {
         if (!serializedModel.isPresent()) {
             LotBuilder.setNextId(0);
         } else {
-            ObjectInputStream buffer = serializedModel.get();
+            final ObjectInputStream buffer = serializedModel.get();
             try {
                 LotBuilder.setNextId(buffer.readInt());
-                //TODO: loop this
-                lots.add((LotWithActions) buffer.readObject());
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
+                Object obj = null;
+                while ((obj = buffer.readObject()) != null) {
+                    if (obj instanceof LotWithActions) {
+                        lots.add((LotWithActions) obj);
+                    }
+                }
+            } catch (EOFException e) { //File has reached its end, we read it all.
+            }
+            catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -53,14 +58,12 @@ public class Warehouse implements Model {
         try {
             output.writeInt(LotBuilder.getNextId());
         } catch (IOException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
         getList(null).forEach(l -> {
             try {
                 output.writeObject(l);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });
