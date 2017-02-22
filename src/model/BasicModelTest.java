@@ -146,7 +146,7 @@ public class BasicModelTest {
      * Tests that modifyList objects can also be retrieved from the enum.
      */
     @Test
-    public void G_accessingStrategiesFromEnumTest() {
+    public void G_creatingStrategiesWithFactoryTest() {
         buildMilk();
         buildPasta();
         buildOnion();
@@ -156,10 +156,12 @@ public class BasicModelTest {
         m.addLotto(l);
         m.addLotto(o);
 
+        ModifyListFactory factory = new ModifyListFactoryImpl();
+
         List<Lot> x = m.getList(null);
         assertEquals(3, x.size());
 
-        List<Lot> x2 = m.getList(ModifyLists.ONLY_EXPIRING.getMfl());
+        List<Lot> x2 = m.getList(factory.onlyExpiring());
         assertEquals(2, x2.size());
     }
 
