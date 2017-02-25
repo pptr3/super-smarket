@@ -1,11 +1,14 @@
 package controller;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 import java.util.Map;
@@ -30,6 +33,7 @@ public class ControllerImpl implements Controller {
     /**
      * If the file indicated by filepath exist, pass an Optional of ObjectInputStream, else pass an Optional.empty.
      * @throws IOException 
+     * @param filepath
      */
     @Override
     public void initialize(String filepath) throws IOException {
@@ -38,13 +42,15 @@ public class ControllerImpl implements Controller {
     
 
     /**
+     * Saves the file to the given path
      * @param filepath
      *            ObjectOutputStream
+     * @throws IOException 
+     * @throws FileNotFoundException 
      */
     @Override
-    public void saveFile(String filepath) {
-        // TODO Auto-generated method stub
-
+    public void saveFile(String filepath) throws FileNotFoundException, IOException {
+        this.model.serializeModel(new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filepath))));
     }
 
     /**

@@ -23,8 +23,10 @@ public interface Controller {
 	/**
 	 * salva il file
 	 * @param filepath
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	void saveFile(String filepath);
+	void saveFile(String filepath) throws FileNotFoundException, IOException;
 	
 	/**
 	 * @return a modify list of Lotto
