@@ -1,8 +1,15 @@
 package controller;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.List;
 
 import java.util.Map;
+import java.util.Optional;
 
 import model.Lot;
 import model.Model;
@@ -21,12 +28,14 @@ public class ControllerImpl implements Controller {
 
 
     /**
-     * If the file indicated by filepath exist, i pass an Optional of ObjectInputStream, else pass an Optional.empty.
+     * If the file indicated by filepath exist, pass an Optional of ObjectInputStream, else pass an Optional.empty.
+     * @throws IOException 
      */
     @Override
-    public void initialize(String filepath) {
-        // TODO Auto-generated method stub
+    public void initialize(String filepath) throws IOException {
+        this.model.initialize(Optional.of( new ObjectInputStream( new BufferedInputStream( new FileInputStream(filepath)))));
     }
+    
 
     /**
      * @param filepath

@@ -1,4 +1,6 @@
 package controller;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import java.util.Map;
@@ -9,8 +11,10 @@ import model.LotWithActions;
 public interface Controller {
 	/**
 	 * carica il file 
+	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	void initialize(String filepath);
+	void initialize(String filepath) throws FileNotFoundException, IOException;
 	/**@param ModifyList
 	 * ModifyList � un interfaccia con un metodo che mi ritorner�: o la lista dei Lotti ordinati, 
 	 * od eliminare dei lotti
