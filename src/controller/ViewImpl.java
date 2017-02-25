@@ -16,7 +16,7 @@ import model.MyCustomDateImpl;
 
 import java.util.stream.*;
 
-public class ViewImpl implements MyFakeView {
+public class ViewImpl implements MyFakeView, Observer {
     
     private Controller controller = new ControllerImpl();
     private static final long serialVersionUID = -7275450490516982922L;
@@ -238,5 +238,11 @@ public class ViewImpl implements MyFakeView {
     
     public static void main(String[] args) {
         new ViewImpl();
+    }
+
+    @Override
+    public void update() {
+        System.out.println("I has been notified");
+        
     }
 }

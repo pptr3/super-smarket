@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
@@ -22,25 +21,26 @@ import model.Warehouse;
 public class ControllerImpl implements Controller {
 
     private Model model;
-    private MyFakeView fakeView;
-
+    private Observer fakeView;
+    private Subject subject;
+    
     public ControllerImpl() {
         this.model = new Warehouse();
         this.fakeView = new ViewImpl();
+        this.subject = new SubjectImpl();
     }
-
-
+    
     /**
      * If the file indicated by filepath exist, pass an Optional of ObjectInputStream, else pass an Optional.empty.
      * @throws IOException 
      * @param filepath
      */
+    
     @Override
     public void initialize(String filepath) throws IOException {
         this.model.initialize(Optional.of( new ObjectInputStream( new BufferedInputStream( new FileInputStream(filepath)))));
     }
-    
-
+   
     /**
      * Saves the file to the given path
      * @param filepath
@@ -48,9 +48,10 @@ public class ControllerImpl implements Controller {
      * @throws IOException 
      * @throws FileNotFoundException 
      */
+    
     @Override
     public void saveFile(String filepath) throws FileNotFoundException, IOException {
-        this.model.serializeModel(new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filepath))));
+        this.model.serializeModel(new ObjectOutputStream( new BufferedOutputStream( new FileOutputStream(filepath))));
     }
 
     /**
@@ -72,7 +73,7 @@ public class ControllerImpl implements Controller {
     }
 
     /**
-     * Removes 3 products from the lot with the specified id
+     * Removes n products from the lot with the specified id
      * @param id
      * @param n
      */
@@ -87,15 +88,22 @@ public class ControllerImpl implements Controller {
         return null;
     }
 
+    /**
+     * Set on sale the lot with specified id of discoutAmount amount
+     * @param id
+     * @param discountAmount
+     */
+    
     @Override
     public void setOnSale(int id, int discountAmount) {
         this.model.setOnSale(id, discountAmount);
     }
 
+    
     @Override
     public void startScan() {
-        // TODO Auto-generated method stub
-
+        this.subject.register(fakeView);
+        
     }
 
     @Override
