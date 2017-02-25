@@ -5,19 +5,19 @@ import java.util.List;
 
 public class SubjectImpl implements Subject {
 
-    private List<Observer> list;
+    private List<MyFakeView> list;
     
     public SubjectImpl() {
         this.list = new ArrayList<>();
     }
     
     @Override
-    public void register(Observer newObserver) {
+    public void register(MyFakeView newObserver) {
         this.list.add(newObserver);
     }
 
     @Override
-    public void unregister(Observer deleteObserver) {
+    public void unregister(MyFakeView deleteObserver) {
         this.list.remove(this.list.indexOf(deleteObserver));
     }
 

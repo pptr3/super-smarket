@@ -12,4 +12,9 @@ public interface MyFakeView {
 	 * @param lotti
 	 */
 	void discountAdvice(Map<Lot, Integer> lotti);
+	
+	/**
+	 * 
+	 */
+	public void update();
 }

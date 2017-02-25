@@ -11,14 +11,14 @@ public interface Subject {
      * 
      * @param o
      */
-    public void register(Observer o);
+    public void register(MyFakeView o);
 
     /**
      * delete ad Observer
      * 
      * @param o
      */
-    public void unregister(Observer o);
+    public void unregister(MyFakeView o);
 
     /**
      * notify all Observers

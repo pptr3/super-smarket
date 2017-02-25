@@ -21,13 +21,14 @@ import model.Warehouse;
 public class ControllerImpl implements Controller {
 
     private Model model;
-    private Observer fakeView;
+    private MyFakeView fakeView;
     private Subject subject;
+
     
     public ControllerImpl() {
         this.model = new Warehouse();
         this.fakeView = new ViewImpl();
-        this.subject = new SubjectImpl();
+        this.subject = new SubjectImpl();  
     }
     
     /**
@@ -111,5 +112,4 @@ public class ControllerImpl implements Controller {
         // TODO Auto-generated method stub
 
     }
-
 }

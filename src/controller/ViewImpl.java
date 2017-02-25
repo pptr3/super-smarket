@@ -16,7 +16,7 @@ import model.MyCustomDateImpl;
 
 import java.util.stream.*;
 
-public class ViewImpl implements MyFakeView, Observer {
+public class ViewImpl implements MyFakeView {
     
     private Controller controller = new ControllerImpl();
     private static final long serialVersionUID = -7275450490516982922L;
