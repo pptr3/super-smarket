@@ -16,41 +16,57 @@ public class ControllerImpl implements Controller {
 
     public ControllerImpl() {
         this.model = new Warehouse();
-        
+        this.fakeView = new ViewImpl();
     }
-/**
- * se il file effettivamente esiste ti passero Opzionale ObjectInputStream, senno Optional.empty
- */
+
+
+    /**
+     * If the file indicated by filepath exist, i pass an Optional of ObjectInputStream, else pass an Optional.empty.
+     */
     @Override
     public void initialize(String filepath) {
         // TODO Auto-generated method stub
     }
 
-   /*
-    *Passo un ObjectOutputStream
-    * @see controller.Controller#saveFile(java.lang.String)
-    */
+    /**
+     * @param filepath
+     *            ObjectOutputStream
+     */
     @Override
     public void saveFile(String filepath) {
         // TODO Auto-generated method stub
-        
-    }
-/* aspettare ad implementarlo */
-    @Override
-    public List<Lot> getList() {
-       return this.model.getList(null);
+
     }
 
+    /**
+     * @return the List of Lot
+     */
+
+    @Override
+    public List<Lot> getList() {
+        return this.model.getList(null);
+    }
+
+    /**
+     * @param lotto adds lotto
+     */
+    
     @Override
     public void addLotto(Lot lotto) {
         this.model.addLotto(lotto);
     }
 
+    /**
+     * Removes 3 products from the lot with the specified id
+     * @param id
+     * @param n
+     */
+    
     @Override
     public void removeFromLotto(int id, int n) {
         this.model.removeFromLot(id, n);
     }
-/*aspettare ad implementarlo*/
+
     @Override
     public Map<Lot, Integer> getDiscountable(String s) {
         return null;
