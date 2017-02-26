@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import java.util.Map;
@@ -27,15 +30,16 @@ import model.Warehouse;
 public class ControllerImpl implements Controller {
 
     private Model model;
-    private MyFakeView view;
     private Agent agent;
+    private Subject subject;
+//    private final Collection<MyFakeView> views;
     
-    public ControllerImpl(Model model, MyFakeView view) {
+    public ControllerImpl(Model model) {
         this.model = model;
-        this.view = view;
+        this.subject = new SubjectImpl();
+//        this.views = Collections.synchronizedCollection(new LinkedList<>());
     }
     
-    public ControllerImpl() {}
     
     /**
      * If the file indicated by filepath exist, pass an Optional of ObjectInputStream, else pass an Optional.empty.
@@ -106,6 +110,10 @@ public class ControllerImpl implements Controller {
         this.model.setOnSale(id, discountAmount);
     }
 
+    @Override
+    public void registerView(MyFakeView view) {
+       this.subject.attachView(view);        
+    }
     
     @Override
     public synchronized void startScan() {
@@ -134,21 +142,20 @@ public class ControllerImpl implements Controller {
     private class Agent extends Thread {
 
         private volatile boolean stoppable;
-       // private Random rand = new Random();
-        
+       
         public Agent() {
             this.stoppable = false;
-           
-            //ControllerImpl.this.subject.attach(view);
         }
 
         public void run() {
             while (!this.stoppable) {
                 try {
-                   System.out.println("run");
+                    if(!getDiscountable(null).isEmpty()) {
+                        ControllerImpl.this.subject.updateViews();
+                    }
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
-                    throw new IllegalStateException("Counting has been interrupted", ex);
+                    throw new IllegalStateException();
                 }
             }
         }
@@ -156,12 +163,6 @@ public class ControllerImpl implements Controller {
         public void stopScanning() {
             this.stoppable = true;
         }
-    }
-
-    @Override
-    public void registerView(MyFakeView view) {
-        // TODO Auto-generated method stub
-        
     }
 
 }

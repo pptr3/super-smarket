@@ -57,17 +57,24 @@ public interface Controller {
 	 */
 	
 	void setOnSale(int id, int discountAmount);
-	/**
-	 * faccio partire la strategia che mi guarda se determinati prodotti sono da mettere
-	 * in sconto
-	 */
-	void startScan();
-	/**
-	 * stop strategia
-	 */
-	void stopScan();
 	
-	void registerView(MyFakeView view);
-	
-	
+    /**
+     * faccio partire la strategia che mi guarda se determinati prodotti sono da
+     * mettere in sconto
+     */
+    void startScan();
+
+    /**
+     * stop strategia
+     */
+    void stopScan();
+
+    /**
+     * Registers a new view to be controlled (pattern Observer).
+     * 
+     * @param view
+     *            the view to register
+     */
+    void registerView(MyFakeView view);
+
 }

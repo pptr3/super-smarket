@@ -7,10 +7,10 @@ public class Test {
 
     public static void main(String[] args) {
        Model model = new Warehouse();
-       MyFakeView view = new ViewImpl();
-       Controller controller = new ControllerImpl(model, view);
+       Controller controller = new ControllerImpl(model);
+       MyFakeView view = new ViewImpl(controller);
        controller.registerView(view);
-      
+       
        
     }
 

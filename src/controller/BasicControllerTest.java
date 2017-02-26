@@ -11,6 +11,7 @@ import org.junit.runners.MethodSorters;
 import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDateImpl;
+import model.Warehouse;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BasicControllerTest {
@@ -23,7 +24,7 @@ public class BasicControllerTest {
 
         buildMilk();
 
-        Controller controller = new ControllerImpl();
+        Controller controller = new ControllerImpl(new Warehouse());
         controller.addLotto(lot);
         assertEquals(controller.getList().size(), 1);
         controller.removeFromLotto(lot.getId(), 36);
@@ -48,7 +49,7 @@ public class BasicControllerTest {
         buildMilk();
         buildPasta();
 
-        Controller controller2 = new ControllerImpl();
+        Controller controller2 = new ControllerImpl(new Warehouse());
         controller2.addLotto(lot);
         controller2.addLotto(lot);
         controller2.addLotto(lot2);
@@ -68,7 +69,7 @@ public class BasicControllerTest {
 
         buildPasta();
 
-        Controller controller3 = new ControllerImpl();
+        Controller controller3 = new ControllerImpl(new Warehouse());
         controller3.addLotto(lot2);
         assertEquals(controller3.getList().size(), 1);
         assertEquals(controller3.getList().get(0).getId(),3); //the ID changes

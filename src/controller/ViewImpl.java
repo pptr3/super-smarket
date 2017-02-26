@@ -6,6 +6,7 @@ import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.*;
 
@@ -18,7 +19,7 @@ import java.util.stream.*;
 
 public class ViewImpl implements MyFakeView {
     
-    private Controller controller = new ControllerImpl();
+    private Controller controller;
     private static final long serialVersionUID = -7275450490516982922L;
     private List<String> list = new ArrayList<>(Arrays.asList("Name", "Check in date", "Expiration date",
             "Initial quantity", "Price per single item"));
@@ -28,7 +29,8 @@ public class ViewImpl implements MyFakeView {
     private List<JTextField> remove = new ArrayList<>();
     private List<JTextField> sale = new ArrayList<>();
     
-    public ViewImpl() {
+    public ViewImpl(Controller controller) {
+        this.controller = controller;
         JFrame mainFrame = new JFrame();
         // Inizializzazione base
         mainFrame.setSize(500, (50 * this.list.size()));
@@ -253,12 +255,13 @@ public class ViewImpl implements MyFakeView {
     }
     
 
-    @Override
     public void update() {
-        System.out.println("I has been  notified");
+        try {
+           SwingUtilities.invokeAndWait(() -> JOptionPane.showMessageDialog(new JFrame(), "I has been notified"));
+        } catch (InvocationTargetException | InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
-    public static void main(String[] args) {
-        new ViewImpl();
-    }
 }
