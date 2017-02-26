@@ -107,7 +107,7 @@ public class ControllerImpl implements Controller {
     private class Agent extends Thread {
 
         private volatile boolean stoppable;
-        private Random rand = new Random();
+       // private Random rand = new Random();
         public Agent() {
             this.stoppable = false;
         }
@@ -118,9 +118,9 @@ public class ControllerImpl implements Controller {
 //                    if(!getDiscountable(null).isEmpty()) {
 //                        ControllerImpl.this.subject.updateViews();
 //                    }
-                    if(rand.nextInt(20) == 1) {
-                        ControllerImpl.this.subject.updateViews();
-                    }
+//                    if(rand.nextInt(20) == 1) {
+//                        ControllerImpl.this.subject.updateViews();
+//                    }
                     Thread.sleep(500);
                 } catch (InterruptedException ex) {
                     throw new IllegalStateException();
