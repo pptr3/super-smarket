@@ -12,6 +12,7 @@ import java.util.List;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
 
 import model.Lot;
 import model.Model;
@@ -21,14 +22,16 @@ import model.Warehouse;
 public class ControllerImpl implements Controller {
 
     private Model model;
-    private MyFakeView fakeView;
+    private MyFakeView view;
     private Subject subject;
-
+    private Agent ag = new Agent();
+    private Thread th;
     
     public ControllerImpl() {
         this.model = new Warehouse();
-        this.fakeView = new ViewImpl();
-        this.subject = new SubjectImpl();  
+        this.view = new ViewImpl();
+        this.subject = new SubjectImpl();
+        this.th = new Thread(this.ag);
     }
     
     /**
@@ -103,13 +106,44 @@ public class ControllerImpl implements Controller {
     
     @Override
     public void startScan() {
-        this.subject.register(fakeView);
-        
+//        this.subject.register(view);
+        th.start();
     }
 
     @Override
     public void stopScan() {
-        // TODO Auto-generated method stub
-
+       this.ag.stopScanning();
+       this.subject.unregister(view);
     }
+
+    private class Agent implements Runnable {
+
+        private volatile boolean stoppable;
+        private Random rand = new Random();
+        public Agent() {
+            this.stoppable = false;
+        }
+
+        public void run() {
+            while (!this.stoppable) {
+//                if(!ControllerImpl.this.getDiscountable(null).isEmpty()) {
+//                    ControllerImpl.this.subject.notifyObserver();
+//                } 
+                if((this.rand.nextInt(5)) == 1) {
+                    ControllerImpl.this.subject.notifyObserver();
+                }
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        public  void stopScanning() {
+            this.stoppable = true;
+        }
+    }
+
 }

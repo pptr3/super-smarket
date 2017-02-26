@@ -12,7 +12,7 @@ import javax.swing.*;
 import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDateImpl;
-
+import model.Warehouse;
 
 import java.util.stream.*;
 
@@ -236,9 +236,9 @@ public class ViewImpl implements MyFakeView {
 
     }
     
-    public static void main(String[] args) {
-        new ViewImpl();
-    }
+//    public static void main(String[] args) {
+//        new ViewImpl();
+//    }
 
     @Override
     public void update() {
