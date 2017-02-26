@@ -10,8 +10,6 @@ public class Test {
        Controller controller = new ControllerImpl(model);
        MyFakeView view = new ViewImpl(controller);
        controller.registerView(view);
-       
-       
     }
 
 }

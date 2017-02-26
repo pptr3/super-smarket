@@ -19,7 +19,7 @@ public class SubjectImpl implements Subject {
 
     @Override
     public void unattachView() {
-        if(!this.views.isEmpty()) {
+        if(!this.views.isEmpty()) { //this method has been implementedd considering that the maximum observers is 1
             this.views.clear();
         }
     }

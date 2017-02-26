@@ -32,62 +32,33 @@ public class ControllerImpl implements Controller {
     private Model model;
     private Agent agent;
     private Subject subject;
-//    private final Collection<MyFakeView> views;
     
     public ControllerImpl(Model model) {
         this.model = model;
         this.subject = new SubjectImpl();
-//        this.views = Collections.synchronizedCollection(new LinkedList<>());
     }
     
-    
-    /**
-     * If the file indicated by filepath exist, pass an Optional of ObjectInputStream, else pass an Optional.empty.
-     * @throws IOException 
-     * @param filepath
-     */
     
     @Override
     public void initialize(String filepath) throws IOException {
         this.model.initialize(Optional.of( new ObjectInputStream( new BufferedInputStream( new FileInputStream(filepath)))));
     }
    
-    /**
-     * Saves the file to the given path
-     * @param filepath
-     *            ObjectOutputStream
-     * @throws IOException 
-     * @throws FileNotFoundException 
-     */
     
     @Override
     public void saveFile(String filepath) throws FileNotFoundException, IOException {
         this.model.serializeModel(new ObjectOutputStream( new BufferedOutputStream( new FileOutputStream(filepath))));
     }
 
-    /**
-     * @return the List of Lot
-     */
-
     @Override
     public List<Lot> getList() {
         return this.model.getList(null);
     }
-
-    /**
-     * @param lotto adds lotto
-     */
     
     @Override
     public void addLotto(Lot lotto) {
         this.model.addLotto(lotto);
     }
-
-    /**
-     * Removes n products from the lot with the specified id
-     * @param id
-     * @param n
-     */
     
     @Override
     public void removeFromLotto(int id, int n) {
@@ -98,12 +69,6 @@ public class ControllerImpl implements Controller {
     public Map<Lot, Integer> getDiscountable(String s) {
         return null;
     }
-
-    /**
-     * Set on sale the lot with specified id of discoutAmount amount
-     * @param id
-     * @param discountAmount
-     */
     
     @Override
     public void setOnSale(int id, int discountAmount) {
@@ -142,7 +107,7 @@ public class ControllerImpl implements Controller {
     private class Agent extends Thread {
 
         private volatile boolean stoppable;
-       
+        private Random rand = new Random();
         public Agent() {
             this.stoppable = false;
         }
@@ -150,10 +115,13 @@ public class ControllerImpl implements Controller {
         public void run() {
             while (!this.stoppable) {
                 try {
-                    if(!getDiscountable(null).isEmpty()) {
+//                    if(!getDiscountable(null).isEmpty()) {
+//                        ControllerImpl.this.subject.updateViews();
+//                    }
+                    if(rand.nextInt(20) == 1) {
                         ControllerImpl.this.subject.updateViews();
                     }
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException ex) {
                     throw new IllegalStateException();
                 }
