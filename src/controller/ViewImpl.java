@@ -41,6 +41,10 @@ public class ViewImpl implements MyFakeView {
         JButton remove = new JButton("Remove from lots");
         JButton getLots = new JButton("Get list of lots");
         JButton setOnSale = new JButton("Set on sale");
+        JButton startScan = new JButton("Start scan");
+        JButton stopScan = new JButton("Stop scan");
+        mainPanel.add(startScan);
+        mainPanel.add(stopScan);
         mainPanel.add(add);
         mainPanel.add(remove);
         mainPanel.add(getLots);
@@ -49,6 +53,18 @@ public class ViewImpl implements MyFakeView {
         mainFrame.setVisible(true);
         mainFrame.pack();
        
+        startScan.addActionListener(e -> {
+            this.controller.startScan();
+            startScan.setEnabled(false);
+            stopScan.setEnabled(true);
+        });
+        
+        stopScan.addActionListener(e -> {
+            this.controller.stopScan();
+            startScan.setEnabled(true);
+            stopScan.setEnabled(false);
+        });
+        
         //prelevo la lista dei lotti
         getLots.addActionListener(e -> {
             JFrame thirdFrame = new JFrame();
@@ -236,8 +252,13 @@ public class ViewImpl implements MyFakeView {
 
     }
     
-//    public static void main(String[] args) {
-//        new ViewImpl();
-//    }
 
+    @Override
+    public void update() {
+        System.out.println("I has been  notified");
+    }
+
+    public static void main(String[] args) {
+        new ViewImpl();
+    }
 }

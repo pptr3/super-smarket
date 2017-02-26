@@ -67,6 +67,7 @@ public interface Controller {
 	 */
 	void stopScan();
 	
+	void registerView(MyFakeView view);
 	
 	
 }

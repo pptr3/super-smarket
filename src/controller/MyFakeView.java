@@ -13,4 +13,5 @@ public interface MyFakeView {
 	 */
 	void discountAdvice(Map<Lot, Integer> lotti);
 
+	void update();
 }

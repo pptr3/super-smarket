@@ -8,11 +8,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
+
+import javax.swing.SwingUtilities;
+
+import org.omg.Messaging.SyncScopeHelper;
 
 import model.Lot;
 import model.Model;
@@ -22,17 +27,15 @@ import model.Warehouse;
 public class ControllerImpl implements Controller {
 
     private Model model;
-    private Observer view;
-    private Subject subject;
-    private Agent ag = new Agent();
-    private Thread th;
+    private MyFakeView view;
+    private Agent agent;
     
-    public ControllerImpl() {
-        this.model = new Warehouse();
-        this.view = new ViewObserver();
-        this.subject = new SubjectImpl();
-        this.th = new Thread(this.ag);
+    public ControllerImpl(Model model, MyFakeView view) {
+        this.model = model;
+        this.view = view;
     }
+    
+    public ControllerImpl() {}
     
     /**
      * If the file indicated by filepath exist, pass an Optional of ObjectInputStream, else pass an Optional.empty.
@@ -105,45 +108,60 @@ public class ControllerImpl implements Controller {
 
     
     @Override
-    public void startScan() {
-        this.subject.attach(view);
-        th.start();
+    public synchronized void startScan() {
+        if (agent == null) {
+            this.agent = new Agent();
+            this.agent.start();
+        } else {
+            throw new IllegalStateException();
+        }
     }
 
     @Override
-    public void stopScan() {
-       this.ag.stopScanning();
-       this.subject.unattach(view);
+    public synchronized void stopScan() {
+        if (agent == null) {
+            throw new IllegalStateException();
+        }
+        this.agent.stopScanning();
+        try {
+            this.agent.join();
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
+        agent = null;
     }
-
-    private class Agent implements Runnable {
+    
+    private class Agent extends Thread {
 
         private volatile boolean stoppable;
-        private Random rand = new Random();
+       // private Random rand = new Random();
+        
         public Agent() {
             this.stoppable = false;
+           
+            //ControllerImpl.this.subject.attach(view);
         }
 
         public void run() {
             while (!this.stoppable) {
-//                if(!ControllerImpl.this.getDiscountable(null).isEmpty()) {
-//                    ControllerImpl.this.subject.notifyObserver();
-//                } 
-                if((this.rand.nextInt(5)) == 1) {
-                    //ControllerImpl.this.subject.notifyObserver();
-                }
                 try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                   System.out.println("run");
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    throw new IllegalStateException("Counting has been interrupted", ex);
                 }
             }
         }
 
-        public  void stopScanning() {
+        public void stopScanning() {
             this.stoppable = true;
         }
+    }
+
+    @Override
+    public void registerView(MyFakeView view) {
+        // TODO Auto-generated method stub
+        
     }
 
 }
