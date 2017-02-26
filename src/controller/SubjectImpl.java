@@ -1,29 +1,25 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SubjectImpl implements Subject {
 
-    private List<MyFakeView> list;
+    private List<Observer> observers;
     
-    public SubjectImpl() {
-        this.list = new ArrayList<>();
-    }
     
     @Override
-    public void register(MyFakeView newObserver) {
-        this.list.add(newObserver);
+    public void attach(Observer o) {
+        this.observers.add(o); 
     }
 
     @Override
-    public void unregister(MyFakeView deleteObserver) {
-        this.list.remove(this.list.indexOf(deleteObserver));
+    public void unattach(Observer o) {
+        this.observers.remove(this.observers.indexOf(o));
     }
 
     @Override
     public void notifyObserver() {
-        this.list.forEach(ob -> ob.update());
+        this.observers.forEach(ob -> ob.update());
     }
 
 }

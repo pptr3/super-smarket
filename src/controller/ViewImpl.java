@@ -240,9 +240,4 @@ public class ViewImpl implements MyFakeView {
 //        new ViewImpl();
 //    }
 
-    @Override
-    public void update() {
-        System.out.println("I has been notified");
-        
-    }
 }

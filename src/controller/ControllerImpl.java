@@ -22,14 +22,14 @@ import model.Warehouse;
 public class ControllerImpl implements Controller {
 
     private Model model;
-    private MyFakeView view;
+    private Observer view;
     private Subject subject;
     private Agent ag = new Agent();
     private Thread th;
     
     public ControllerImpl() {
         this.model = new Warehouse();
-        this.view = new ViewImpl();
+        this.view = new ViewObserver();
         this.subject = new SubjectImpl();
         this.th = new Thread(this.ag);
     }
@@ -106,14 +106,14 @@ public class ControllerImpl implements Controller {
     
     @Override
     public void startScan() {
-//        this.subject.register(view);
+        this.subject.attach(view);
         th.start();
     }
 
     @Override
     public void stopScan() {
        this.ag.stopScanning();
-       this.subject.unregister(view);
+       this.subject.unattach(view);
     }
 
     private class Agent implements Runnable {
@@ -130,7 +130,7 @@ public class ControllerImpl implements Controller {
 //                    ControllerImpl.this.subject.notifyObserver();
 //                } 
                 if((this.rand.nextInt(5)) == 1) {
-                    ControllerImpl.this.subject.notifyObserver();
+                    //ControllerImpl.this.subject.notifyObserver();
                 }
                 try {
                     Thread.sleep(100);
