@@ -3,13 +3,24 @@ package controller;
 import model.Model;
 import model.Warehouse;
 
-public class Test {
+/**
+ * Test Application.
+ *
+ */
 
-    public static void main(String[] args) {
-       Model model = new Warehouse();
-       Controller controller = new ControllerImpl(model);
-       MyFakeView view = new ViewImpl(controller);
-       controller.registerView(view);
+
+public final class Test {
+
+    private Test() { }
+/**
+ * 
+ * @param args args
+ */
+    public static void main(final String[] args) {
+        Model model = new Warehouse();
+        Controller controller = new ControllerImpl(model);
+        MyFakeView view = new ViewImpl(controller);
+        controller.registerView(view);
     }
 
 }

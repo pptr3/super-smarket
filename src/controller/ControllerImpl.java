@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.BufferedInputStream;
+
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,78 +9,75 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
-
-import javax.swing.SwingUtilities;
-
-import org.omg.Messaging.SyncScopeHelper;
-
 import model.Lot;
 import model.Model;
-import model.Warehouse;
 
+/**
+ * Implementation of Controller interface.
+ *
+ */
 
 public class ControllerImpl implements Controller {
 
-    private Model model;
+    private final Model model;
     private Agent agent;
-    private Subject subject;
-    
-    public ControllerImpl(Model model) {
-        this.model = model;
+    private final Subject subject;
+
+    /**
+     * 
+     * @param warehouse
+     *            warehouse
+     */
+    public ControllerImpl(final Model warehouse) {
+        this.model = warehouse;
         this.subject = new SubjectImpl();
     }
-    
-    
+
     @Override
-    public void initialize(String filepath) throws IOException {
-        this.model.initialize(Optional.of( new ObjectInputStream( new BufferedInputStream( new FileInputStream(filepath)))));
+    public void initialize(final String filepath) throws IOException {
+        this.model
+                .initialize(Optional.of(new ObjectInputStream(new BufferedInputStream(new FileInputStream(filepath)))));
     }
-   
-    
+
     @Override
-    public void saveFile(String filepath) throws FileNotFoundException, IOException {
-        this.model.serializeModel(new ObjectOutputStream( new BufferedOutputStream( new FileOutputStream(filepath))));
+    public void saveFile(final String filepath) throws FileNotFoundException, IOException {
+        this.model.serializeModel(new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filepath))));
     }
 
     @Override
     public List<Lot> getList() {
         return this.model.getList(null);
     }
-    
+
     @Override
-    public void addLotto(Lot lotto) {
+    public void addLotto(final Lot lotto) {
         this.model.addLotto(lotto);
     }
-    
+
     @Override
-    public void removeFromLotto(int id, int n) {
+    public void removeFromLotto(final int id, final int n) {
         this.model.removeFromLot(id, n);
     }
 
     @Override
-    public Map<Lot, Integer> getDiscountable(String s) {
+    public Map<Lot, Integer> getDiscountable(final String s) {
         return null;
     }
-    
+
     @Override
-    public void setOnSale(int id, int discountAmount) {
+    public void setOnSale(final int id, final int discountAmount) {
         this.model.setOnSale(id, discountAmount);
     }
 
     @Override
-    public void registerView(MyFakeView view) {
-       this.subject.attachView(view);        
+    public void registerView(final MyFakeView view) {
+        this.subject.attachView(view);
     }
-    
+
     @Override
     public synchronized void startScan() {
         if (agent == null) {
@@ -103,25 +101,34 @@ public class ControllerImpl implements Controller {
         }
         agent = null;
     }
-    
+
     private class Agent extends Thread {
 
         private volatile boolean stoppable;
-       // private Random rand = new Random();
-        public Agent() {
+        private final Random rand = new Random();
+        private final Integer sleepTime = 500;
+        /*
+         * to delete, i used it to test
+         */
+        private final Integer maxInteger = 20;
+
+/*
+ * package visible
+ */
+        Agent() {
             this.stoppable = false;
         }
 
         public void run() {
             while (!this.stoppable) {
                 try {
-//                    if(!getDiscountable(null).isEmpty()) {
-//                        ControllerImpl.this.subject.updateViews();
-//                    }
-//                    if(rand.nextInt(20) == 1) {
-//                        ControllerImpl.this.subject.updateViews();
-//                    }
-                    Thread.sleep(500);
+                    // if(!getDiscountable(null).isEmpty()) {
+                    // ControllerImpl.this.subject.updateViews();
+                    // }
+                    if (rand.nextInt(maxInteger) == 1) {
+                        ControllerImpl.this.subject.updateViews();
+                    }
+                    Thread.sleep(sleepTime);
                 } catch (InterruptedException ex) {
                     throw new IllegalStateException();
                 }

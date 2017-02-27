@@ -1,50 +1,76 @@
 package controller;
 
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.util.Map;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
-
-import javax.swing.*;
-
 import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDateImpl;
-import model.Warehouse;
 
-import java.util.stream.*;
-
+/**
+ * Implementation of MyFakeView for testing my Controller.
+ *
+ */
 public class ViewImpl implements MyFakeView {
-    
-    private Controller controller;
+
+    private static final Integer SIZE_X = 80;
+    private static final Integer SIZE_Y = 59;
+    private static final Integer SIZE_Y2 = 800;
+    private static final Integer SIZE_X2 = 700;
+    private static final Integer LENGTH_TEXT_FIELD = 20;
+    private static final double WIDTH_PERC = 0.2;
+    private static final double HEIGHT_PERC = 0.1;
+
+    private final Controller controller;
+    @SuppressWarnings("unused")
     private static final long serialVersionUID = -7275450490516982922L;
-    private List<String> list = new ArrayList<>(Arrays.asList("Name", "Check in date", "Expiration date",
+
+    private final List<String> list = new ArrayList<>(Arrays.asList("Name", "Check in date", "Expiration date",
             "Initial quantity", "Price per single item"));
-    private List<Lot> lots = new ArrayList<>();
-    private List<JTextField> jtext = new ArrayList<>(); 
-    private JTextArea ta = new JTextArea(80,59);
-    private List<JTextField> remove = new ArrayList<>();
-    private List<JTextField> sale = new ArrayList<>();
-    
-    public ViewImpl(Controller controller) {
-        this.controller = controller;
-        JFrame mainFrame = new JFrame();
+    private final List<JTextField> jtext = new ArrayList<>(); 
+    private final JTextArea ta = new JTextArea(SIZE_Y, SIZE_X);
+    private final List<JTextField> removes = new ArrayList<>();
+    private final List<JTextField> sale = new ArrayList<>();
+/**
+ * 
+ * @param myController myController
+ */
+    public ViewImpl(final Controller myController) {
+        this.controller = myController;
+        final JFrame mainFrame = new JFrame();
         // Inizializzazione base
-        mainFrame.setSize(500, (50 * this.list.size()));
+        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        mainFrame.setSize((int) (screenSize.getWidth() * WIDTH_PERC), (int) (screenSize.getHeight() * HEIGHT_PERC));
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLayout(new FlowLayout());
 
         // Pannello sud, ossia in basso
-        JPanel mainPanel = new JPanel(new FlowLayout());
-        JButton add = new JButton("Add Lots");
-        JButton remove = new JButton("Remove from lots");
-        JButton getLots = new JButton("Get list of lots");
-        JButton setOnSale = new JButton("Set on sale");
-        JButton startScan = new JButton("Start scan");
-        JButton stopScan = new JButton("Stop scan");
+        final JPanel mainPanel = new JPanel(new FlowLayout());
+        final JButton add = new JButton("Add Lots");
+        final JButton remove = new JButton("Remove from lots");
+        final JButton getLots = new JButton("Get list of lots");
+        final JButton setOnSale = new JButton("Set on sale");
+        final JButton startScan = new JButton("Start scan");
+        final JButton stopScan = new JButton("Stop scan");
         mainPanel.add(startScan);
         mainPanel.add(stopScan);
         mainPanel.add(add);
@@ -54,39 +80,39 @@ public class ViewImpl implements MyFakeView {
         mainFrame.getContentPane().add(BorderLayout.SOUTH, mainPanel);
         mainFrame.setVisible(true);
         mainFrame.pack();
-       
+
         startScan.addActionListener(e -> {
             this.controller.startScan();
             startScan.setEnabled(false);
             stopScan.setEnabled(true);
         });
-        
+
         stopScan.addActionListener(e -> {
             this.controller.stopScan();
             startScan.setEnabled(true);
             stopScan.setEnabled(false);
         });
-        
+
         //prelevo la lista dei lotti
         getLots.addActionListener(e -> {
-            JFrame thirdFrame = new JFrame();
+            final JFrame thirdFrame = new JFrame();
             mainFrame.setVisible(false);
             thirdFrame.setVisible(true);
-            thirdFrame.setSize(800, 700);
+            thirdFrame.setSize(SIZE_Y2, SIZE_X2);
             thirdFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             thirdFrame.setLayout(new BorderLayout());
-            JPanel panel = new JPanel();
+            final JPanel panel = new JPanel();
             this.ta.setLineWrap(true);
             this.ta.setEditable(true);
             for (int i = 0; i < this.controller.getList().size(); i++) {
                     this.ta.setText(this.controller.getList().toString());
             }
             this.ta.setEditable(false);
-            
-            JButton jb = new JButton("Back");
+
+            final JButton jb = new JButton("Back");
             panel.add(jb, BorderLayout.NORTH);
             panel.add(this.ta);
-            ActionListener al = e3 -> {
+            final ActionListener al = e3 -> {
                 thirdFrame.setVisible(false);
                 mainFrame.setVisible(true);
             };
@@ -98,18 +124,18 @@ public class ViewImpl implements MyFakeView {
          */
         add.addActionListener(e -> {
 
-            JPanel center = new JPanel(new GridLayout(0, 2));
+            final JPanel center = new JPanel(new GridLayout(0, 2));
             for (int i = 0; i < this.list.size(); i++) {
                 center.add(wrapperPanel(new JLabel(this.list.get(i)), FlowLayout.LEFT));
-                JTextField jText = new JTextField(20);
+                final JTextField jText = new JTextField(LENGTH_TEXT_FIELD);
                 this.jtext.add(jText);
                 center.add(wrapperPanel(jText, FlowLayout.CENTER));
             }
 
             mainFrame.setVisible(false);
-            JFrame secondFrame = new JFrame();
+            final JFrame secondFrame = new JFrame();
             secondFrame.setVisible(true);
-            secondFrame.setSize(500, 600);
+            secondFrame.setSize(SIZE_Y2, SIZE_X2);
             secondFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             secondFrame.setLayout(new BorderLayout());
             JPanel panel = new JPanel();
@@ -119,13 +145,13 @@ public class ViewImpl implements MyFakeView {
 
             JButton confirm = new JButton("Confirm");
             panel.add(confirm);
-            
+
             ActionListener al2 = e3 -> {
-               
+
                Lot l = new LotBuilder()
                         .name(this.jtext.get(0).getText())
-                        .checkInDate(new MyCustomDateImpl(2017,2,3))
-                        .expirationDate(new MyCustomDateImpl(2017,2,13))
+                        .checkInDate(new MyCustomDateImpl(0, 0, 0))
+                        .expirationDate(new MyCustomDateImpl(0, 0, 0))
                         .quantity(Integer.parseInt(this.jtext.get(3).getText()))
                         .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText()))
                         .build();
@@ -133,11 +159,11 @@ public class ViewImpl implements MyFakeView {
                this.jtext.clear();
                mainFrame.setVisible(true);
                secondFrame.setVisible(false);
-              
+
             };
             confirm.addActionListener(al2);
-            
-            ActionListener al = e2 -> {
+
+            final ActionListener al = e2 -> {
                 mainFrame.setVisible(true);
                 secondFrame.setVisible(false);
             };
@@ -148,42 +174,42 @@ public class ViewImpl implements MyFakeView {
         });
         // Remove from lots
         remove.addActionListener(e -> {
-            JFrame fourthFrame = new JFrame();
+            final JFrame fourthFrame = new JFrame();
             mainFrame.setVisible(false);
             fourthFrame.setVisible(true);
-            fourthFrame.setSize(400, 500);
+            fourthFrame.setSize(SIZE_Y2, SIZE_X2);
             fourthFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             fourthFrame.setLayout(new FlowLayout());
-            JPanel center = new JPanel(new GridLayout(0, 2));
+            final JPanel center = new JPanel(new GridLayout(0, 2));
             for (int i = 0; i < 2; i++) {
-                if(i==0) {
+                if (i == 0) {
                     center.add(wrapperPanel(new JLabel("ID:"), FlowLayout.LEFT));
                 } else {
                     center.add(wrapperPanel(new JLabel("How much:"), FlowLayout.LEFT));
                 }
-                JTextField jText = new JTextField(3);
-                this.remove.add(jText);
+                final JTextField jText = new JTextField(3);
+                this.removes.add(jText);
                 center.add(wrapperPanel(jText, FlowLayout.CENTER));
             }
 
-            JButton confirm = new JButton("Confirm Remotion");
+            final JButton confirm = new JButton("Confirm Remotion");
 
-            JButton back = new JButton("Back");
-            JPanel south = new JPanel();
+            final JButton back = new JButton("Back");
+            final JPanel south = new JPanel();
             south.add(back, BorderLayout.SOUTH);
             south.add(confirm, BorderLayout.SOUTH);
 
-            ActionListener alRemove = e3 ->{
+            final ActionListener alRemove = e3 -> {
 //                System.out.println(Integer.parseInt(this.remove.get(0).getText()));
 //                System.out.println(Integer.parseInt(this.remove.get(1).getText()));
-                this.controller.removeFromLotto(Integer.parseInt(this.remove.get(0).getText()),
-                        Integer.parseInt(this.remove.get(1).getText()));
-                this.remove.clear();
+                this.controller.removeFromLotto(Integer.parseInt(this.removes.get(0).getText()),
+                        Integer.parseInt(this.removes.get(1).getText()));
+                this.removes.clear();
                 mainFrame.setVisible(true);
                 fourthFrame.setVisible(false);
             };
-            
-            ActionListener al = e2 -> {
+
+            final ActionListener al = e2 -> {
                 mainFrame.setVisible(true);
                 fourthFrame.setVisible(false);
             };
@@ -193,51 +219,51 @@ public class ViewImpl implements MyFakeView {
             fourthFrame.getContentPane().add(south);
             fourthFrame.pack();
         });
-        
-        setOnSale.addActionListener( al -> {
-            JFrame fifthFrame = new JFrame();
+
+        setOnSale.addActionListener(al -> {
+            final JFrame fifthFrame = new JFrame();
             fifthFrame.setVisible(false);
             fifthFrame.setVisible(true);
-            fifthFrame.setSize(800, 700);
+            fifthFrame.setSize(SIZE_Y2, SIZE_X2);
             fifthFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             fifthFrame.setLayout(new FlowLayout());
-            JPanel center = new JPanel(new GridLayout(0, 2));
+            final JPanel center = new JPanel(new GridLayout(0, 2));
             for (int i = 0; i < 2; i++) {
-                if(i==0) {
+                if (i == 0) {
                     center.add(wrapperPanel(new JLabel("ID:"), FlowLayout.LEFT));
                 } else {
                     center.add(wrapperPanel(new JLabel("% Sale:"), FlowLayout.LEFT));
                 }
-                JTextField jText = new JTextField(3);
+                final JTextField jText = new JTextField(3);
                 this.sale.add(jText);
                 center.add(wrapperPanel(jText, FlowLayout.CENTER));
             }
 
-            JButton sale = new JButton("Confirm Sale");
+            final JButton sales = new JButton("Confirm Sale");
 
-            JButton back = new JButton("Back");
-            JPanel south = new JPanel();
+            final JButton back = new JButton("Back");
+            final JPanel south = new JPanel();
             south.add(back, BorderLayout.SOUTH);
-            south.add(sale, BorderLayout.SOUTH);
+            south.add(sales, BorderLayout.SOUTH);
 
-            ActionListener alRemove = e3 ->{
+            final ActionListener alRemove = e3 -> {
                 this.controller.setOnSale(Integer.parseInt(this.sale.get(0).getText()),
                         Integer.parseInt(this.sale.get(1).getText()));
                 this.sale.clear();
                 mainFrame.setVisible(true);
                 fifthFrame.setVisible(false);
             };
-            
-            ActionListener al4 = e2 -> {
+
+            final ActionListener al4 = e2 -> {
                 mainFrame.setVisible(true);
                 fifthFrame.setVisible(false);
             };
-            sale.addActionListener(alRemove);
+            sales.addActionListener(alRemove);
             back.addActionListener(al4);
             fifthFrame.getContentPane().add(center);
             fifthFrame.getContentPane().add(south);
             fifthFrame.pack();
-            
+
         });
 
     }
@@ -249,15 +275,16 @@ public class ViewImpl implements MyFakeView {
     }
 
     @Override
-    public void discountAdvice(Map<Lot, Integer> lotti) {
+    public void discountAdvice(final Map<Lot, Integer> lotti) {
         // TODO Auto-generated method stub
 
     }
-    
-
+/**
+ * 
+ */
     public void update() {
         try {
-           SwingUtilities.invokeAndWait(() -> JOptionPane.showMessageDialog(new JFrame(), "I has been notified"));
+            SwingUtilities.invokeAndWait(() -> JOptionPane.showMessageDialog(new JFrame(), "I has been notified"));
         } catch (InvocationTargetException | InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

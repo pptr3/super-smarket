@@ -1,32 +1,36 @@
 package controller;
 
 import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.util.List;
 
 import java.util.Map;
 
 import model.Lot;
-import model.LotWithActions;
 
+/**
+ * A Controller interface.
+ *
+ */
 public interface Controller {
 
     /**
      * If the file indicated by filepath exist, pass an Optional of
      * ObjectInputStream, else pass an Optional.empty.
      * 
-     * @throws IOException
-     * @param filepath
+     * @throws IOException IOException
+     * @throws FileNotFoundException file not found
+     * @param filepath filepath 
      */
     void initialize(String filepath) throws FileNotFoundException, IOException;
 
     /**
-     * Saves the file to the given path
+     * Saves the file to the given path.
      * 
-     * @param filepath
-     *            ObjectOutputStream
-     * @throws IOException
-     * @throws FileNotFoundException
+     * @param filepath filepath
+     * @throws IOException IOException
+     * @throws FileNotFoundException file not found
      */
     void saveFile(String filepath) throws FileNotFoundException, IOException;
 
@@ -44,38 +48,37 @@ public interface Controller {
     void addLotto(Lot lotto);
 
     /**
-     * Removes n products from the lot with the specified id
+     * Removes n products from the lot with the specified id.
      * 
-     * @param id
-     * @param n
+     * @param id id of lot
+     * @param n how many products to remove
      */
-    void removeFromLotto(int ID, int n);
+    void removeFromLotto(int id, int n);
 
     /**
-     * 
-     * @param s
-     *            prende una stringa, e dipendentemente da questa metter� i
-     *            lotti in sconto
-     * @return lista di lotti aggiornata con gli sconti
+     * Puts lots in discount basic on the strategy indicated by the string s.
+     * @param s strategy
+     * @return a map with the updated lots
      */
     Map<Lot, Integer> getDiscountable(String s);
 
     /**
-     * Set on sale the lot with specified id of discoutAmount amount
+     * Set on sale the lot with specified id of discoutAmount amount.
      * 
-     * @param id
-     * @param discountAmount
+     * @param id id of the lot
+     * @param discountAmount amount
      */
 
     void setOnSale(int id, int discountAmount);
 
     /**
-     * Starts the strategy that allert you if some products need to be discounted
+     * Starts the strategy that alert you if some products need to be
+     * discounted.
      */
     void startScan();
 
     /**
-     * Stops the strategy that allert you if some products need to be discounted
+     * Stops the strategy that alert you if some products need to be discounted.
      */
     void stopScan();
 

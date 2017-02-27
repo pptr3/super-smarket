@@ -1,20 +1,23 @@
 package controller;
-
+/**
+ * Subject interface for Observer pattern.
+ *
+ */
 public interface Subject {
 
     /**
-     * Attach a viewer Observer
-     * @param view
+     * Attach a viewer Observer.
+     * @param view view to attach
      */
-    public void attachView(MyFakeView view);
-    
+    void attachView(MyFakeView view);
+
     /**
-     * Unattach a viewer Observer
+     * Unattach a viewer Observer.
      */
-    public void unattachView();
-    
+    void unattachView();
+
     /**
-     * update the observers
+     * update the observers.
      */
-    public void updateViews();
+    void updateViews();
 }
