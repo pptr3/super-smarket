@@ -126,7 +126,7 @@ public class ControllerImpl implements Controller {
                     // ControllerImpl.this.subject.updateViews();
                     // }
                     if (rand.nextInt(maxInteger) == 1) {
-                        ControllerImpl.this.subject.updateViews();
+                        ControllerImpl.this.subject.updateView();
                     }
                     Thread.sleep(sleepTime);
                 } catch (InterruptedException ex) {

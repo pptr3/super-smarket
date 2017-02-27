@@ -32,7 +32,7 @@ public class SubjectImpl implements Subject {
     }
 
     @Override
-    public void updateViews() {
+    public void updateView() {
         views.forEach(v -> v.update());
     }
 

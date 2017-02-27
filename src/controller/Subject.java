@@ -19,5 +19,5 @@ public interface Subject {
     /**
      * update the observers.
      */
-    void updateViews();
+    void updateView();
 }
