@@ -1,4 +1,4 @@
-package view;
+package view.menu;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,7 +27,7 @@ public class ScanMenu extends JMenu {
                //action listener per get lots
         });
         this.add(startScan);
-        JButton stopScan = new JButton("Start Scan");
+        JButton stopScan = new JButton("Stop Scan");
         startScan.addActionListener(e -> {
                //action listener per get lots
         });

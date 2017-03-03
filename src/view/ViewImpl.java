@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -16,6 +17,9 @@ import controller.Controller;
 import controller.ControllerImpl;
 import model.Lot;
 import model.Warehouse;
+import view.menu.AddLotsMenu;
+import view.menu.GetLotsMenu;
+import view.menu.ScanMenu;
 
 /**
  *Implementation of View interface.
@@ -33,10 +37,8 @@ public class ViewImpl extends JFrame implements View {
     private final JMenuBar menuBar = new JMenuBar();
     private final JMenu addLots = new AddLotsMenu(this);
     private final GetLotsMenu getLots = new GetLotsMenu(this);
-    private final RemoveMenu remove = new RemoveMenu(this);
-    private final SetOnSaleMenu setOnSale = new SetOnSaleMenu(this);
     private final ScanMenu scan = new ScanMenu(this);
-    private final SaveMenu save = new SaveMenu(this);
+
     
     
     public ViewImpl(final Controller cont) {
@@ -46,13 +48,7 @@ public class ViewImpl extends JFrame implements View {
         this.setTitle("SuperSmarket");
         this.menuBar.add(this.getLots);
         this.menuBar.add(this.addLots);
-        this.menuBar.add(this.remove);
-        this.menuBar.add(this.setOnSale);
         this.menuBar.add(this.scan);
-        this.menuBar.add(this.save);
-        
-        
-        
         
         
         
