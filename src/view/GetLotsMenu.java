@@ -1,5 +1,6 @@
 package view;
 
+import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
@@ -8,7 +9,7 @@ import javax.swing.JMenuItem;
  *
  */
 
-public class BaseMenu extends JMenu {
+public class GetLotsMenu extends JMenu {
 
     /**
      * 
@@ -19,11 +20,16 @@ public class BaseMenu extends JMenu {
      * @param frame frame
      */
 
-    public BaseMenu(final View frame) {
+    public GetLotsMenu(final View frame) {
         super("Get Lots");
-        JMenuItem menuItem = new JMenuItem("Choose by..");
+        JMenuItem menuItem = new JMenuItem("Alfabetically sorted");
         menuItem.addActionListener(e -> {
                //action listener per get lots
+        });
+        this.add(menuItem);
+        menuItem = new JMenuItem("Only expiring");
+        menuItem.addActionListener(e -> {
+           //action listener...
         });
         this.add(menuItem);
     }

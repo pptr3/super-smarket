@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
@@ -30,15 +31,25 @@ public class ViewImpl extends JFrame implements View {
     private static final long serialVersionUID = -2914580357647719433L;
     private final Controller controller;
     private final JMenuBar menuBar = new JMenuBar();
-    private final BaseMenu menu = new BaseMenu(this);
+    private final JMenu addLots = new AddLotsMenu(this);
+    private final GetLotsMenu getLots = new GetLotsMenu(this);
+    private final RemoveMenu remove = new RemoveMenu(this);
+    private final SetOnSaleMenu setOnSale = new SetOnSaleMenu(this);
+    private final ScanMenu scan = new ScanMenu(this);
+    private final SaveMenu save = new SaveMenu(this);
+    
     
     public ViewImpl(final Controller cont) {
         this.controller = cont;
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.setTitle("SuperSmarket");
-        this.menuBar.add(menu);
-        
+        this.menuBar.add(this.getLots);
+        this.menuBar.add(this.addLots);
+        this.menuBar.add(this.remove);
+        this.menuBar.add(this.setOnSale);
+        this.menuBar.add(this.scan);
+        this.menuBar.add(this.save);
         
         
         
