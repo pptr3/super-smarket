@@ -26,6 +26,7 @@ public class ControllerImpl implements Controller {
     private final Model model;
     private Agent agent;
     private final Subject subject;
+    //private static Optional<ControllerImpl> singleton = Optional.empty();
 
     /**
      * 
@@ -139,5 +140,4 @@ public class ControllerImpl implements Controller {
             this.stoppable = true;
         }
     }
-
 }

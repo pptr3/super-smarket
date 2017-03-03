@@ -19,9 +19,12 @@ public interface Controller {
      * If the file indicated by filepath exist, pass an Optional of
      * ObjectInputStream, else pass an Optional.empty.
      * 
-     * @throws IOException IOException
-     * @throws FileNotFoundException file not found
-     * @param filepath filepath 
+     * @throws IOException
+     *             IOException
+     * @throws FileNotFoundException
+     *             file not found
+     * @param filepath
+     *            filepath
      */
     void initialize(String filepath) throws FileNotFoundException, IOException;
 
@@ -89,5 +92,6 @@ public interface Controller {
      *            the view to register
      */
     void registerView(MyFakeView view);
+
 
 }

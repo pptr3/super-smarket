@@ -1,17 +1,19 @@
 package view;
-import java.util.List;
-import java.util.Map;
 
+import java.util.Map;
 import model.Lot;
 
+/**
+ * View Interface.
+ */
 
 public interface View {
-	
-	/**
-	 * called to advice possible discounts
-	 * @param lotti
-	 */
-	void discountAdvice(Map<Lot, Integer> lotti);
 
-	
+    /**
+     * Called to advice possible discounts.
+     * 
+     * @param lots lots
+     */
+    void discountAdvice(final Map<Lot, Integer> lots);
+
 }
