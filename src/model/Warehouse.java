@@ -37,15 +37,11 @@ public class Warehouse implements Model {
             final ObjectInputStream buffer = serializedModel.get();
             try {
                 LotBuilder.setNextId(buffer.readInt());
-                Object obj = null;
-                while ((obj = buffer.readObject()) != null) {
-                    if (obj instanceof LotWithActions) {
-                        lots.add((LotWithActions) obj);
-                    }
+                int numberOfLots = buffer.readInt();
+                for (int i = 0; i < numberOfLots; i++) {
+                    lots.add((LotWithActions) buffer.readObject());
                 }
-            } catch (EOFException e) { //File has reached its end, we read it all.
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -57,6 +53,7 @@ public class Warehouse implements Model {
     public void serializeModel(final ObjectOutputStream output) {
         try {
             output.writeInt(LotBuilder.getNextId());
+            output.writeInt(getList(null).size());
         } catch (IOException e1) {
             e1.printStackTrace();
         }
