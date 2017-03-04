@@ -63,6 +63,21 @@ public interface Model {
          */
         void setOnSale(int id, int discountAmount);
 
+        /**
+         * Says that the given lot should not be suggested as a discount in this session anymore.
+         * @param l the lot not to put in discount
+         */
+        void dontSuggestAnymore(Lot l);
 
+        /**
+         * Returns the list of Lots that won't be suggested as discount in this session.
+         * @return List of lots
+         */
+        List<Lot> getNotSuggestingList();
+
+        /**
+         * Empties the list of lots that shouldn't be suggested as discount in this session. 
+         */
+        void resetSuggestions();
 
 }
