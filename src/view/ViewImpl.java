@@ -1,9 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -11,8 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
@@ -33,6 +29,7 @@ public class ViewImpl extends JFrame implements View {
     /**
      * 
      */
+
     private static final long serialVersionUID = -2914580357647719433L;
     private final Controller controller;
     private final JMenuBar menuBar = new JMenuBar();
@@ -60,17 +57,17 @@ public class ViewImpl extends JFrame implements View {
         this.menuBar.add(this.getDiscountable);
         this.menuBar.add(this.operations);
         this.menuBar.add(this.scan);
-
-        this.textArea = new JTextArea();
-        textArea.setEditable(false);
         final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        textArea.setSize(dim);
-        textArea.add(new JScrollPane());
-        this.add(textArea);
+        this.textArea = new JTextArea();
+        this.textArea.setEditable(false);
+        this.textArea.setSize(dim);
+        final JScrollPane jsp = new JScrollPane(this.textArea);
+        jsp.setAutoscrolls(true);
+        this.add(jsp);
         this.getContentPane().add(menuBar, BorderLayout.NORTH);
-        this.getContentPane().add(textArea);
+        this.getContentPane().add(jsp);
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 2,
-                Toolkit.getDefaultToolkit().getScreenSize().height / 2);
+                Toolkit.getDefaultToolkit().getScreenSize().height / 1);
         this.setLocation((dim.width - this.getSize().width) / 2, (dim.height - this.getSize().height) / 2);
         this.setVisible(true);
     }
@@ -87,18 +84,21 @@ public class ViewImpl extends JFrame implements View {
         }
     }
 
+    /**
+     * @param text
+     *            text
+     */
+    public void setTextInArea(final String text) {
+        this.textArea.setText(text);
+    }
+
     /*
-     *si potrebbe togliere? 
+     * si potrebbe togliere?
      */
     @Override
     public void discountAdvice(final Map<Lot, Integer> lots) {
         // TODO Auto-generated method stub
 
     }
-    
-    public void setTextInArea(final String text) {
-        this.textArea.setText(text);
-    }
-    
 }
 

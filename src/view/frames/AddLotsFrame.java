@@ -33,7 +33,8 @@ public class AddLotsFrame extends JFrame {
     private final List<JTextField> jtext = new ArrayList<>();
 
     /**
-     * 
+     * @param view 
+     *            view
      * @param controller
      *            controller
      */
