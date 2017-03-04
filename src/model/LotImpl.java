@@ -16,8 +16,8 @@ public class LotImpl implements LotWithActions, Serializable {
     private static final long serialVersionUID = -4379413488270752232L;
     private int id;
     private String name;
-    private Optional<MyCustomDate> expirationDate;
-    private MyCustomDate checkInDate;
+    private transient Optional<MyCustomDate> expirationDate;
+    private transient MyCustomDate checkInDate;
     private int initialQuantity;
     private int currentQuantity;
     private int pricePerSingleItem;
