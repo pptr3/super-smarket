@@ -1,6 +1,7 @@
 package controller;
 
 import model.Model;
+
 import model.Warehouse;
 
 /**
@@ -19,8 +20,7 @@ public final class Test {
     public static void main(final String[] args) {
         Model model = new Warehouse();
         Controller controller = new ControllerImpl(model);
-        MyFakeView view = new ViewImpl(controller);
-        controller.registerView(view);
+//        MyFakeView view = new ViewImpl(controller);
+//        controller.registerView(view);
     }
-
 }

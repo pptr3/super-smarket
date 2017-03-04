@@ -10,34 +10,34 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import controller.Controller;
-import controller.ControllerImpl;
 import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDateImpl;
-import model.Warehouse;
+import view.View;
 
+/**
+ *
+ */
 public class AddLotsFrame extends JFrame {
+
+    private static final long serialVersionUID = 6784928917074846594L;
+    private final List<String> list = new ArrayList<>(
+            Arrays.asList("Name", "Check in date", "Expiration date", "Initial quantity", "Price per single item"));
+    private final List<JTextField> jtext = new ArrayList<>();
 
     /**
      * 
+     * @param controller
+     *            controller
      */
-    private static final long serialVersionUID = 6784928917074846594L;
-    private final Controller controller;
-    private final List<String> list = new ArrayList<>(
-            Arrays.asList("Name", "Expiration date", "Initial quantity", "Price per single item"));
-    private final List<JTextField> jtext = new ArrayList<>();
-    
-    public AddLotsFrame() {
-        this.controller = new ControllerImpl(new Warehouse());
+    public AddLotsFrame(final View view, final Controller controller) {
         final JPanel center = new JPanel(new GridLayout(0, 2));
         for (int i = 0; i < this.list.size(); i++) {
             center.add(wrapperPanel(new JLabel(this.list.get(i)), FlowLayout.LEFT));
@@ -45,7 +45,7 @@ public class AddLotsFrame extends JFrame {
             this.jtext.add(jText);
             center.add(wrapperPanel(jText, FlowLayout.CENTER));
         }
-
+        this.setTitle("Add lot");
         this.setLayout(new BorderLayout());
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
@@ -54,24 +54,25 @@ public class AddLotsFrame extends JFrame {
 
         JButton confirm = new JButton("Confirm");
         panel.add(confirm);
-        
-        ActionListener al = e -> {
-            Lot l = new LotBuilder()
-                    .name(this.jtext.get(0).getText())
-                    .expirationDate(new MyCustomDateImpl(LocalDate.now(), Integer.parseInt(this.jtext.get(1).getText())))
-                    .quantity(Integer.parseInt(this.jtext.get(2).getText()))
-                    .pricePerSingleItem(Integer.parseInt(this.jtext.get(3).getText()))
-                    .build();
-            this.controller.addLotto(l);
+        /*
+         * need to refactor this part of builing lot
+         */
+        final ActionListener al = e -> {
+            Lot l = new LotBuilder().name(this.jtext.get(0).getText())
+                    .expirationDate(
+                            new MyCustomDateImpl(LocalDate.now(), Integer.parseInt(this.jtext.get(2).getText())))
+                    .quantity(Integer.parseInt(this.jtext.get(3).getText()))
+                    .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText())).build();
+            controller.addLotto(l);
+            view.setTextInArea(String.valueOf(controller.getList(null)));
             this.jtext.clear();
-            this.setVisible(false);  
-            System.out.println(this.controller.getList());
+            this.setVisible(false);
         };
-        
-        ActionListener al2 = e -> {
-            this.setVisible(false);  
+
+        final ActionListener al2 = e -> {
+            this.setVisible(false);
         };
-        
+
         confirm.addActionListener(al);
         turnBack.addActionListener(al2);
         this.getContentPane().add(center, BorderLayout.NORTH);

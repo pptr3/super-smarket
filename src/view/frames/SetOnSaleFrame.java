@@ -1,6 +1,7 @@
 package view.frames;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -17,9 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.Controller;
-import controller.ControllerImpl;
-import model.Warehouse;
+import view.View;
 
+/**
+ * Set on sale some lots.
+ *
+ */
 public class SetOnSaleFrame extends JFrame {
 
     /**
@@ -27,11 +31,15 @@ public class SetOnSaleFrame extends JFrame {
      */
     private static final long serialVersionUID = -4833819912763016964L;
     private final List<JTextField> sale = new ArrayList<>();
-    private final Controller controller;
-    
-    public SetOnSaleFrame() {
-        this.controller = new ControllerImpl(new Warehouse());
+
+    /**
+     * 
+     * @param controller
+     *            controller
+     */
+    public SetOnSaleFrame(final View view, final Controller controller) {
         this.setLayout(new FlowLayout());
+        this.setTitle("Set Lot on sale");
         final JPanel center = new JPanel(new GridLayout(0, 2));
         for (int i = 0; i < 2; i++) {
             if (i == 0) {
@@ -52,9 +60,11 @@ public class SetOnSaleFrame extends JFrame {
         south.add(sales, BorderLayout.SOUTH);
 
         final ActionListener alRemove = e3 -> {
-            this.controller.setOnSale(Integer.parseInt(this.sale.get(0).getText()),
+            controller.setOnSale(Integer.parseInt(this.sale.get(0).getText()),
                     Integer.parseInt(this.sale.get(1).getText()));
+            view.setTextInArea(String.valueOf(controller.getList(null)));
             this.sale.clear();
+            this.setVisible(false);
         };
 
         final ActionListener al4 = e2 -> {
@@ -72,6 +82,7 @@ public class SetOnSaleFrame extends JFrame {
         this.pack();
 
     }
+
     private static JPanel wrapperPanel(final JComponent component, final int orientation) {
         final JPanel panel = new JPanel(new FlowLayout(orientation));
         panel.add(component);

@@ -9,6 +9,8 @@ import java.util.Map;
 
 import model.Lot;
 import model.discountstrategies.DiscountStrategy;
+import model.modifylists.ModifyList;
+import view.View;
 
 /**
  * A Controller interface.
@@ -39,10 +41,11 @@ public interface Controller {
     void saveFile(String filepath) throws FileNotFoundException, IOException;
 
     /**
+     * @param mfl modify list
      * @return the List of Lot
      */
 
-    List<Lot> getList();
+    List<Lot> getList(ModifyList mfl);
 
     /**
      * @param lotto
@@ -60,9 +63,9 @@ public interface Controller {
     void removeFromLotto(int id, int n);
 
     /**
-     * Puts lots in discount basic on the strategy indicated by the string s.
-     * @param ds strategy
-     * @return a map with the updated lots
+     * Suggests which lots should be discounted.
+     * @param ds strategy for deciding discount
+     * @return map of lots that should be discounted, and the amount in percentage
      */
     Map<Lot, Integer> getDiscountable( DiscountStrategy ds);
 
@@ -92,7 +95,7 @@ public interface Controller {
      * @param view
      *            the view to register
      */
-    void registerView(MyFakeView view);
+    void registerView(View view);
 
 
 }

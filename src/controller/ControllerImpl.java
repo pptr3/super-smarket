@@ -16,6 +16,8 @@ import java.util.Random;
 import model.Lot;
 import model.Model;
 import model.discountstrategies.DiscountStrategy;
+import model.modifylists.ModifyList;
+import view.View;
 
 /**
  * Implementation of Controller interface.
@@ -38,7 +40,11 @@ public class ControllerImpl implements Controller {
         this.model = warehouse;
         this.subject = new SubjectImpl();
     }
-
+/*
+ * need to close the file
+ * (non-Javadoc)
+ * @see controller.Controller#initialize(java.lang.String)
+ */
     @Override
     public void initialize(final String filepath) throws IOException {
         this.model
@@ -49,10 +55,13 @@ public class ControllerImpl implements Controller {
     public void saveFile(final String filepath) throws FileNotFoundException, IOException {
         this.model.serializeModel(new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filepath))));
     }
-
+/*
+ * (non-Javadoc)
+ * @see controller.Controller#getList()
+ */
     @Override
-    public List<Lot> getList() {
-        return this.model.getList(null);
+    public List<Lot> getList(final ModifyList mfl) {
+        return this.model.getList(mfl);
     }
 
     @Override
@@ -67,7 +76,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public Map<Lot, Integer> getDiscountable(final DiscountStrategy ds) {
-        return null;
+        return this.model.getDiscountable(ds);
     }
 
     @Override
@@ -76,7 +85,7 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void registerView(final MyFakeView view) {
+    public void registerView(final View view) {
         this.subject.attachView(view);
     }
 
@@ -112,7 +121,7 @@ public class ControllerImpl implements Controller {
         /*
          * to delete, i used it to test
          */
-        private final Integer maxInteger = 20;
+        private final Integer maxInteger = 10;
 
 /*
  * package visible

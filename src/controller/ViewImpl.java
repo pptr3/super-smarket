@@ -25,6 +25,7 @@ import java.lang.reflect.InvocationTargetException;
 import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDateImpl;
+import view.View;
 
 /**
  * Implementation of MyFakeView for testing my Controller.
@@ -104,8 +105,8 @@ public class ViewImpl implements MyFakeView {
             final JPanel panel = new JPanel();
             this.ta.setLineWrap(true);
             this.ta.setEditable(true);
-            for (int i = 0; i < this.controller.getList().size(); i++) {
-                    this.ta.setText(this.controller.getList().toString());
+            for (int i = 0; i < this.controller.getList(null).size(); i++) {
+                    this.ta.setText(this.controller.getList(null).toString());
             }
             this.ta.setEditable(false);
 

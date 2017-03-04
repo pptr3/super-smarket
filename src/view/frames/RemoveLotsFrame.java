@@ -1,6 +1,7 @@
 package view.frames;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -17,21 +18,30 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.Controller;
-import controller.ControllerImpl;
-import model.Warehouse;
+import model.modifylists.ModifyListFactoryImpl;
+import view.View;
 
+/**
+ * Class that removes products from lots.
+ *
+ */
 public class RemoveLotsFrame extends JFrame {
 
     /**
      * 
      */
     private static final long serialVersionUID = 6784928917074846594L;
-    private final Controller controller;
     private final List<JTextField> removes = new ArrayList<>();
 
-    public RemoveLotsFrame() {
-        this.controller = new ControllerImpl(new Warehouse());
+    /**
+     * @param view 
+     *            view
+     * @param controller
+     *            controller
+     */
+    public RemoveLotsFrame(final View view, final Controller controller) {
         this.setLayout(new FlowLayout());
+        this.setTitle("Remove lot");
         final JPanel center = new JPanel(new GridLayout(0, 2));
 
         for (int i = 0; i < 2; i++) {
@@ -53,9 +63,11 @@ public class RemoveLotsFrame extends JFrame {
         south.add(confirm, BorderLayout.SOUTH);
 
         final ActionListener alRemove = e3 -> {
-            this.controller.removeFromLotto(Integer.parseInt(this.removes.get(0).getText()),
+            controller.removeFromLotto(Integer.parseInt(this.removes.get(0).getText()),
                     Integer.parseInt(this.removes.get(1).getText()));
+           view.setTextInArea(String.valueOf(controller.getList(null)));
             this.removes.clear();
+            this.setVisible(false);
         };
 
         final ActionListener al = e2 -> {
@@ -72,11 +84,10 @@ public class RemoveLotsFrame extends JFrame {
         this.setVisible(true);
         this.pack();
     }
-    
+
     private static JPanel wrapperPanel(final JComponent component, final int orientation) {
         final JPanel panel = new JPanel(new FlowLayout(orientation));
         panel.add(component);
         return panel;
     }
 }
-

@@ -16,4 +16,10 @@ public interface View {
      */
     void discountAdvice(final Map<Lot, Integer> lots);
 
+    void setTextInArea(final String text);
+    /**
+     * update the view.
+     */
+    void update();
+
 }
