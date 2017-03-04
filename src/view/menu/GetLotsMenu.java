@@ -1,6 +1,5 @@
 package view.menu;
 
-import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 

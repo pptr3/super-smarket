@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import model.Lot;
+import model.discountstrategies.DiscountStrategy;
 
 /**
  * A Controller interface.
@@ -60,10 +61,10 @@ public interface Controller {
 
     /**
      * Puts lots in discount basic on the strategy indicated by the string s.
-     * @param s strategy
+     * @param ds strategy
      * @return a map with the updated lots
      */
-    Map<Lot, Integer> getDiscountable(String s);
+    Map<Lot, Integer> getDiscountable( DiscountStrategy ds);
 
     /**
      * Set on sale the lot with specified id of discoutAmount amount.

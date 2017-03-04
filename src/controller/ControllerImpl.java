@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.Random;
 import model.Lot;
 import model.Model;
+import model.discountstrategies.DiscountStrategy;
 
 /**
  * Implementation of Controller interface.
@@ -65,7 +66,7 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public Map<Lot, Integer> getDiscountable(final String s) {
+    public Map<Lot, Integer> getDiscountable(final DiscountStrategy ds) {
         return null;
     }
 

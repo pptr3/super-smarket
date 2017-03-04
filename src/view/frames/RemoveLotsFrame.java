@@ -1,4 +1,4 @@
-package view.menu;
+package view.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -20,48 +20,49 @@ import controller.Controller;
 import controller.ControllerImpl;
 import model.Warehouse;
 
-public class SetOnSaleFrame extends JFrame {
+public class RemoveLotsFrame extends JFrame {
 
     /**
      * 
      */
-    private static final long serialVersionUID = -4833819912763016964L;
-    private final List<JTextField> sale = new ArrayList<>();
+    private static final long serialVersionUID = 6784928917074846594L;
     private final Controller controller;
-    
-    public SetOnSaleFrame() {
+    private final List<JTextField> removes = new ArrayList<>();
+
+    public RemoveLotsFrame() {
         this.controller = new ControllerImpl(new Warehouse());
         this.setLayout(new FlowLayout());
         final JPanel center = new JPanel(new GridLayout(0, 2));
+
         for (int i = 0; i < 2; i++) {
             if (i == 0) {
                 center.add(wrapperPanel(new JLabel("ID:"), FlowLayout.LEFT));
             } else {
-                center.add(wrapperPanel(new JLabel("% Sale:"), FlowLayout.LEFT));
+                center.add(wrapperPanel(new JLabel("How much:"), FlowLayout.LEFT));
             }
             final JTextField jText = new JTextField(3);
-            this.sale.add(jText);
+            this.removes.add(jText);
             center.add(wrapperPanel(jText, FlowLayout.CENTER));
         }
 
-        final JButton sales = new JButton("Confirm Sale");
+        final JButton confirm = new JButton("Confirm Remotion");
 
         final JButton back = new JButton("Back");
         final JPanel south = new JPanel();
         south.add(back, BorderLayout.SOUTH);
-        south.add(sales, BorderLayout.SOUTH);
+        south.add(confirm, BorderLayout.SOUTH);
 
         final ActionListener alRemove = e3 -> {
-            this.controller.setOnSale(Integer.parseInt(this.sale.get(0).getText()),
-                    Integer.parseInt(this.sale.get(1).getText()));
-            this.sale.clear();
+            this.controller.removeFromLotto(Integer.parseInt(this.removes.get(0).getText()),
+                    Integer.parseInt(this.removes.get(1).getText()));
+            this.removes.clear();
         };
 
-        final ActionListener al4 = e2 -> {
+        final ActionListener al = e2 -> {
             this.setVisible(false);
         };
-        sales.addActionListener(alRemove);
-        back.addActionListener(al4);
+        confirm.addActionListener(alRemove);
+        back.addActionListener(al);
         this.getContentPane().add(center);
         this.getContentPane().add(south);
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 2,
@@ -70,12 +71,12 @@ public class SetOnSaleFrame extends JFrame {
         this.setLocation((dim.width - this.getSize().width) / 2, (dim.height - this.getSize().height) / 2);
         this.setVisible(true);
         this.pack();
-
     }
+    
     private static JPanel wrapperPanel(final JComponent component, final int orientation) {
         final JPanel panel = new JPanel(new FlowLayout(orientation));
         panel.add(component);
         return panel;
     }
-    
 }
+
