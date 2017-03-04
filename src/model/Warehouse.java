@@ -106,4 +106,22 @@ public class Warehouse implements Model {
             }
         });
     }
+
+    @Override
+    public void dontSuggestAnymore(Lot l) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public List<Lot> getNotSuggestingList() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void resetSuggestions() {
+        // TODO Auto-generated method stub
+        
+    }
 }
