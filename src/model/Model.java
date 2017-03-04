@@ -1,4 +1,5 @@
 package model;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
@@ -19,7 +20,6 @@ public interface Model {
          * @param serializedModel ObjectInputStream
          */
         void initialize(Optional<ObjectInputStream> serializedModel);
-
 
         /**
          * Writes the serialized version of the warehouse in the output stream.

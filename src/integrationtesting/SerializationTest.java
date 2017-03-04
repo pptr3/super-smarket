@@ -21,7 +21,7 @@ public class SerializationTest {
     Lot p = null;
     
     @Test
-    public void completeSerializationDeserializationCase() {
+    public void completeSerializationDeserializationCase() throws ClassNotFoundException {
         buildMilk();
         buildPasta();
         

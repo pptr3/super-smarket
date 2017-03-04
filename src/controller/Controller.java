@@ -28,8 +28,9 @@ public interface Controller {
      *             file not found
      * @param filepath
      *            filepath
+     * @throws ClassNotFoundException 
      */
-    void initialize(String filepath) throws FileNotFoundException, IOException;
+    void initialize(String filepath) throws FileNotFoundException, IOException, ClassNotFoundException;
 
     /**
      * Saves the file to the given path.
@@ -67,7 +68,7 @@ public interface Controller {
      * @param ds strategy for deciding discount
      * @return map of lots that should be discounted, and the amount in percentage
      */
-    Map<Lot, Integer> getDiscountable( DiscountStrategy ds);
+    Map<Lot, Integer> getDiscountable(DiscountStrategy ds);
 
     /**
      * Set on sale the lot with specified id of discoutAmount amount.

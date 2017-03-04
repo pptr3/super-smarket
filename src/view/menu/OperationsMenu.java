@@ -1,6 +1,10 @@
 package view.menu;
 
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
@@ -18,7 +22,7 @@ public class OperationsMenu extends JMenu {
      * 
      */
     private static final long serialVersionUID = 4790546772035194942L;
-
+    private final JFileChooser fileChooser = new JFileChooser();
     /**
      * @param controller controller
      * @param view view
@@ -43,13 +47,35 @@ public class OperationsMenu extends JMenu {
         this.add(menuItem);
         menuItem = new JMenuItem("Save");
         menuItem.addActionListener(e -> {
-               //TODO 
+            final int retVal = this.fileChooser.showSaveDialog(this);
+            if (retVal == JFileChooser.APPROVE_OPTION) {
+                try {
+                    controller.saveFile(this.fileChooser.getSelectedFile().getPath());
+                } catch (IOException e1) {
+                    System.out.println("errorg");
+                }
+            }
         });
         this.add(menuItem);
 
-        menuItem = new JMenuItem("Reset");
+        menuItem = new JMenuItem("Load");
         menuItem.addActionListener(e -> {
-               //TODO 
+            final int retVal = this.fileChooser.showOpenDialog(this);
+            if (retVal == JFileChooser.APPROVE_OPTION) {
+                try {
+                    try {
+                        controller.initialize((this.fileChooser.getSelectedFile().getPath()));
+                    } catch (ClassNotFoundException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    view.setTextInArea(String.valueOf(controller.getList(null)));
+                } catch (FileNotFoundException e1) {
+                    System.out.println("errorh");
+                } catch (IOException e1) {
+                   System.out.println("errork");
+                }
+            }
         });
         this.add(menuItem);
     }

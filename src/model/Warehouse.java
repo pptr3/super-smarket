@@ -1,9 +1,9 @@
 package model;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +37,7 @@ public class Warehouse implements Model {
             final ObjectInputStream buffer = serializedModel.get();
             try {
                 LotBuilder.setNextId(buffer.readInt());
-                int numberOfLots = buffer.readInt();
+                final int numberOfLots = buffer.readInt();
                 for (int i = 0; i < numberOfLots; i++) {
                     lots.add((LotWithActions) buffer.readObject());
                 }
@@ -49,7 +49,8 @@ public class Warehouse implements Model {
         }
     }
 
-    @Override
+
+  @Override
     public void serializeModel(final ObjectOutputStream output) {
         try {
             output.writeInt(LotBuilder.getNextId());
@@ -110,7 +111,7 @@ public class Warehouse implements Model {
     @Override
     public void dontSuggestAnymore(Lot l) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -122,6 +123,6 @@ public class Warehouse implements Model {
     @Override
     public void resetSuggestions() {
         // TODO Auto-generated method stub
-        
+
     }
 }

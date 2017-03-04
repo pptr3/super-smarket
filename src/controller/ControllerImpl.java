@@ -29,7 +29,7 @@ public class ControllerImpl implements Controller {
     private final Model model;
     private Agent agent;
     private final Subject subject;
-    //private static Optional<ControllerImpl> singleton = Optional.empty();
+    // private static Optional<ControllerImpl> singleton = Optional.empty();
 
     /**
      * 
@@ -40,25 +40,32 @@ public class ControllerImpl implements Controller {
         this.model = warehouse;
         this.subject = new SubjectImpl();
     }
-/*
- * need to close the file
- * (non-Javadoc)
- * @see controller.Controller#initialize(java.lang.String)
- */
+
+    /*
+     * need to close the file (non-Javadoc)
+     * 
+     * @see controller.Controller#initialize(java.lang.String)
+     */
     @Override
     public void initialize(final String filepath) throws IOException {
-        this.model
-                .initialize(Optional.of(new ObjectInputStream(new BufferedInputStream(new FileInputStream(filepath)))));
+        final ObjectInputStream ostream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filepath)));
+        this.model.initialize(Optional.of(ostream));
+        ostream.close();
     }
 
     @Override
     public void saveFile(final String filepath) throws FileNotFoundException, IOException {
-        this.model.serializeModel(new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filepath))));
+        final ObjectOutputStream ostream = new ObjectOutputStream(
+                new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filepath))));
+        this.model.serializeModel(ostream);
+        ostream.close();
     }
-/*
- * (non-Javadoc)
- * @see controller.Controller#getList()
- */
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see controller.Controller#getList()
+     */
     @Override
     public List<Lot> getList(final ModifyList mfl) {
         return this.model.getList(mfl);
