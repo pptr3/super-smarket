@@ -117,9 +117,12 @@ public class Warehouse implements Model {
     public void dontSuggestAnymore(final Lot l) {
         lotsNotToSuggest.add(l.getId());
     }
-
-    @Override
-    public List<Lot> getNotSuggestingList() {
+    
+    /**
+     * Returns the list of Lots that won't be suggested as discount in this session.
+     * @return List of lots
+     */
+    protected List<Lot> getNotSuggestingList() {
         return lots.stream().filter(l -> lotsNotToSuggest.contains(l.getId())).
                 collect(Collectors.toList());
     }

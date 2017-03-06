@@ -70,12 +70,6 @@ public interface Model {
         void dontSuggestAnymore(Lot l);
 
         /**
-         * Returns the list of Lots that won't be suggested as discount in this session.
-         * @return List of lots
-         */
-        List<Lot> getNotSuggestingList();
-
-        /**
          * Empties the list of lots that shouldn't be suggested as discount in this session. 
          */
         void resetSuggestions();

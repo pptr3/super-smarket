@@ -249,7 +249,7 @@ public class BasicModelTest {
         buildSalad();
         buildBread();
 
-        Model m = new Warehouse();
+        Warehouse m = new Warehouse();
         m.addLotto(p);
         m.addLotto(c);
         m.addLotto(s);
