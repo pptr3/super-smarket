@@ -52,4 +52,10 @@ public interface Lot {
      * @return 0 (not on sale) - 100 (free)
      */
     int getSalePercentage(); 
+
+    /**
+     * A well formatted string that contains the information about the lot.
+     * @return the description of the lot.
+     */
+    String getDescription();
 }

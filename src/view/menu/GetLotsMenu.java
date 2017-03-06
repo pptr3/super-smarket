@@ -23,6 +23,11 @@ public class GetLotsMenu extends JMenu {
      * 
      * @param view where show the list of lots
      */
+
+    /**
+     * String to be used to get the description of all the lots.
+     */
+    private String allLots= "";
 /*
  * TODO
  * not yet implemented the Text Area where show the list of lots
@@ -31,13 +36,14 @@ public class GetLotsMenu extends JMenu {
         super("Get Lots");
         JMenuItem menuItem = new JMenuItem("Alfabetically sorted");
         menuItem.addActionListener(e -> {
-
-            view.setTextInArea(String.valueOf(controller.getList(new ModifyListFactoryImpl().alphabeticalSorting())));
+            controller.getList(new ModifyListFactoryImpl().alphabeticalSorting()).forEach(l -> allLots += l.getDescription());
+            view.setTextInArea(allLots);
         });
         this.add(menuItem);
         menuItem = new JMenuItem("Only expiring");
         menuItem.addActionListener(e -> {
-            view.setTextInArea(String.valueOf(controller.getList(new ModifyListFactoryImpl().onlyExpiring())));
+            controller.getList(new ModifyListFactoryImpl().onlyExpiring()).forEach(l -> allLots += l.getDescription());
+            view.setTextInArea(allLots);
         });
         this.add(menuItem);
         menuItem = new JMenuItem("All");

@@ -19,6 +19,8 @@ import model.discountstrategies.DiscountStrategyFactoryImpl;
 import model.modifylists.ModifyListFactory;
 import model.modifylists.ModifyListFactoryImpl;
 
+//CHECKSTYLE:OFF
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BasicModelTest {
 
