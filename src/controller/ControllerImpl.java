@@ -50,7 +50,7 @@ public class ControllerImpl implements Controller {
     public void initialize(final String filepath) throws IOException {
         final ObjectInputStream ostream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filepath)));
         this.model.initialize(Optional.of(ostream));
-       // ostream.close();
+        ostream.close();
     }
 
     @Override
