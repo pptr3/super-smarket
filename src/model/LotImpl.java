@@ -10,6 +10,8 @@ import java.util.Optional;
  */
 public class LotImpl implements LotWithActions, Serializable {
 
+    private static String emptyOptionalString = "empty";
+
     /**
      * 
      */
@@ -17,7 +19,8 @@ public class LotImpl implements LotWithActions, Serializable {
     private int id;
     private String name;
     private transient Optional<MyCustomDate> expirationDate;
-    private transient MyCustomDate checkInDate;
+    private String expirationDateSerialization;
+    private MyCustomDate checkInDate;
     private int initialQuantity;
     private int currentQuantity;
     private int pricePerSingleItem;
@@ -45,6 +48,11 @@ public class LotImpl implements LotWithActions, Serializable {
         this.pricePerSingleItem = ipricePerSingleItem;
         this.onSale = false;
         this.salePercentage = 0;
+        if (iexpirationDate.isPresent()) {
+            this.expirationDateSerialization = this.expirationDate.get().getDateToString();
+        } else {
+            this.expirationDateSerialization = emptyOptionalString;
+        }
     }
 
     /**
@@ -141,6 +149,19 @@ public class LotImpl implements LotWithActions, Serializable {
                 + checkInDate + "\n" + " InitialQuantity=" + initialQuantity + "\n" + "CurrentQuantity=" + currentQuantity
                 + "\n" + "PricePerSingleItem=" + pricePerSingleItem + "\n" + "OnSale=" + onSale + "\n" + "SalePercentage="
                 + salePercentage + "\n\n";
+    }
+
+    /**
+     * This method should be call after loading the model from file. It's used because Optional is not serializable. 
+     */
+    public void initializeExpirationDateAfterDeserialization() {
+        if (this.expirationDateSerialization.equals(emptyOptionalString)) {
+            this.expirationDate = Optional.empty();
+        } else {
+            final String[] date = this.expirationDateSerialization.split("-");
+            this.expirationDate = Optional.of(new MyCustomDateImpl(
+                    Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2])));
+        }
     }
 
 }

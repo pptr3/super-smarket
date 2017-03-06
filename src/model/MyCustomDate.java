@@ -24,4 +24,10 @@ public interface MyCustomDate {
      */
     int getDayOfYear();
 
+    /**
+     * Visual representation of the date.
+     * @return date in the format yyyy-mm-dd
+     */
+    String getDateToString();
+
 }

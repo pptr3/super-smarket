@@ -41,7 +41,9 @@ public class Warehouse implements Model {
                 LotBuilder.setNextId(buffer.readInt());
                 final int numberOfLots = buffer.readInt();
                 for (int i = 0; i < numberOfLots; i++) {
-                    lots.add((LotWithActions) buffer.readObject());
+                    final LotWithActions currentLot = (LotWithActions) buffer.readObject();
+                    currentLot.initializeExpirationDateAfterDeserialization();
+                    lots.add(currentLot);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

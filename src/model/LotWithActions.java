@@ -23,6 +23,12 @@ public interface LotWithActions extends Lot {
      */
     void removeElements(int n);
 
+
+    /**
+     * This method should be call after loading the model from file. It's used because Optional is not serializable. 
+     */
+     void initializeExpirationDateAfterDeserialization();
+
     /**
      * To get this objcet, but only with the methods of the Lot interface.
      * @return this, but only with read methods

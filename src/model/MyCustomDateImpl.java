@@ -83,4 +83,9 @@ public class MyCustomDateImpl implements MyCustomDate, Serializable {
         return new MyCustomDateImpl(LocalDate.now());
     }
 
+    @Override
+    public String getDateToString() {
+        return this.date.toString();
+    }
+
 }

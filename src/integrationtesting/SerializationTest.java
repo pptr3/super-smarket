@@ -1,6 +1,8 @@
 package integrationtesting;
 
-import static org.junit.Assert.*;
+//CHECKSTYLE:OFF
+
+import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -43,7 +45,7 @@ public class SerializationTest {
         
         Model m2 = new Warehouse();
         Controller c2 = new ControllerImpl(m2);
-        
+
         try {
             c2.initialize("file.txt");
         } catch (FileNotFoundException e) {
@@ -53,9 +55,9 @@ public class SerializationTest {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+
         assertEquals(m.getList(null).size(), m2.getList(null).size());
-        
+
     }
 
     private void buildMilk() {
