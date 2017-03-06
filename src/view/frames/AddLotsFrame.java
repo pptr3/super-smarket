@@ -15,11 +15,13 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import controller.Controller;
 import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDateImpl;
+import model.modifylists.ModifyListFactoryImpl;
 import view.View;
 
 /**
@@ -31,7 +33,8 @@ public class AddLotsFrame extends JFrame {
     private final List<String> list = new ArrayList<>(
             Arrays.asList("Name", "Check in date", "Expiration date", "Initial quantity", "Price per single item"));
     private final List<JTextField> jtext = new ArrayList<>();
-
+    private String allLots= "";
+    
     /**
      * @param view 
      *            view
@@ -63,10 +66,13 @@ public class AddLotsFrame extends JFrame {
                     .expirationDate(
                             new MyCustomDateImpl(LocalDate.now(), Integer.parseInt(this.jtext.get(2).getText())))
                     .quantity(Integer.parseInt(this.jtext.get(3).getText()))
-                    .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText())).build();
+                    .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText()))
+                    .build();
             controller.addLotto(l);
-            view.setTextInArea(String.valueOf(controller.getList(null)));
+            controller.getList(null).forEach(l2 -> allLots += l2.getDescription());
+            view.setTextInArea(allLots);
             this.jtext.clear();
+
             this.setVisible(false);
         };
 

@@ -30,7 +30,7 @@ public class RemoveLotsFrame extends JFrame {
      */
     private static final long serialVersionUID = 6784928917074846594L;
     private final List<JTextField> removes = new ArrayList<>();
-
+    private String allLots= "";
     /**
      * @param view 
      *            view
@@ -63,7 +63,8 @@ public class RemoveLotsFrame extends JFrame {
         final ActionListener alRemove = e3 -> {
             controller.removeFromLotto(Integer.parseInt(this.removes.get(0).getText()),
                     Integer.parseInt(this.removes.get(1).getText()));
-           view.setTextInArea(String.valueOf(controller.getList(null)));
+            controller.getList(null).forEach(l2 -> allLots += l2.getDescription());
+            view.setTextInArea(allLots);
             this.removes.clear();
             this.setVisible(false);
         };

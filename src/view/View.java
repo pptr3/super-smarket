@@ -1,7 +1,7 @@
 package view;
 
-import java.util.Map;
-import model.Lot;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  * View Interface.
@@ -10,17 +10,16 @@ import model.Lot;
 public interface View {
 
     /**
-     * Called to advice possible discounts.
-     * 
-     * @param lots lots
-     */
-    void discountAdvice(final Map<Lot, Integer> lots);
-
-    /**
      * Refresh the list of lots.
      * @param text text to refresh
      */
     void setTextInArea(final String text);
+
+    /**
+     * 
+     * @param panel the new Panel to be added.
+     */
+    void setNewPanel(JPanel panel);
     /**
      * update the view.
      */

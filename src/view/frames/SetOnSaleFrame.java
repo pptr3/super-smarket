@@ -31,7 +31,7 @@ public class SetOnSaleFrame extends JFrame {
      */
     private static final long serialVersionUID = -4833819912763016964L;
     private final List<JTextField> sale = new ArrayList<>();
-
+    private String allLots= "";
     /**
      * 
      * @param controller
@@ -62,7 +62,8 @@ public class SetOnSaleFrame extends JFrame {
         final ActionListener alRemove = e3 -> {
             controller.setOnSale(Integer.parseInt(this.sale.get(0).getText()),
                     Integer.parseInt(this.sale.get(1).getText()));
-            view.setTextInArea(String.valueOf(controller.getList(null)));
+            controller.getList(null).forEach(l2 -> allLots += l2.getDescription());
+            view.setTextInArea(allLots);
             this.sale.clear();
             this.setVisible(false);
         };

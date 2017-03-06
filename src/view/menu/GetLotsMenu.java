@@ -2,9 +2,8 @@ package view.menu;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-
 import controller.Controller;
-import model.modifylists.ModifyListFactory;
+import model.modifylists.ModifyList;
 import model.modifylists.ModifyListFactoryImpl;
 import view.View;
 
@@ -27,33 +26,37 @@ public class GetLotsMenu extends JMenu {
     /**
      * String to be used to get the description of all the lots.
      */
-    private String allLots= "";
-/*
- * TODO
- * not yet implemented the Text Area where show the list of lots
+    private String allLots = "";
+/**
+ * 
+ * @param view view
+ * @param controller controller
  */
     public GetLotsMenu(final View view, final Controller controller) {
         super("Get Lots");
         JMenuItem menuItem = new JMenuItem("Alfabetically sorted");
         menuItem.addActionListener(e -> {
-            controller.getList(new ModifyListFactoryImpl().alphabeticalSorting()).forEach(l -> allLots += l.getDescription());
-            view.setTextInArea(allLots);
+            setTextArea(controller, view, new ModifyListFactoryImpl().alphabeticalSorting());
         });
         this.add(menuItem);
         menuItem = new JMenuItem("Only expiring");
         menuItem.addActionListener(e -> {
-            controller.getList(new ModifyListFactoryImpl().onlyExpiring()).forEach(l -> allLots += l.getDescription());
-            view.setTextInArea(allLots);
+            setTextArea(controller, view, new ModifyListFactoryImpl().onlyExpiring());
         });
         this.add(menuItem);
         menuItem = new JMenuItem("All");
         /*
-         * with null param, i will get all the list of lots order by insertion 
+         * with null  @param, @return the list of lots order by insertion 
          */
         menuItem.addActionListener(e -> {
-            System.out.println(controller.getList(null));
+            setTextArea(controller, view, null);
         });
         this.add(menuItem);
     }
 
+    private void setTextArea(final Controller controller, final View view, final ModifyList ml) {
+        controller.getList(ml).forEach(l -> allLots += l.getDescription());
+        view.setTextInArea(allLots);
+        this.allLots = "";
+    }
 }
