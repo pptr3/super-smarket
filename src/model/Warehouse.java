@@ -21,12 +21,15 @@ import model.modifylists.ModifyList;
 public class Warehouse implements Model {
 
     private List<LotWithActions> lots;
+    //Keeps the IDs of the lots which should not be suggested as discount in the current session
+    private List<Integer> lotsNotToSuggest;
 
     /**
      * Default constructor that initializes the internal list.
      */
     public Warehouse() {
         this.lots = new ArrayList<>();
+        this.lotsNotToSuggest = new ArrayList<>();
     }
 
     @Override
@@ -96,7 +99,10 @@ public class Warehouse implements Model {
 
     @Override
     public Map<Lot, Integer> getDiscountable(final DiscountStrategy ds) {
-        return ds.suggestDiscounts(this.getList(null));
+        List<Lot> discountCandidates = this.getList(null); 
+        return ds.suggestDiscounts(discountCandidates.stream().
+                filter(l -> !lotsNotToSuggest.contains(l.getId())).
+                collect(Collectors.toList()));
     }
 
     @Override
@@ -109,9 +115,8 @@ public class Warehouse implements Model {
     }
 
     @Override
-    public void dontSuggestAnymore(Lot l) {
-        // TODO Auto-generated method stub
-
+    public void dontSuggestAnymore(final Lot l) {
+        lotsNotToSuggest.add(l.getId());
     }
 
     @Override

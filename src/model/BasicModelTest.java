@@ -203,6 +203,40 @@ public class BasicModelTest {
         assertEquals(1, map.size());
     }
 
+    /**
+     * Basically the same test as above, but we will try preventing some lots from being suggested again. 
+     */
+    @Test
+    public void I_expiresWithinNDaysStopSuggestingTest() {
+        buildPasta();
+        buildCarrot();
+        buildSalad();
+        buildBread();
+
+        Model m = new Warehouse();
+        m.addLotto(p);
+        m.addLotto(c);
+        m.addLotto(s);
+        m.addLotto(b);
+
+        DiscountStrategyFactory factory = new DiscountStrategyFactoryImpl();
+
+        Map<Lot, Integer> map = m.getDiscountable(factory.expiresWithinAWeek());
+        assertEquals(2, map.size());
+
+        map = m.getDiscountable(factory.expiresWithinOneDay());
+        assertEquals(1, map.size());
+
+        m.dontSuggestAnymore(c);
+
+        map = m.getDiscountable(factory.expiresWithinAWeek());
+        assertEquals(1, map.size());
+
+        map = m.getDiscountable(factory.expiresWithinOneDay());
+        assertEquals(1, map.size());
+
+    }
+
     private void buildBread() {
         b = new LotBuilder()
                 .name("Bread - brand 2")
