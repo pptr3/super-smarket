@@ -79,6 +79,22 @@ public class BasicModelTest {
         m.setOnSale(l.getId(), 10);
         assertTrue(m.getList(null).get(0).isOnSale());
     }
+    
+    /**
+     * Tests the removeFromSale method.
+     */
+    @Test
+    public void CA_removeFromSaleTest() {
+        buildMilk();
+
+        final Model m = new Warehouse();
+        m.addLotto(l);
+        assertFalse(l.isOnSale());
+        m.setOnSale(l.getId(), 10);
+        m.removeFromSale(l.getId());
+        
+        assertFalse(m.getList(null).get(0).isOnSale());
+    }
 
     /**
      * Tests the OverFiftyDiscount strategy.

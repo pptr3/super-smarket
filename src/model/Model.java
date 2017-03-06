@@ -64,6 +64,12 @@ public interface Model {
         void setOnSale(int id, int discountAmount);
 
         /**
+         * The object with the given id will not be in discount after that method is called.
+         * @param id the id of the lot to be removed from sale
+         */
+        void removeFromSale(int id);
+
+        /**
          * Says that the given lot should not be suggested as a discount in this session anymore.
          * @param l the lot not to put in discount
          */

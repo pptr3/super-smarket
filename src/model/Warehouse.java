@@ -117,7 +117,7 @@ public class Warehouse implements Model {
     public void dontSuggestAnymore(final Lot l) {
         lotsNotToSuggest.add(l.getId());
     }
-    
+
     /**
      * Returns the list of Lots that won't be suggested as discount in this session.
      * @return List of lots
@@ -130,5 +130,14 @@ public class Warehouse implements Model {
     @Override
     public void resetSuggestions() {
         lotsNotToSuggest = new ArrayList<>();
+    }
+
+    @Override
+    public void removeFromSale(final int id) {
+        this.lots.forEach(l -> {
+            if (l.getId() == id) {
+                l.removeFromSale();
+            }
+        });
     }
 }
