@@ -55,8 +55,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void saveFile(final String filepath) throws FileNotFoundException, IOException {
-        final ObjectOutputStream ostream = new ObjectOutputStream(
-                new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filepath))));
+        final ObjectOutputStream ostream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filepath)));
         this.model.serializeModel(ostream);
         ostream.close();
     }
