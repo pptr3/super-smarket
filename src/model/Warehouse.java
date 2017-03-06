@@ -3,7 +3,6 @@ package model;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -121,13 +120,12 @@ public class Warehouse implements Model {
 
     @Override
     public List<Lot> getNotSuggestingList() {
-        // TODO Auto-generated method stub
-        return null;
+        return lots.stream().filter(l -> lotsNotToSuggest.contains(l.getId())).
+                collect(Collectors.toList());
     }
 
     @Override
     public void resetSuggestions() {
-        // TODO Auto-generated method stub
-
+        lotsNotToSuggest = new ArrayList<>();
     }
 }

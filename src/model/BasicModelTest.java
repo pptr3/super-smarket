@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -234,6 +235,35 @@ public class BasicModelTest {
 
         map = m.getDiscountable(factory.expiresWithinOneDay());
         assertEquals(1, map.size());
+    }
+
+    /**
+     * Tests how the notSuggestingLots are handled.
+     */
+    @Test
+    public void E_getNotSuggestingListTest() {
+        buildPasta();
+        buildCarrot();
+        buildSalad();
+        buildBread();
+
+        Model m = new Warehouse();
+        m.addLotto(p);
+        m.addLotto(c);
+        m.addLotto(s);
+        m.addLotto(b);
+
+        m.dontSuggestAnymore(p);
+        m.dontSuggestAnymore(b);
+
+        assertTrue(m.getNotSuggestingList().stream().filter(lot -> lot.getId() == p.getId()).
+                collect(Collectors.toList()).size() == 1);
+        assertTrue(m.getNotSuggestingList().stream().filter(lot -> lot.getId() == b.getId()).
+                collect(Collectors.toList()).size() == 1);
+
+        m.resetSuggestions();
+
+        assertEquals(m.getNotSuggestingList().size(), 0);
 
     }
 
