@@ -63,17 +63,9 @@ public class OperationsMenu extends JMenu {
             final int retVal = this.fileChooser.showOpenDialog(this);
             if (retVal == JFileChooser.APPROVE_OPTION) {
                 try {
-                    try {
-                        controller.initialize((this.fileChooser.getSelectedFile().getPath()));
-                    } catch (ClassNotFoundException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
-                    view.setTextInArea(String.valueOf(controller.getList(null)));
-                } catch (FileNotFoundException e1) {
-                    System.out.println("errorh");
-                } catch (IOException e1) {
-                   System.out.println("errork");
+                controller.initialize((this.fileChooser.getSelectedFile().getPath()));
+                view.setTextInArea(String.valueOf(controller.getList(null)));
+                } catch (Exception e1) {
                 }
             }
         });
