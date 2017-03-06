@@ -1,23 +1,18 @@
 package view;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
-
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import controller.Controller;
-import model.Lot;
 import view.menu.OperationsMenu;
 import view.menu.GetDiscountableMenu;
 import view.menu.GetLotsMenu;
@@ -42,7 +37,7 @@ public class ViewImpl extends JFrame implements View {
     private final JMenu operations;
     private ScanMenu scan;
     private JTextArea textArea;
-    final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
     /**
      * 
      * @param cont
@@ -61,6 +56,7 @@ public class ViewImpl extends JFrame implements View {
         this.menuBar.add(this.getDiscountable);
         this.menuBar.add(this.operations);
         this.menuBar.add(this.scan);
+        final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.textArea = new JTextArea();
         this.textArea.setEditable(false);
         this.textArea.setSize(dim);
@@ -93,9 +89,5 @@ public class ViewImpl extends JFrame implements View {
      */
     public void setTextInArea(final String text) {
         this.textArea.setText(text);
-    }
-
-    public void setNewPanel(final JPanel panel) {
-        this.getContentPane().add(panel, FlowLayout.LEADING);
     }
 }

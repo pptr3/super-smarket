@@ -91,6 +91,20 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
+    public void removeFromSale(final int id) {
+        this.model.removeFromSale(id);
+    }
+
+    @Override
+    public void dontSuggestAnymore(final Lot l) {
+      this.model.dontSuggestAnymore(l);
+    }
+
+    @Override
+    public void resetSuggestions() {
+        this.model.resetSuggestions();
+    }
+    @Override
     public void registerView(final View view) {
         this.subject.attachView(view);
     }

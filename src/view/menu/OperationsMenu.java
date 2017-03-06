@@ -1,15 +1,14 @@
 package view.menu;
 
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
 import view.View;
 import view.frames.AddLotsFrame;
+import view.frames.RemoveFromSaleFrame;
 import view.frames.RemoveLotsFrame;
 import view.frames.SetOnSaleFrame;
 
@@ -43,6 +42,11 @@ public class OperationsMenu extends JMenu {
         menuItem = new JMenuItem("Set Lot on sale");
         menuItem.addActionListener(e -> {
                new SetOnSaleFrame(view, controller);
+        });
+        this.add(menuItem);
+        menuItem = new JMenuItem("Remove from sale");
+        menuItem.addActionListener(e -> {
+               new RemoveFromSaleFrame(view, controller);
         });
         this.add(menuItem);
         menuItem = new JMenuItem("Save");

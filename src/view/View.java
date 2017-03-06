@@ -1,7 +1,5 @@
 package view;
 
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 /**
  * View Interface.
@@ -15,11 +13,6 @@ public interface View {
      */
     void setTextInArea(final String text);
 
-    /**
-     * 
-     * @param panel the new Panel to be added.
-     */
-    void setNewPanel(JPanel panel);
     /**
      * update the view.
      */

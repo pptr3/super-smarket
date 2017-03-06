@@ -31,11 +31,12 @@ public class SetOnSaleFrame extends JFrame {
      */
     private static final long serialVersionUID = -4833819912763016964L;
     private final List<JTextField> sale = new ArrayList<>();
-    private String allLots= "";
+    private String allLots = "";
     /**
      * 
      * @param controller
      *            controller
+     * @param view view
      */
     public SetOnSaleFrame(final View view, final Controller controller) {
         this.setLayout(new FlowLayout());

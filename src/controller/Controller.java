@@ -26,23 +26,26 @@ public interface Controller {
      *             IOException
      * @throws FileNotFoundException
      *             file not found
-     * @param filepath
-     *            filepath
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException
+     *             * @param filepath filepath
      */
     void initialize(String filepath) throws FileNotFoundException, IOException, ClassNotFoundException;
 
     /**
      * Saves the file to the given path.
      * 
-     * @param filepath filepath
-     * @throws IOException IOException
-     * @throws FileNotFoundException file not found
+     * @param filepath
+     *            filepath
+     * @throws IOException
+     *             IOException
+     * @throws FileNotFoundException
+     *             file not found
      */
     void saveFile(String filepath) throws FileNotFoundException, IOException;
 
     /**
-     * @param mfl modify list
+     * @param mfl
+     *            modify list
      * @return the List of Lot
      */
 
@@ -58,26 +61,42 @@ public interface Controller {
     /**
      * Removes n products from the lot with the specified id.
      * 
-     * @param id id of lot
-     * @param n how many products to remove
+     * @param id
+     *            id of lot
+     * @param n
+     *            how many products to remove
      */
     void removeFromLotto(int id, int n);
 
     /**
      * Suggests which lots should be discounted.
-     * @param ds strategy for deciding discount
-     * @return map of lots that should be discounted, and the amount in percentage
+     * 
+     * @param ds
+     *            strategy for deciding discount
+     * @return map of lots that should be discounted, and the amount in
+     *         percentage
      */
     Map<Lot, Integer> getDiscountable(DiscountStrategy ds);
 
     /**
      * Set on sale the lot with specified id of discoutAmount amount.
      * 
-     * @param id id of the lot
-     * @param discountAmount amount
+     * @param id
+     *            id of the lot
+     * @param discountAmount
+     *            amount
      */
 
     void setOnSale(int id, int discountAmount);
+
+    /**
+     * The object with the given id will not be in discount after that method is
+     * called.
+     * 
+     * @param id
+     *            the id of the lot to be removed from sale
+     */
+    void removeFromSale(int id);
 
     /**
      * Starts the strategy that alert you if some products need to be
@@ -98,5 +117,18 @@ public interface Controller {
      */
     void registerView(View view);
 
+    /**
+     * Says that the given lot should not be suggested as a discount in this
+     * session anymore.
+     * 
+     * @param l
+     *            the lot not to put in discount
+     */
+    void dontSuggestAnymore(Lot l);
 
+    /**
+     * Empties the list of lots that shouldn't be suggested as discount in this
+     * session.
+     */
+    void resetSuggestions();
 }
