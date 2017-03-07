@@ -22,6 +22,7 @@ public class OperationsMenu extends JMenu {
      */
     private static final long serialVersionUID = 4790546772035194942L;
     private final JFileChooser fileChooser = new JFileChooser();
+    private String allString = "";
     /**
      * @param controller controller
      * @param view view
@@ -56,7 +57,6 @@ public class OperationsMenu extends JMenu {
                 try {
                     controller.saveFile(this.fileChooser.getSelectedFile().getPath());
                 } catch (IOException e1) {
-                    System.out.println("errorg");
                 }
             }
         });
@@ -68,7 +68,9 @@ public class OperationsMenu extends JMenu {
             if (retVal == JFileChooser.APPROVE_OPTION) {
                 try {
                 controller.initialize((this.fileChooser.getSelectedFile().getPath()));
-                view.setTextInArea(String.valueOf(controller.getList(null)));
+                controller.getList(null).forEach(l ->  allString += allString + l.getDescription());
+                view.setTextInArea(allString);
+                this.allString = "";
                 } catch (Exception e1) {
                 }
             }
