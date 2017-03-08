@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.BufferedInputStream;
-
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,7 +11,6 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
 import model.Lot;
 import model.Model;
 import model.discountstrategies.DiscountStrategy;

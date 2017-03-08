@@ -9,9 +9,6 @@ import controller.Controller;
 import view.View;
 import view.frames.AddLotsFrame;
 import view.frames.RemoveFromSaleFrame;
-import view.frames.RemoveLotsFrame;
-import view.frames.SetOnSaleFrame;
-
 /**
  *
  */
@@ -35,21 +32,12 @@ public class OperationsMenu extends JMenu {
                new AddLotsFrame(view, controller);
         });
         this.add(menuItem);
-        menuItem = new JMenuItem("Remove Lot");
-        menuItem.addActionListener(e -> {
-            new RemoveLotsFrame(view, controller);
-        });
-        this.add(menuItem);
-        menuItem = new JMenuItem("Set Lot on sale");
-        menuItem.addActionListener(e -> {
-               new SetOnSaleFrame(view, controller);
-        });
-        this.add(menuItem);
-        menuItem = new JMenuItem("Remove from sale");
-        menuItem.addActionListener(e -> {
-               new RemoveFromSaleFrame(view, controller);
-        });
-        this.add(menuItem);
+        //to remove
+//        menuItem = new JMenuItem("Remove from sale");
+//        menuItem.addActionListener(e -> {
+//               new RemoveFromSaleFrame(view, controller);
+//        });
+//        this.add(menuItem);
         menuItem = new JMenuItem("Save");
         menuItem.addActionListener(e -> {
             final int retVal = this.fileChooser.showSaveDialog(this);
@@ -74,6 +62,11 @@ public class OperationsMenu extends JMenu {
                 } catch (Exception e1) {
                 }
             }
+        });
+        this.add(menuItem);
+        menuItem = new JMenuItem("Reset suggestions");
+        menuItem.addActionListener(e -> {
+            controller.resetSuggestions();
         });
         this.add(menuItem);
     }

@@ -15,7 +15,7 @@ public class GetDiscountableFrames extends AbstractGetDiscountableFrames {
 /**
  * 
  * @param controller controller
- * @param ds ds
+ * @param ds discount strategy
  */
     public GetDiscountableFrames(final Controller controller, final DiscountStrategy ds) {
         super(controller, ds);

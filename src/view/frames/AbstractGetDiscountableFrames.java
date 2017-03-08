@@ -25,7 +25,7 @@ import model.discountstrategies.DiscountStrategy;
  */
 
 /**
- * Abtract class for Template Method.
+ * Abstract class for Template Method.
  *
  */
 public abstract class AbstractGetDiscountableFrames extends AbstractCustomFrame {
@@ -36,6 +36,7 @@ public abstract class AbstractGetDiscountableFrames extends AbstractCustomFrame 
     private static final String SET_ON_SALE = "Set on sale";
     private static final String BACK = "Back";
     private static final String PERCENTAGE = "%";
+    private static final String DONT_SUGGEST_ANYMORE = "Don't suggest anymore";
     private static final long serialVersionUID = 5926371999570025570L;
     private static final Integer COLS = 2;
     private java.util.List<JTextField> texts = new ArrayList<>();
@@ -97,7 +98,7 @@ public abstract class AbstractGetDiscountableFrames extends AbstractCustomFrame 
             buttons.add(jText);
             final JLabel label = new JLabel(PERCENTAGE);
             buttons.add(label);
-            final JButton jb1 = new JButton("Don't suggest anymore");
+            final JButton jb1 = new JButton(DONT_SUGGEST_ANYMORE);
             buttons.add(jb1);
             this.discard.add(jb1);
             final JButton back = new JButton(BACK);
@@ -111,73 +112,4 @@ public abstract class AbstractGetDiscountableFrames extends AbstractCustomFrame 
         this.getContentPane().add(center, BorderLayout.CENTER);
         initializeSizeAndLocation();
     }
-    /*
-     * FOR TESTS use this:
-     * public GetDiscountableOverFiftyDiscountFrame(final View view, final Controller controller) {
-        this.setTitle("Over fifty");
-        // final Map<Lot, Integer> map = controller.getDiscountable(new
-        // DiscountStrategyFactoryImpl().overFiftyDiscount());
-        Lot l1 = new LotBuilder().name("test").expirationDate(new MyCustomDateImpl(LocalDate.now(), 1)).quantity(1)
-                .pricePerSingleItem(1).build();
-        Lot l2 = new LotBuilder().name("test2").expirationDate(new MyCustomDateImpl(LocalDate.now(), 1)).quantity(1)
-                .pricePerSingleItem(1).build();
-//        controller.addLotto(l1);
-//        controller.addLotto(l2);
-        final Map<Lot, Integer> map = controller.getDiscountable(null);
-//        map.put(l1, 10);
-//        map.put(l2, 20);
-        int rows = map.size();
-        System.out.println(rows);
-        final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        JPanel center = new JPanel(new GridLayout(rows, COLS));
-
-        ActionListener al1 = e -> {
-            this.setVisible(false);
-        };
-        ActionListener al2 = e -> {
-            JButton jb = (JButton) e.getSource();
-            controller.setOnSale(this.lots.get(this.sale.indexOf(jb)).getId(),
-                    Integer.parseInt(this.texts.get(this.sale.indexOf(jb)).getText()));
-            this.area.get(this.sale.indexOf(jb)).setText(String.valueOf(this.lots.get(this.sale.indexOf(jb))));
-        };
-
-        for (Map.Entry<Lot, Integer> lot : map.entrySet()) {
-            JPanel areas = new JPanel(new BorderLayout());
-            JTextArea textArea = new JTextArea();
-            this.area.add(textArea);
-            textArea.setEditable(false);
-            textArea.setSize(dim);
-            final JScrollPane jsp = new JScrollPane(textArea);
-            jsp.setAutoscrolls(true);
-            areas.add(jsp);
-            // for testing
-            textArea.setText(String.valueOf(lot.getKey()));
-            this.lots.add(lot.getKey());
-            center.add(areas);
-                JPanel buttons = new JPanel(new FlowLayout());
-                JButton jb = new JButton("Ok set on sale");
-                buttons.add(jb);
-                this.sale.add(jb);
-                // 20 is the suggested disount, this is for testing, when i
-                // finish i have to change with the Integer of the map
-                JTextField jText = new JTextField(String.valueOf(lot.getValue()));
-                jText.setColumns(2);
-                this.texts.add(jText);
-                buttons.add(jText);
-                JLabel label = new JLabel("%");
-                buttons.add(label);
-                JButton jb1 = new JButton("Don't ask me again");
-                buttons.add(jb1);
-                this.discard.add(jb1);
-                JButton back = new JButton("Back");
-                this.backs.add(back);
-                buttons.add(back);
-                center.add(buttons);
-        }
-        this.backs.forEach(l -> l.addActionListener(al1));
-        this.sale.forEach(l -> l.addActionListener(al2));
-        this.getContentPane().add(center, BorderLayout.CENTER);
-        initializeSizeAndLocation();
-    }
-    */
 }

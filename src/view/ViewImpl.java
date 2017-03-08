@@ -1,17 +1,13 @@
 package view;
 
 import java.awt.BorderLayout;
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
 import controller.Controller;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import view.menu.OperationsMenu;
@@ -77,7 +73,7 @@ public class ViewImpl extends JFrame implements View {
      * 
      */
     public void update() {
-        new GetDiscountableScanFrames(controller, new DiscountStrategyFactoryImpl().expiresWithinOneDay());
+        new GetDiscountableFrames(controller, new DiscountStrategyFactoryImpl().expiresWithinOneDay());
     }
 
     /**

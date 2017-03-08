@@ -7,7 +7,7 @@ import model.Warehouse;
 /**
  *
  */
-
+//CHECKSTYLE:OFF
 public class ApplicationTest {
 
     /**
