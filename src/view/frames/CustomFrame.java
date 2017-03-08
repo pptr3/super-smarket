@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  * This will be the superclass of all the classes that use JFrame. 
@@ -31,7 +32,7 @@ public abstract class CustomFrame extends JFrame {
 
     }
     /**
-     * 
+     * Create a new panel containing a new component with the given orientation.
      * @param component component
      * @param orientation orientation
      * @return new JPanel

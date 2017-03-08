@@ -77,8 +77,7 @@ public class AddLotsFrame extends CustomFrame {
         turnBack.addActionListener(al2);
         this.getContentPane().add(center, BorderLayout.NORTH);
         this.getContentPane().add(panel, BorderLayout.SOUTH);
-        this.pack();
         this.initializeSizeAndLocation();
-
+        this.pack();
     }
 }
