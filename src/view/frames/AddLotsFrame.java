@@ -8,13 +8,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import controller.Controller;
 import model.Lot;
 import model.LotBuilder;
@@ -83,11 +80,5 @@ public class AddLotsFrame extends CustomFrame {
         this.pack();
         this.initializeSizeAndLocation();
 
-    }
-
-    private static JPanel wrapperPanel(final JComponent component, final int orientation) {
-        final JPanel panel = new JPanel(new FlowLayout(orientation));
-        panel.add(component);
-        return panel;
     }
 }
