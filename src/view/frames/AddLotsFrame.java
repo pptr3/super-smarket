@@ -1,27 +1,24 @@
 package view.frames;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
 import controller.Controller;
 import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDateImpl;
-import model.modifylists.ModifyListFactoryImpl;
 import view.View;
 
 /**
@@ -33,8 +30,7 @@ public class AddLotsFrame extends CustomFrame {
     private final List<String> list = new ArrayList<>(
             Arrays.asList("Name", "Check in date", "Expiration date", "Initial quantity", "Price per single item"));
     private final List<JTextField> jtext = new ArrayList<>();
-    private String allLots= "";
-    
+    private String allLots = "";
     /**
      * @param view 
      *            view

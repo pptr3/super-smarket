@@ -1,21 +1,18 @@
 package view.frames;
 
 import java.awt.BorderLayout;
-
-
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import controller.Controller;
 import view.View;
 
@@ -30,7 +27,7 @@ public class RemoveLotsFrame extends CustomFrame {
      */
     private static final long serialVersionUID = 6784928917074846594L;
     private final List<JTextField> removes = new ArrayList<>();
-    private String allLots= "";
+    private String allLots = "";
     /**
      * @param view 
      *            view

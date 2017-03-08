@@ -6,12 +6,12 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.util.Map;
+
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import controller.Controller;
 import model.Lot;
-
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import view.View;
 /**

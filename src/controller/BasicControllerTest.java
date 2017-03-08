@@ -1,8 +1,8 @@
 package controller;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-import java.util.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
@@ -11,7 +11,7 @@ import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDateImpl;
 import model.Warehouse;
-
+//CHECKSTYLE:OFF
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BasicControllerTest {
 
