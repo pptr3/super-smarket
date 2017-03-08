@@ -24,7 +24,7 @@ import view.View;
  * 
  *
  */
-public class GetDiscountableOverFiftyDiscountFrame extends JFrame {
+public class GetDiscountableOverFiftyDiscountFrame extends CustomFrame {
 
     /**
      * 
@@ -50,10 +50,7 @@ public class GetDiscountableOverFiftyDiscountFrame extends JFrame {
         panel.add(jb, BorderLayout.SOUTH);
         jb.addActionListener(al);
         this.getContentPane().add(panel);
-        this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 2,
-                Toolkit.getDefaultToolkit().getScreenSize().height / 2);
-        this.setLocation((dim.width - this.getSize().width) / 2, (dim.height - this.getSize().height) / 2);
-        this.setVisible(true);
+        this.initializeSizeAndLocation();
 
     }
 }

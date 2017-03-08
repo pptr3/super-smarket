@@ -24,7 +24,7 @@ import view.View;
  * Set on sale some lots.
  *
  */
-public class SetOnSaleFrame extends JFrame {
+public class SetOnSaleFrame extends CustomFrame {
 
     /**
      * 
@@ -76,11 +76,7 @@ public class SetOnSaleFrame extends JFrame {
         back.addActionListener(al4);
         this.getContentPane().add(center);
         this.getContentPane().add(south);
-        this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 2,
-                Toolkit.getDefaultToolkit().getScreenSize().height / 2);
-        final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation((dim.width - this.getSize().width) / 2, (dim.height - this.getSize().height) / 2);
-        this.setVisible(true);
+        this.initializeSizeAndLocation();
         this.pack();
 
     }

@@ -27,7 +27,7 @@ import view.View;
 /**
  *
  */
-public class AddLotsFrame extends JFrame {
+public class AddLotsFrame extends CustomFrame {
 
     private static final long serialVersionUID = 6784928917074846594L;
     private final List<String> list = new ArrayList<>(
@@ -85,11 +85,7 @@ public class AddLotsFrame extends JFrame {
         this.getContentPane().add(center, BorderLayout.NORTH);
         this.getContentPane().add(panel, BorderLayout.SOUTH);
         this.pack();
-        this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 2,
-                Toolkit.getDefaultToolkit().getScreenSize().height / 2);
-        final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation((dim.width - this.getSize().width) / 2, (dim.height - this.getSize().height) / 2);
-        this.setVisible(true);
+        this.initializeSizeAndLocation();
 
     }
 

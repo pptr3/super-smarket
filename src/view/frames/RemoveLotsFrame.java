@@ -23,7 +23,7 @@ import view.View;
  * Class that removes products from lots.
  *
  */
-public class RemoveLotsFrame extends JFrame {
+public class RemoveLotsFrame extends CustomFrame {
 
     /**
      * 
@@ -76,11 +76,7 @@ public class RemoveLotsFrame extends JFrame {
         back.addActionListener(al);
         this.getContentPane().add(center);
         this.getContentPane().add(south);
-        this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 2,
-                Toolkit.getDefaultToolkit().getScreenSize().height / 2);
-        final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation((dim.width - this.getSize().width) / 2, (dim.height - this.getSize().height) / 2);
-        this.setVisible(true);
+        this.initializeSizeAndLocation();
         this.pack();
     }
 
