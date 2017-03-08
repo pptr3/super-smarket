@@ -1,6 +1,7 @@
 package view.frames;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -10,14 +11,13 @@ import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import controller.Controller;
 import model.Lot;
-import model.discountstrategies.DiscountStrategyFactoryImpl;
+import model.discountstrategies.DiscountStrategy;
 import view.View;
 
 /*
@@ -29,7 +29,7 @@ import view.View;
  * 
  *
  */
-public class GetDiscountableOverFiftyDiscountFrame extends CustomFrame {
+public class GetDiscountableFrames extends CustomFrame {
 
     /**
      * 
@@ -52,10 +52,12 @@ public class GetDiscountableOverFiftyDiscountFrame extends CustomFrame {
      *            controller
      * @param view
      *            view
+     * @param ds
+     *            discount strategy
      */
-    public GetDiscountableOverFiftyDiscountFrame(final View view, final Controller controller) {
+    public GetDiscountableFrames(final View view, final Controller controller, final DiscountStrategy ds) {
         this.setTitle("Over fifty discount");
-        final Map<Lot, Integer> map = controller.getDiscountable(new DiscountStrategyFactoryImpl().overFiftyDiscount());
+        final Map<Lot, Integer> map = controller.getDiscountable(ds);
         int rows = map.size();
         final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         JPanel center = new JPanel(new GridLayout(rows, COLS));
