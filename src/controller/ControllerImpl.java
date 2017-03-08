@@ -16,6 +16,7 @@ import java.util.Random;
 import model.Lot;
 import model.Model;
 import model.discountstrategies.DiscountStrategy;
+import model.discountstrategies.DiscountStrategyFactoryImpl;
 import model.modifylists.ModifyList;
 import view.View;
 
@@ -136,12 +137,7 @@ public class ControllerImpl implements Controller {
     private class Agent extends Thread {
 
         private volatile boolean stoppable;
-        private final Random rand = new Random();
         private final Integer sleepTime = 500;
-        /*
-         * to delete, i used it to test
-         */
-        private final Integer maxInteger = 10;
 
 /*
  * package visible
@@ -153,11 +149,10 @@ public class ControllerImpl implements Controller {
         public void run() {
             while (!this.stoppable) {
                 try {
-                    // if(!getDiscountable(null).isEmpty()) {
-                    // ControllerImpl.this.subject.updateViews();
-                    // }
-                    if (rand.nextInt(maxInteger) == 1) {
+                    if (!getDiscountable(new DiscountStrategyFactoryImpl().expiresWithinOneDay()).isEmpty()) {
                         ControllerImpl.this.subject.updateView();
+                        // to delete
+                        Thread.sleep(10000);
                     }
                     Thread.sleep(sleepTime);
                 } catch (InterruptedException ex) {

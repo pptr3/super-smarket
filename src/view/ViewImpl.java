@@ -13,7 +13,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import controller.Controller;
+import model.discountstrategies.DiscountStrategyFactoryImpl;
 import view.menu.OperationsMenu;
+import view.frames.GetDiscountableFrames;
 import view.menu.GetDiscountableMenu;
 import view.menu.GetLotsMenu;
 import view.menu.ScanMenu;
@@ -46,7 +48,7 @@ public class ViewImpl extends JFrame implements View {
     public ViewImpl(final Controller cont) {
         this.controller = cont;
         this.operations = new OperationsMenu(this, controller);
-        this.getDiscountable = new GetDiscountableMenu(this, this.controller);
+        this.getDiscountable = new GetDiscountableMenu(this.controller);
         this.getLots = new GetLotsMenu(this, controller);
         this.scan = new ScanMenu(controller);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -75,12 +77,7 @@ public class ViewImpl extends JFrame implements View {
      * 
      */
     public void update() {
-        try {
-            SwingUtilities.invokeAndWait(() -> JOptionPane.showMessageDialog(new JFrame(), "I has been notified"));
-        } catch (InvocationTargetException | InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        new GetDiscountableScanFrames(controller, new DiscountStrategyFactoryImpl().expiresWithinOneDay());
     }
 
     /**
