@@ -20,7 +20,7 @@ import view.View;
  * Class that removes products from lots.
  *
  */
-public class RemoveLotsFrame extends CustomFrame {
+public class RemoveLotsFrame extends AbstractCustomFrame {
 
     /**
      * 

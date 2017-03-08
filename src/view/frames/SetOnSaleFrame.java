@@ -20,7 +20,7 @@ import view.View;
  * Set on sale some lots.
  *
  */
-public class SetOnSaleFrame extends CustomFrame {
+public class SetOnSaleFrame extends AbstractCustomFrame {
 
     /**
      * 

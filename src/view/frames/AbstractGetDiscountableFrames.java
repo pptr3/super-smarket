@@ -28,7 +28,7 @@ import model.discountstrategies.DiscountStrategy;
  * Abtract class for Template Method.
  *
  */
-public abstract class AbstractGetDiscountableFrames extends CustomFrame {
+public abstract class AbstractGetDiscountableFrames extends AbstractCustomFrame {
 
     /**
      * 

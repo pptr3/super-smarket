@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  * This will be the superclass of all the classes that use JFrame. 
  * It provides some common methods to avoid duplicated code.
  */
-public abstract class CustomFrame extends JFrame {
+public abstract class AbstractCustomFrame extends JFrame {
 
     /**
      * 

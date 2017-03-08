@@ -21,7 +21,7 @@ import view.View;
  * README: the codes of this package are really similar, to refactor.
  *
  */
-public class RemoveFromSaleFrame extends CustomFrame {
+public class RemoveFromSaleFrame extends AbstractCustomFrame {
 
    /**
     * 
@@ -33,6 +33,7 @@ public class RemoveFromSaleFrame extends CustomFrame {
     * 
     * @param controller
     *            controller
+    * @param view view
     */
    public RemoveFromSaleFrame(final View view, final Controller controller) {
        this.setLayout(new FlowLayout());

@@ -21,7 +21,7 @@ import view.View;
 /**
  *
  */
-public class AddLotsFrame extends CustomFrame {
+public class AddLotsFrame extends AbstractCustomFrame {
 
     private static final long serialVersionUID = 6784928917074846594L;
     private final List<String> list = new ArrayList<>(
