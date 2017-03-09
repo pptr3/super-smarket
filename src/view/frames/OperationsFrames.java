@@ -22,6 +22,7 @@ import model.discountstrategies.DiscountStrategy;
 
 /*
  * TODO: NOTE: implement what appens when there is no Lots
+
  * TODO: Manca la ScrollBar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  * TODO: Un po di refactor per codice duplicato
  */
