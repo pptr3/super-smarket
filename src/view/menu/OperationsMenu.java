@@ -8,7 +8,8 @@ import javax.swing.JMenuItem;
 import controller.Controller;
 import view.View;
 import view.frames.AddLotsFrame;
-import view.frames.RemoveFromSaleFrame;
+import view.frames.DiscountableFrames;
+
 /**
  *
  */
@@ -55,10 +56,8 @@ public class OperationsMenu extends JMenu {
             final int retVal = this.fileChooser.showOpenDialog(this);
             if (retVal == JFileChooser.APPROVE_OPTION) {
                 try {
-                controller.initialize((this.fileChooser.getSelectedFile().getPath()));
-                controller.getList(null).forEach(l ->  allString += allString + l.getDescription());
-                view.setTextInArea(allString);
-                this.allString = "";
+                    controller.initialize((this.fileChooser.getSelectedFile().getPath()));
+                    new DiscountableFrames(controller, controller.getList(null));
                 } catch (Exception e1) {
                 }
             }

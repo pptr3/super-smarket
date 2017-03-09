@@ -37,12 +37,12 @@ public class GetLotsMenu extends JMenu {
         super("Get Lots");
         JMenuItem menuItem = new JMenuItem("Alfabetically sorted");
         menuItem.addActionListener(e -> {
-            setTextArea(controller, view, new ModifyListFactoryImpl().alphabeticalSorting());
+            setTextArea(controller, new ModifyListFactoryImpl().alphabeticalSorting());
         });
         this.add(menuItem);
         menuItem = new JMenuItem("Only expiring");
         menuItem.addActionListener(e -> {
-            setTextArea(controller, view, new ModifyListFactoryImpl().onlyExpiring());
+            setTextArea(controller, new ModifyListFactoryImpl().onlyExpiring());
         });
         this.add(menuItem);
         menuItem = new JMenuItem("All");
@@ -50,12 +50,12 @@ public class GetLotsMenu extends JMenu {
          * with null  @param, @return the list of lots order by insertion 
          */
         menuItem.addActionListener(e -> {
-            setTextArea(controller, view, null);
+            setTextArea(controller, null);
         });
         this.add(menuItem);
     }
 
-    private void setTextArea(final Controller controller, final View view, final ModifyList ml) {
+    private void setTextArea(final Controller controller, final ModifyList ml) {
         new DiscountableFrames(controller, controller.getList(ml));
     }
 }
