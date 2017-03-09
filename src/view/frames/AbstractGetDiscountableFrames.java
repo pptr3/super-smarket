@@ -39,10 +39,12 @@ public abstract class AbstractGetDiscountableFrames extends AbstractCustomFrame 
     private static final String DONT_SUGGEST_ANYMORE = "Don't suggest anymore";
     private static final long serialVersionUID = 5926371999570025570L;
     private static final Integer COLS = 2;
+    private static final String REMOVE_FROM_SALE = "Remove from sale";
     private java.util.List<JTextField> texts = new ArrayList<>();
     private java.util.List<JButton> discard = new ArrayList<>();
-    private java.util.List<JButton> sale = new ArrayList<>();
+    private java.util.List<JButton> setOnSale = new ArrayList<>();
     private java.util.List<JButton> backs = new ArrayList<>();
+    private java.util.List<JButton> removeFromSale = new ArrayList<>();
     private java.util.List<Lot> lots = new ArrayList<>();
     private java.util.List<JTextArea> area = new ArrayList<>();
 
@@ -65,9 +67,9 @@ public abstract class AbstractGetDiscountableFrames extends AbstractCustomFrame 
 
         final ActionListener al2 = e -> {
             JButton jb = (JButton) e.getSource();
-            controller.setOnSale(this.lots.get(this.sale.indexOf(jb)).getId(),
-                    Integer.parseInt(this.texts.get(this.sale.indexOf(jb)).getText()));
-            this.area.get(this.sale.indexOf(jb)).setText(String.valueOf(this.lots.get(this.sale.indexOf(jb))));
+            controller.setOnSale(this.lots.get(this.setOnSale.indexOf(jb)).getId(),
+                    Integer.parseInt(this.texts.get(this.setOnSale.indexOf(jb)).getText()));
+            this.area.get(this.setOnSale.indexOf(jb)).setText(String.valueOf(this.lots.get(this.setOnSale.indexOf(jb))));
         };
 
          ActionListener al3 = e -> {
@@ -75,7 +77,13 @@ public abstract class AbstractGetDiscountableFrames extends AbstractCustomFrame 
          controller.dontSuggestAnymore(this.lots.get(this.discard.indexOf(jb)));
          this.setVisible(false);
          };
-
+//TODO: refactor this duplicate codes.
+        ActionListener al4 = e -> {
+            JButton jb = (JButton) e.getSource();
+            controller.removeFromSale((this.lots.get(this.removeFromSale.indexOf(jb)).getId()));
+            this.area.get(this.removeFromSale.indexOf(jb)).setText(String.valueOf(this.lots.get(this.removeFromSale.indexOf(jb))));
+        };
+//TODO: to a private function that initialize the components and the panel that is creating in thif foreach.
         for (final Map.Entry<Lot, Integer> lot : map.entrySet()) {
             final JPanel areas = new JPanel(new BorderLayout());
             final JTextArea textArea = new JTextArea();
@@ -91,13 +99,16 @@ public abstract class AbstractGetDiscountableFrames extends AbstractCustomFrame 
             final JPanel buttons = new JPanel(new FlowLayout());
             final JButton jb = new JButton(SET_ON_SALE);
             buttons.add(jb);
-            this.sale.add(jb);
+            this.setOnSale.add(jb);
             final JTextField jText = new JTextField(String.valueOf(lot.getValue()));
             jText.setColumns(COLS);
             this.texts.add(jText);
             buttons.add(jText);
             final JLabel label = new JLabel(PERCENTAGE);
             buttons.add(label);
+            final JButton jb2 = new JButton(REMOVE_FROM_SALE);
+            this.removeFromSale.add(jb2);
+            buttons.add(jb2);
             final JButton jb1 = new JButton(DONT_SUGGEST_ANYMORE);
             buttons.add(jb1);
             this.discard.add(jb1);
@@ -107,8 +118,9 @@ public abstract class AbstractGetDiscountableFrames extends AbstractCustomFrame 
             center.add(buttons);
         }
         this.backs.forEach(l -> l.addActionListener(al1));
-        this.sale.forEach(l -> l.addActionListener(al2));
+        this.setOnSale.forEach(l -> l.addActionListener(al2));
         this.discard.forEach(l -> l.addActionListener(al3));
+        this.removeFromSale.forEach(l -> l.addActionListener(al4));
         this.getContentPane().add(center, BorderLayout.CENTER);
         initializeSizeAndLocation();
     }
