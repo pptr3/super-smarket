@@ -55,17 +55,18 @@ public class ViewImpl extends JFrame implements View {
         this.menuBar.add(this.operations);
         this.menuBar.add(this.scan);
         final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.textArea = new JTextArea();
-        this.textArea.setEditable(false);
-        this.textArea.setSize(dim);
-        final JScrollPane jsp = new JScrollPane(this.textArea);
-        jsp.setAutoscrolls(true);
-        this.add(jsp);
+//        this.textArea = new JTextArea();
+//        this.textArea.setEditable(false);
+//        this.textArea.setSize(dim);
+//        final JScrollPane jsp = new JScrollPane(this.textArea);
+//        jsp.setAutoscrolls(true);
+//        this.add(jsp);
         this.getContentPane().add(menuBar, BorderLayout.NORTH);
-        this.getContentPane().add(jsp);
+//        this.getContentPane().add(jsp);
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 2,
                 Toolkit.getDefaultToolkit().getScreenSize().height / 1);
         this.setLocation((dim.width - this.getSize().width) / 2, (dim.height - this.getSize().height) / 2);
+        this.pack();
         this.setVisible(true);
     }
 

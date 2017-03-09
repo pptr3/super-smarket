@@ -6,6 +6,7 @@ import controller.Controller;
 import model.modifylists.ModifyList;
 import model.modifylists.ModifyListFactoryImpl;
 import view.View;
+import view.frames.GetLotsFrame;
 
 /**
  * Base menu.
@@ -55,8 +56,6 @@ public class GetLotsMenu extends JMenu {
     }
 
     private void setTextArea(final Controller controller, final View view, final ModifyList ml) {
-        controller.getList(ml).forEach(l -> allLots += l.getDescription());
-        view.setTextInArea(allLots);
-        this.allLots = "";
+        new GetLotsFrame(controller, controller.getList(ml));
     }
 }

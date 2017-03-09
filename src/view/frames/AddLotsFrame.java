@@ -62,9 +62,9 @@ public class AddLotsFrame extends AbstractCustomFrame {
                     .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText()))
                     .build();
             controller.addLotto(l);
-            controller.getList(null).forEach(l2 -> allLots += l2.getDescription());
-            view.setTextInArea(allLots);
-            this.jtext.clear();
+//            controller.getList(null).forEach(l2 -> allLots += l2.getDescription());
+//            view.setTextInArea(allLots);
+//            this.jtext.clear();
 
             this.setVisible(false);
         };

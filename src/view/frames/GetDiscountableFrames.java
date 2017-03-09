@@ -6,7 +6,7 @@ import model.discountstrategies.DiscountStrategy;
 /**
  *
  */
-public class GetDiscountableFrames extends AbstractGetDiscountableFrames {
+public class GetDiscountableFrames extends DiscountableFrames {
 
     /**
      * 
