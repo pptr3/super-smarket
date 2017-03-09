@@ -26,10 +26,9 @@ public interface Controller {
      *             IOException
      * @throws FileNotFoundException
      *             file not found
-     * @throws ClassNotFoundException
-     *             * @param filepath filepath
+     * @param filepath filepath
      */
-    void initialize(String filepath) throws FileNotFoundException, IOException, ClassNotFoundException;
+    void initialize(String filepath) throws FileNotFoundException, IOException;
 
     /**
      * Saves the file to the given path.

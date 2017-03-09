@@ -30,7 +30,7 @@ import model.discountstrategies.DiscountStrategy;
  * Abstract class for Template Method.
  *
  */
-public class OperationsFrames extends AbstractCustomFrame {
+public class OperationsFrames extends CustomFrame {
 
     /**
      * 

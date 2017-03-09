@@ -28,7 +28,6 @@ public class ControllerImpl implements Controller {
     private final Model model;
     private Agent agent;
     private final Subject subject;
-    // private static Optional<ControllerImpl> singleton = Optional.empty();
 
     /**
      * 
@@ -40,11 +39,6 @@ public class ControllerImpl implements Controller {
         this.subject = new SubjectImpl();
     }
 
-    /*
-     * need to close the file (non-Javadoc)
-     * 
-     * @see controller.Controller#initialize(java.lang.String)
-     */
     @Override
     public void initialize(final String filepath) throws IOException {
         final ObjectInputStream ostream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filepath)));
@@ -59,11 +53,6 @@ public class ControllerImpl implements Controller {
         ostream.close();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see controller.Controller#getList()
-     */
     @Override
     public List<Lot> getList(final ModifyList mfl) {
         return this.model.getList(mfl);
@@ -135,6 +124,7 @@ public class ControllerImpl implements Controller {
     private class Agent extends Thread {
 
         private volatile boolean stoppable;
+        private final Integer timeToWait = 10000;
         private final Integer sleepTime = 500;
 
 /*
@@ -149,8 +139,7 @@ public class ControllerImpl implements Controller {
                 try {
                     if (!getDiscountable(new DiscountStrategyFactoryImpl().expiresWithinOneDay()).isEmpty()) {
                         ControllerImpl.this.subject.updateView();
-                        // to delete
-                        Thread.sleep(10000);
+                        Thread.sleep(timeToWait);
                     }
                     Thread.sleep(sleepTime);
                 } catch (InterruptedException ex) {

@@ -19,15 +19,6 @@ public class GetLotsMenu extends JMenu {
      * 
      */
     private static final long serialVersionUID = -2993920227347864515L;
-    /**
-     * 
-     * @param view where show the list of lots
-     */
-
-    /**
-     * String to be used to get the description of all the lots.
-     */
-    private String allLots = "";
 /**
  * 
  * @param view view

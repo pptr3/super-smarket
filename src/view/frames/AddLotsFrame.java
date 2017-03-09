@@ -1,6 +1,7 @@
 package view.frames;
 
 import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -21,13 +22,12 @@ import view.View;
 /**
  *
  */
-public class AddLotsFrame extends AbstractCustomFrame {
+public class AddLotsFrame extends CustomFrame {
 
     private static final long serialVersionUID = 6784928917074846594L;
     private final List<String> list = new ArrayList<>(
             Arrays.asList("Name", "Check in date", "Expiration date", "Initial quantity", "Price per single item"));
     private final List<JTextField> jtext = new ArrayList<>();
-    private String allLots = "";
     /**
      * @param view 
      *            view
@@ -62,9 +62,6 @@ public class AddLotsFrame extends AbstractCustomFrame {
                     .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText()))
                     .build();
             controller.addLotto(l);
-//            controller.getList(null).forEach(l2 -> allLots += l2.getDescription());
-//            view.setTextInArea(allLots);
-//            this.jtext.clear();
 
             this.setVisible(false);
         };

@@ -20,7 +20,6 @@ public class OperationsMenu extends JMenu {
      */
     private static final long serialVersionUID = 4790546772035194942L;
     private final JFileChooser fileChooser = new JFileChooser();
-    private String allString = "";
     /**
      * @param controller controller
      * @param view view

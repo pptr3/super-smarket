@@ -6,8 +6,6 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import controller.Controller;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import view.menu.OperationsMenu;
@@ -34,7 +32,6 @@ public class ViewImpl extends JFrame implements View {
     private final GetDiscountableMenu getDiscountable;
     private final JMenu operations;
     private ScanMenu scan;
-    private JTextArea textArea;
 
     /**
      * 
