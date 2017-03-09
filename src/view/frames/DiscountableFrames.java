@@ -84,7 +84,7 @@ public class DiscountableFrames extends AbstractCustomFrame {
      *            list of lots
      */
     public DiscountableFrames(final Controller controller, final List<Lot> lot) {
-        JPanel center = new JPanel(new GridLayout(lot.size(), COLS));
+        final JPanel center = new JPanel(new GridLayout(lot.size(), COLS));
         setActionListeners(center, this.area, controller, this.lots, this.setOnSale, this.texts, this.removeFromSale);
         for (final Lot loti : lot) {
             final JPanel buttons = new JPanel(new FlowLayout());
@@ -128,15 +128,15 @@ public class DiscountableFrames extends AbstractCustomFrame {
         center2.add(areas);
         final JButton jb = new JButton(SET_ON_SALE);
         buttons2.add(jb);
-        this.setOnSale.add(jb);
+        setOnSale2.add(jb);
         final JTextField jText = new JTextField(String.valueOf(valueToSet));
         jText.setColumns(COLS);
-        this.texts.add(jText);
+        texts2.add(jText);
         buttons2.add(jText);
         final JLabel label = new JLabel(PERCENTAGE);
         buttons2.add(label);
         final JButton jb2 = new JButton(REMOVE_FROM_SALE);
-        this.removeFromSale.add(jb2);
+        removeFromSale2.add(jb2);
         buttons2.add(jb2);
         center2.add(buttons2);
     }

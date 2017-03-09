@@ -4,7 +4,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
-import view.frames.GetDiscountableFrames;
+import view.frames.DiscountableFrames;
+
 /**
  * 
  *
@@ -24,12 +25,12 @@ public class GetDiscountableMenu extends JMenu {
         super("Get Discountable Lots");
         JMenuItem menuItem = new JMenuItem("Over fifty discount");
         menuItem.addActionListener(e -> {
-               new GetDiscountableFrames(controller, new DiscountStrategyFactoryImpl().overFiftyDiscount());
+               new DiscountableFrames(controller, new DiscountStrategyFactoryImpl().overFiftyDiscount());
         });
         this.add(menuItem);
         menuItem = new JMenuItem("Expires within a week");
         menuItem.addActionListener(e -> {
-           new GetDiscountableFrames(controller, new DiscountStrategyFactoryImpl().expiresWithinAWeek());
+           new DiscountableFrames(controller, new DiscountStrategyFactoryImpl().expiresWithinAWeek());
         });
         this.add(menuItem);
     }
