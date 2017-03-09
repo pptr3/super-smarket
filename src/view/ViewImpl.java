@@ -11,7 +11,7 @@ import javax.swing.JTextArea;
 import controller.Controller;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import view.menu.OperationsMenu;
-import view.frames.DiscountableFrames;
+import view.frames.OperationsFrames;
 import view.menu.GetDiscountableMenu;
 import view.menu.GetLotsMenu;
 import view.menu.ScanMenu;
@@ -67,6 +67,6 @@ public class ViewImpl extends JFrame implements View {
      * 
      */
     public void update() {
-        new DiscountableFrames(controller, new DiscountStrategyFactoryImpl().expiresWithinOneDay());
+        new OperationsFrames(controller, new DiscountStrategyFactoryImpl().expiresWithinOneDay());
     }
 }

@@ -30,7 +30,7 @@ import model.discountstrategies.DiscountStrategy;
  * Abstract class for Template Method.
  *
  */
-public class DiscountableFrames extends AbstractCustomFrame {
+public class OperationsFrames extends AbstractCustomFrame {
 
     /**
      * 
@@ -60,7 +60,7 @@ public class DiscountableFrames extends AbstractCustomFrame {
      * @param ds
      *            discount strategy
      */
-    public DiscountableFrames(final Controller controller, final DiscountStrategy ds) {
+    public OperationsFrames(final Controller controller, final DiscountStrategy ds) {
         final Map<Lot, Integer> map = controller.getDiscountable(ds);
         final JPanel center = new JPanel(new GridLayout(map.size(), COLS));
 
@@ -88,7 +88,7 @@ public class DiscountableFrames extends AbstractCustomFrame {
      * @param lot
      *            list of lots
      */
-    public DiscountableFrames(final Controller controller, final List<Lot> lot) {
+    public OperationsFrames(final Controller controller, final List<Lot> lot) {
         final JPanel center = new JPanel(new GridLayout(lot.size(), COLS));
         setActionListeners(center, this.area, controller, this.lots, this.setOnSale, this.texts, this.removeFromSale);
 

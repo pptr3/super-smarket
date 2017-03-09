@@ -8,7 +8,7 @@ import javax.swing.JMenuItem;
 import controller.Controller;
 import view.View;
 import view.frames.AddLotsFrame;
-import view.frames.DiscountableFrames;
+import view.frames.OperationsFrames;
 
 /**
  *
@@ -57,7 +57,7 @@ public class OperationsMenu extends JMenu {
             if (retVal == JFileChooser.APPROVE_OPTION) {
                 try {
                     controller.initialize((this.fileChooser.getSelectedFile().getPath()));
-                    new DiscountableFrames(controller, controller.getList(null));
+                    new OperationsFrames(controller, controller.getList(null));
                 } catch (Exception e1) {
                 }
             }
