@@ -21,8 +21,9 @@ import model.discountstrategies.DiscountStrategy;
 
 
 /*
- * TODO NOTE: implement what appens when there is no Lots
- * TODO Manca la ScrollBar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * TODO: NOTE: implement what appens when there is no Lots
+ * TODO: Manca la ScrollBar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * TODO: Un po di refactor per codice duplicato
  */
 
 /**
@@ -41,13 +42,16 @@ public class DiscountableFrames extends AbstractCustomFrame {
     private static final long serialVersionUID = 5926371999570025570L;
     private static final Integer COLS = 2;
     private static final String REMOVE_FROM_SALE = "Remove from sale";
+    private static final String REMOVE_LOT = "Remove";
     private static final Dimension DIM = Toolkit.getDefaultToolkit().getScreenSize();
-    private java.util.List<JTextField> texts = new ArrayList<>();
-    private java.util.List<JButton> discard = new ArrayList<>();
-    private java.util.List<JButton> setOnSale = new ArrayList<>();
-    private java.util.List<JButton> removeFromSale = new ArrayList<>();
-    private java.util.List<Lot> lots = new ArrayList<>();
-    private java.util.List<JTextArea> area = new ArrayList<>();
+    private final List<JTextField> texts = new ArrayList<>();
+    private final List<JTextField> textForRemotion = new ArrayList<>();
+    private final List<JButton> discard = new ArrayList<>();
+    private final List<JButton> setOnSale = new ArrayList<>();
+    private final List<JButton> removeLot = new ArrayList<>();
+    private final List<JButton> removeFromSale = new ArrayList<>();
+    private final List<Lot> lots = new ArrayList<>();
+    private final List<JTextArea> area = new ArrayList<>();
 
     /**
      * 
@@ -59,6 +63,7 @@ public class DiscountableFrames extends AbstractCustomFrame {
     public DiscountableFrames(final Controller controller, final DiscountStrategy ds) {
         final Map<Lot, Integer> map = controller.getDiscountable(ds);
         final JPanel center = new JPanel(new GridLayout(map.size(), COLS));
+
         final ActionListener al3 = e -> {
             JButton jb = (JButton) e.getSource();
             controller.dontSuggestAnymore(this.lots.get(this.discard.indexOf(jb)));
@@ -86,11 +91,28 @@ public class DiscountableFrames extends AbstractCustomFrame {
     public DiscountableFrames(final Controller controller, final List<Lot> lot) {
         final JPanel center = new JPanel(new GridLayout(lot.size(), COLS));
         setActionListeners(center, this.area, controller, this.lots, this.setOnSale, this.texts, this.removeFromSale);
+
+        final ActionListener al = e -> {
+            JButton jb = (JButton) e.getSource();
+            controller.removeFromLotto(this.lots.get(this.removeLot.indexOf(jb)).getId(),
+                    Integer.parseInt(this.textForRemotion.get(this.removeLot.indexOf(jb)).getText()));
+            this.area.get(this.removeLot.indexOf(jb)).setText(lot.get(this.removeLot.indexOf(jb)).getDescription());
+        };
+
         for (final Lot loti : lot) {
             final JPanel buttons = new JPanel(new FlowLayout());
-            this.initializaFrame(buttons, center, this.area, this.lots, this.setOnSale, this.texts, this.removeFromSale, loti, DEFAUL_DISCOUNT);
+            this.initializaFrame(buttons, center, this.area, this.lots, this.setOnSale, this.texts, this.removeFromSale,
+                    loti, DEFAUL_DISCOUNT);
+            final JButton jb2 = new JButton(REMOVE_LOT);
+            buttons.add(jb2);
+            this.removeLot.add(jb2);
+            final JTextField text3 = new JTextField(COLS);
+            buttons.add(text3);
+            this.textForRemotion.add(text3);
+            center.add(buttons);
         }
         setActionListeners(center, this.area, controller, this.lots, this.setOnSale, this.texts, this.removeFromSale);
+        this.removeLot.forEach(l -> l.addActionListener(al));
     }
 
     private void setActionListeners(final JPanel panel, final List<JTextArea> jArea, final Controller cont,
