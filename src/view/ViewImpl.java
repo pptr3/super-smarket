@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
@@ -9,7 +10,7 @@ import javax.swing.JMenuBar;
 import controller.Controller;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import view.menu.OperationsMenu;
-import view.frames.OperationsFrames;
+import view.frames.OperationsFramesFactoryImpl;
 import view.menu.GetDiscountableMenu;
 import view.menu.GetLotsMenu;
 import view.menu.ScanMenu;
@@ -59,11 +60,11 @@ public class ViewImpl extends JFrame implements View {
         this.pack();
         this.setVisible(true);
     }
-
     /**
      * 
      */
     public void update() {
-        new OperationsFrames(controller, new DiscountStrategyFactoryImpl().expiresWithinOneDay());
+        new OperationsFramesFactoryImpl().getDiscountableListOfLots(controller,
+                new DiscountStrategyFactoryImpl().expiresWithinOneDay());
     }
 }

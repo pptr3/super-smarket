@@ -22,8 +22,8 @@ public class ScanMenu extends JMenu {
 
     public ScanMenu(final Controller controller) {
         super("Scan");
-        JButton startScan = new JButton("Start Scan");
-        JButton stopScan = new JButton("Stop Scan");
+        final JButton startScan = new JButton("Start Scan");
+        final JButton stopScan = new JButton("Stop Scan");
         stopScan.setEnabled(false);
         startScan.addActionListener(e -> {
             controller.startScan();
@@ -38,5 +38,4 @@ public class ScanMenu extends JMenu {
         });
         this.add(stopScan);
     }
-
 }

@@ -124,7 +124,6 @@ public class ControllerImpl implements Controller {
     private class Agent extends Thread {
 
         private volatile boolean stoppable;
-        private final Integer timeToWait = 10000;
         private final Integer sleepTime = 500;
 
 /*
@@ -139,7 +138,6 @@ public class ControllerImpl implements Controller {
                 try {
                     if (!getDiscountable(new DiscountStrategyFactoryImpl().expiresWithinOneDay()).isEmpty()) {
                         ControllerImpl.this.subject.updateView();
-                        Thread.sleep(timeToWait);
                     }
                     Thread.sleep(sleepTime);
                 } catch (InterruptedException ex) {

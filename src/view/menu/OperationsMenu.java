@@ -2,13 +2,14 @@ package view.menu;
 
 
 import java.io.IOException;
+
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
 import view.View;
 import view.frames.AddLotsFrame;
-import view.frames.OperationsFrames;
+import view.frames.OperationsFramesFactoryImpl;
 
 /**
  *
@@ -32,12 +33,7 @@ public class OperationsMenu extends JMenu {
                new AddLotsFrame(view, controller);
         });
         this.add(menuItem);
-        //to remove
-//        menuItem = new JMenuItem("Remove from sale");
-//        menuItem.addActionListener(e -> {
-//               new RemoveFromSaleFrame(view, controller);
-//        });
-//        this.add(menuItem);
+
         menuItem = new JMenuItem("Save");
         menuItem.addActionListener(e -> {
             final int retVal = this.fileChooser.showSaveDialog(this);
@@ -56,7 +52,7 @@ public class OperationsMenu extends JMenu {
             if (retVal == JFileChooser.APPROVE_OPTION) {
                 try {
                     controller.initialize((this.fileChooser.getSelectedFile().getPath()));
-                    new OperationsFrames(controller, controller.getList(null));
+                    new OperationsFramesFactoryImpl().getListOfLots(controller, controller.getList(null));
                 } catch (Exception e1) {
                 }
             }

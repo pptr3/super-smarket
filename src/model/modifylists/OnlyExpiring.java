@@ -8,6 +8,8 @@ import model.Lot;
 
 /**
  * Removes all non-expiring elements from the list.
+ * Package visible.
+ *
  */
 class OnlyExpiring implements ModifyList {
 
