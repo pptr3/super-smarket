@@ -80,6 +80,7 @@ public class OperationsFrames extends CustomFrame {
         }
         setActionListeners(center, this.area, controller, this.lots, this.setOnSale, this.texts, this.removeFromSale);
         this.discard.forEach(l -> l.addActionListener(al3));
+        this.add(new JScrollPane(center), BorderLayout.CENTER);
     }
 
     /**
@@ -113,6 +114,7 @@ public class OperationsFrames extends CustomFrame {
             center.add(buttons);
         }
         setActionListeners(center, this.area, controller, this.lots, this.setOnSale, this.texts, this.removeFromSale);
+        this.add(new JScrollPane(center), BorderLayout.CENTER);
         this.removeLot.forEach(l -> l.addActionListener(al));
     }
 
@@ -124,7 +126,7 @@ public class OperationsFrames extends CustomFrame {
             jArea.get(sale.indexOf(jb)).setText(lot.get(sale.indexOf(jb)).getDescription());
         };
 
-        ActionListener al4 = e -> {
+        final ActionListener al4 = e -> {
             JButton jb = (JButton) e.getSource();
             cont.removeFromSale((lot.get(remove.indexOf(jb)).getId()));
             jArea.get(remove.indexOf(jb)).setText(lot.get(remove.indexOf(jb)).getDescription());
