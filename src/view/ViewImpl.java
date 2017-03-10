@@ -31,7 +31,7 @@ public class ViewImpl extends JFrame implements View {
     private final GetLotsMenu getLots;
     private final GetDiscountableMenu getDiscountable;
     private final JMenu operations;
-    private ScanMenu scan;
+    private final ScanMenu scan;
 
     /**
      * 
@@ -42,7 +42,7 @@ public class ViewImpl extends JFrame implements View {
         this.controller = cont;
         this.operations = new OperationsMenu(this, controller);
         this.getDiscountable = new GetDiscountableMenu(this.controller);
-        this.getLots = new GetLotsMenu(this, controller);
+        this.getLots = new GetLotsMenu(controller);
         this.scan = new ScanMenu(controller);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());

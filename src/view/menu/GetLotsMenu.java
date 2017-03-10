@@ -5,8 +5,7 @@ import javax.swing.JMenuItem;
 import controller.Controller;
 import model.modifylists.ModifyList;
 import model.modifylists.ModifyListFactoryImpl;
-import view.View;
-import view.frames.OperationsFrames;
+import view.frames.OperationsFramesFactoryImpl;
 
 /**
  * Base menu.
@@ -21,10 +20,9 @@ public class GetLotsMenu extends JMenu {
     private static final long serialVersionUID = -2993920227347864515L;
 /**
  * 
- * @param view view
  * @param controller controller
  */
-    public GetLotsMenu(final View view, final Controller controller) {
+    public GetLotsMenu(final Controller controller) {
         super("Get Lots");
         JMenuItem menuItem = new JMenuItem("Alfabetically sorted");
         menuItem.addActionListener(e -> {
@@ -47,6 +45,6 @@ public class GetLotsMenu extends JMenu {
     }
 
     private void setTextArea(final Controller controller, final ModifyList ml) {
-        new OperationsFrames(controller, controller.getList(ml));
+        new OperationsFramesFactoryImpl().getListOfLots(controller, controller.getList(ml));
     }
 }
