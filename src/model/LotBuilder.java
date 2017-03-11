@@ -13,8 +13,8 @@ public class LotBuilder {
     private String name;
     private Optional<MyCustomDate> expirationDate;
     private MyCustomDate checkInDate;
-    private int initialQuantity;
-    private int pricePerSingleItem;
+    private int initialQuantity = 0;
+    private int pricePerSingleItem = 0;
 
     /**
      * Default constructor, initializes expiration date to empty.
@@ -83,6 +83,15 @@ public class LotBuilder {
     public Lot build() {
         this.id = getNextId();
         setNextId(getNextId() + 1);
+        if (this.name == null) {
+            throw new IllegalStateException("Missing name");
+        }
+        if (this.initialQuantity <= 0) {
+            throw new IllegalStateException("Invalid initial quantity");
+        }
+        if (this.pricePerSingleItem <= 0) {
+            throw new IllegalStateException("Invalid price per item");
+        }
         return new LotImpl(this.id, this.name, this.checkInDate, this.expirationDate, this.initialQuantity, this.pricePerSingleItem);
     }
 
