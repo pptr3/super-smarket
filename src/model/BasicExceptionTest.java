@@ -41,15 +41,10 @@ public class BasicExceptionTest {
     /**
      * Just tests that the lots correctly gets put on sale.
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void C_setOnSaleTest() {
-        buildMilk();
-
         final Model m = new Warehouse();
-        m.addLotto(l);
-        assertFalse(l.isOnSale());
-        m.setOnSale(l.getId(), 10);
-        assertTrue(m.getList(null).get(0).isOnSale());
+        m.setOnSale(2, 10);
     }
     
     /**

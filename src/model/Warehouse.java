@@ -103,10 +103,6 @@ public class Warehouse implements Model {
 
     }
 
-    private boolean isInMagazine(final int id) {
-        List<LotWithActions> item = this.lots.stream().filter(l -> l.getId() == id).collect(Collectors.toList());
-        return item.size() == 1;
-    }
 
     @Override
     public Map<Lot, Integer> getDiscountable(final DiscountStrategy ds) {
@@ -118,6 +114,9 @@ public class Warehouse implements Model {
 
     @Override
     public void setOnSale(final int id, final int discountAmount) {
+        if (!isInMagazine(id)) {
+            throw new IllegalArgumentException();
+        }
         this.lots.forEach(l -> {
             if (l.getId() == id) {
                 l.setOnSale(discountAmount);
@@ -151,5 +150,10 @@ public class Warehouse implements Model {
                 l.removeFromSale();
             }
         });
+    }
+
+    private boolean isInMagazine(final int id) {
+        List<LotWithActions> item = this.lots.stream().filter(l -> l.getId() == id).collect(Collectors.toList());
+        return item.size() == 1;
     }
 }
