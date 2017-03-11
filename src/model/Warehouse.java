@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import model.discountstrategies.DiscountStrategy;
@@ -89,13 +90,22 @@ public class Warehouse implements Model {
 
     @Override
     public void removeFromLot(final int id, final int n) {
+        if (!isInMagazine(id)) {
+            throw new IllegalArgumentException();
+        }
         this.lots.forEach(l -> {
             if (l.getId() == id) {
                 l.removeElements(n);
             }
         });
+
         this.lots = this.lots.stream().filter(l -> l.getCurrentQuantity() > 0).collect(Collectors.toList());
 
+    }
+
+    private boolean isInMagazine(final int id) {
+        List<LotWithActions> item = this.lots.stream().filter(l -> l.getId() == id).collect(Collectors.toList());
+        return item.size() == 1;
     }
 
     @Override
