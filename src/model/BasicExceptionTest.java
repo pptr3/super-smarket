@@ -50,17 +50,10 @@ public class BasicExceptionTest {
     /**
      * Tests the removeFromSale method.
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void CA_removeFromSaleTest() {
-        buildMilk();
-
         final Model m = new Warehouse();
-        m.addLotto(l);
-        assertFalse(l.isOnSale());
-        m.setOnSale(l.getId(), 10);
-        m.removeFromSale(l.getId());
-        
-        assertFalse(m.getList(null).get(0).isOnSale());
+        m.removeFromSale(2);
     }
 
     /**

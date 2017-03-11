@@ -125,6 +125,18 @@ public class Warehouse implements Model {
     }
 
     @Override
+    public void removeFromSale(final int id) {
+        if (!isInMagazine(id)) {
+            throw new IllegalArgumentException();
+        }
+        this.lots.forEach(l -> {
+            if (l.getId() == id) {
+                l.removeFromSale();
+            }
+        });
+    }
+
+    @Override
     public void dontSuggestAnymore(final Lot l) {
         lotsNotToSuggest.add(l.getId());
     }
@@ -143,14 +155,6 @@ public class Warehouse implements Model {
         lotsNotToSuggest = new ArrayList<>();
     }
 
-    @Override
-    public void removeFromSale(final int id) {
-        this.lots.forEach(l -> {
-            if (l.getId() == id) {
-                l.removeFromSale();
-            }
-        });
-    }
 
     private boolean isInMagazine(final int id) {
         List<LotWithActions> item = this.lots.stream().filter(l -> l.getId() == id).collect(Collectors.toList());
