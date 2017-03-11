@@ -21,6 +21,7 @@ class OverFiftyDiscount implements DiscountStrategy {
         final Map<Lot, Integer> m = new HashMap<>();
         List<Lot> qualifiedLots;
         qualifiedLots = lots.stream().filter(l -> l.getExpirationDate().isPresent())
+                        .filter(l -> !l.isOnSale())
                         //only items that haven't sold 50% of the total amount yet
                         .filter(l -> 
                             (l.getCurrentQuantity())

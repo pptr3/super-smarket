@@ -32,6 +32,7 @@ public class ExpiresWithinNDays implements DiscountStrategy {
         List<Lot> qualifiedLots;
 
         qualifiedLots = lots.stream().filter(l -> l.getExpirationDate().isPresent())
+                        .filter(l -> !l.isOnSale())
                         .filter(l -> 
                             (l.getExpirationDate().get().getDifferenceInDays(MyCustomDateImpl.today())
                             <=
