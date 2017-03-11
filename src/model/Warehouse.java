@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
 import model.discountstrategies.DiscountStrategy;
 import model.modifylists.ModifyList;
 

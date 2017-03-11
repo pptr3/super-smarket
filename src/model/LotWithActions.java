@@ -30,7 +30,7 @@ public interface LotWithActions extends Lot {
      void initializeExpirationDateAfterDeserialization();
 
     /**
-     * To get this objcet, but only with the methods of the Lot interface.
+     * To get this object, but only with the methods of the Lot interface.
      * @return this, but only with read methods
      */
     default Lot getLot() {
