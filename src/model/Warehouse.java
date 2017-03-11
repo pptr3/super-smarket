@@ -104,17 +104,6 @@ public class Warehouse implements Model {
         return ds.suggestDiscounts(discountCandidates.stream().
                 filter(l -> !lotsNotToSuggest.contains(l.getId())).
                 collect(Collectors.toList()));
-//PETRU: l'ho aggiunto io per testare la View
-//        Lot l1 = new LotBuilder().name("test").expirationDate(new MyCustomDateImpl(LocalDate.now(), 1)).quantity(1)
-//                .pricePerSingleItem(1).build();
-//        Lot l2 = new LotBuilder().name("test2").expirationDate(new MyCustomDateImpl(LocalDate.now(), 1)).quantity(1)
-//                .pricePerSingleItem(1).build();
-//        this.lots.add((LotWithActions) l1);
-//        this.lots.add((LotWithActions) l2);
-//        Map<Lot, Integer> map = new HashMap<>();
-//        map.put(l1, 10);
-//        map.put(l2, 20);
-//        return map;
     }
 
     @Override
