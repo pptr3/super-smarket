@@ -41,7 +41,7 @@ public class ViewImpl extends JFrame implements View {
      */
     public ViewImpl(final Controller cont) {
         this.controller = cont;
-        this.operations = new OperationsMenu(this, controller);
+        this.operations = new OperationsMenu(controller);
         this.getDiscountable = new GetDiscountableMenu(this.controller);
         this.getLots = new GetLotsMenu(controller);
         this.scan = new ScanMenu(controller);

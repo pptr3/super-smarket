@@ -2,12 +2,10 @@ package view.menu;
 
 
 import java.io.IOException;
-
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
-import view.View;
 import view.frames.AddLotsFrame;
 import view.frames.OperationsFramesFactoryImpl;
 
@@ -23,14 +21,13 @@ public class OperationsMenu extends JMenu {
     private final JFileChooser fileChooser = new JFileChooser();
     /**
      * @param controller controller
-     * @param view view
      */
 
-    public OperationsMenu(final View view, final Controller controller) {
+    public OperationsMenu(final Controller controller) {
         super("Operations");
         JMenuItem menuItem = new JMenuItem("Add Lot");
         menuItem.addActionListener(e -> {
-               new AddLotsFrame(view, controller);
+               new AddLotsFrame(controller);
         });
         this.add(menuItem);
 

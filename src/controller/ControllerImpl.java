@@ -138,6 +138,7 @@ public class ControllerImpl implements Controller {
                 try {
                     if (!getDiscountable(new DiscountStrategyFactoryImpl().expiresWithinOneDay()).isEmpty()) {
                         ControllerImpl.this.subject.updateView();
+                        Thread.sleep(sleepTime * 10);
                     }
                     Thread.sleep(sleepTime);
                 } catch (InterruptedException ex) {

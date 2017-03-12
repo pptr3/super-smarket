@@ -146,7 +146,7 @@ public class LotImpl implements LotWithActions, Serializable {
     @Override
     public String getDescription() {
         return "Name=" + name + "\n" + "ExpirationDate=" + expirationDate.get().getDateToString() + "\n" + "CheckInDate="
-                + getCheckInDate() + "\n" + " InitialQuantity=" + initialQuantity + "\n" + "CurrentQuantity=" + currentQuantity
+                + checkInDate.getDateToString() + "\n" + " InitialQuantity=" + initialQuantity + "\n" + "CurrentQuantity=" + currentQuantity
                 + "\n" + "PricePerSingleItem=" + pricePerSingleItem + "\n" + "OnSale=" + onSale + "\n" + "SalePercentage="
                 + salePercentage + "\n\n";
     }
