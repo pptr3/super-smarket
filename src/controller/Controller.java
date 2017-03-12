@@ -130,4 +130,9 @@ public interface Controller {
      * session.
      */
     void resetSuggestions();
+
+    /**
+     * @return the Subject
+     */
+    Subject getSubject();
 }

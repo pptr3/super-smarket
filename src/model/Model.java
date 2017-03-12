@@ -1,11 +1,11 @@
 package model;
 
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import model.discountstrategies.DiscountStrategy;
 import model.modifylists.ModifyList;
 
@@ -18,6 +18,7 @@ public interface Model {
         /**
          * Initializes the content of the warehouse.
          * @param serializedModel ObjectInputStream
+         * 
          */
         void initialize(Optional<ObjectInputStream> serializedModel);
 

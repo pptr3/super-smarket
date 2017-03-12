@@ -15,12 +15,13 @@ public interface Subject {
     void attachView(View view);
 
     /**
-     * Unattach a viewer Observer.
-     */
-    void unattachView();
-
-    /**
      * update the observers.
      */
     void updateView();
+
+    /**
+     * Show message error.
+     * @param message error message to show
+     */
+    void showMessageErrorView(String message);
 }

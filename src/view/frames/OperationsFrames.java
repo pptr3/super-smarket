@@ -21,9 +21,7 @@ import model.discountstrategies.DiscountStrategy;
 
 
 /*
- * TODO: NOTE: implement what appens when there is no Lots
-
- * TODO: Manca la ScrollBar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * TODO: NOTE: implement what appen when there is no Lots
  * TODO: Un po di refactor per codice duplicato
  */
 
@@ -53,7 +51,7 @@ public class OperationsFrames extends CustomFrame {
     private final List<JButton> removeFromSale = new ArrayList<>();
     private final List<Lot> lots = new ArrayList<>();
     private final List<JTextArea> area = new ArrayList<>();
-
+    private final Controller control;
     /**
      * 
      * @param controller
@@ -62,7 +60,12 @@ public class OperationsFrames extends CustomFrame {
      *            discount strategy
      */
     public OperationsFrames(final Controller controller, final DiscountStrategy ds) {
+        this.control = controller;
         final Map<Lot, Integer> map = controller.getDiscountable(ds);
+        if (map.isEmpty()) {
+            controller.getSubject().showMessageErrorView("There is no lots.");
+            return;
+        }
         final JPanel center = new JPanel(new GridLayout(map.size(), COLS));
 
         final ActionListener al3 = e -> {
@@ -91,14 +94,22 @@ public class OperationsFrames extends CustomFrame {
      *            list of lots
      */
     public OperationsFrames(final Controller controller, final List<Lot> lot) {
+        this.control = controller;
+        if (lot.isEmpty()) {
+            controller.getSubject().showMessageErrorView("There is no lots.");
+            return;
+        }
         final JPanel center = new JPanel(new GridLayout(lot.size(), COLS));
-        setActionListeners(center, this.area, controller, this.lots, this.setOnSale, this.texts, this.removeFromSale);
 
         final ActionListener al = e -> {
             JButton jb = (JButton) e.getSource();
+            try {
             controller.removeFromLotto(this.lots.get(this.removeLot.indexOf(jb)).getId(),
                     Integer.parseInt(this.textForRemotion.get(this.removeLot.indexOf(jb)).getText()));
             this.area.get(this.removeLot.indexOf(jb)).setText(lot.get(this.removeLot.indexOf(jb)).getDescription());
+            } catch (Exception e1) {
+                controller.getSubject().showMessageErrorView(e1.getMessage());
+            }
         };
 
         for (final Lot loti : lot) {
@@ -121,15 +132,23 @@ public class OperationsFrames extends CustomFrame {
     private void setActionListeners(final JPanel panel, final List<JTextArea> jArea, final Controller cont,
             final List<Lot> lot, final List<JButton> sale, final List<JTextField> text, final List<JButton> remove) {
         final ActionListener al2 = e -> {
-            JButton jb = (JButton) e.getSource();
-            cont.setOnSale(lot.get(sale.indexOf(jb)).getId(), Integer.parseInt(text.get(sale.indexOf(jb)).getText()));
-            jArea.get(sale.indexOf(jb)).setText(lot.get(sale.indexOf(jb)).getDescription());
+            try {
+                final JButton jb = (JButton) e.getSource();
+                cont.setOnSale(lot.get(sale.indexOf(jb)).getId(),
+                        Integer.parseInt(text.get(sale.indexOf(jb)).getText()));
+                jArea.get(sale.indexOf(jb)).setText(lot.get(sale.indexOf(jb)).getDescription());
+            } catch (Exception e2) {
+                this.control.getSubject().showMessageErrorView(e2.getMessage());
+            }
         };
-
         final ActionListener al4 = e -> {
-            JButton jb = (JButton) e.getSource();
-            cont.removeFromSale((lot.get(remove.indexOf(jb)).getId()));
-            jArea.get(remove.indexOf(jb)).setText(lot.get(remove.indexOf(jb)).getDescription());
+            try {
+                final JButton jb = (JButton) e.getSource();
+                cont.removeFromSale((lot.get(remove.indexOf(jb)).getId()));
+                jArea.get(remove.indexOf(jb)).setText(lot.get(remove.indexOf(jb)).getDescription());
+            } catch (Exception e1) {
+                this.control.getSubject().showMessageErrorView(e1.getMessage());
+            }
         };
         sale.forEach(l -> l.addActionListener(al2));
         remove.forEach(l -> l.addActionListener(al4));
@@ -140,29 +159,29 @@ public class OperationsFrames extends CustomFrame {
     private void initializaFrame(final JPanel buttons2, final JPanel center2, final List<JTextArea> area2,
             final List<Lot> lots2, final List<JButton> setOnSale2, final List<JTextField> texts2,
             final List<JButton> removeFromSale2, final Lot lotToPass, final Integer valueToSet) {
-        final JPanel areas = new JPanel(new BorderLayout());
-        final JTextArea textArea = new JTextArea();
-        area2.add(textArea);
-        textArea.setEditable(false);
-        textArea.setSize(DIM);
-        final JScrollPane jsp = new JScrollPane(textArea);
-        jsp.setAutoscrolls(true);
-        areas.add(jsp);
-        textArea.setText((lotToPass.getDescription()));
-        lots2.add(lotToPass);
-        center2.add(areas);
-        final JButton jb = new JButton(SET_ON_SALE);
-        buttons2.add(jb);
-        setOnSale2.add(jb);
-        final JTextField jText = new JTextField(String.valueOf(valueToSet));
-        jText.setColumns(COLS);
-        texts2.add(jText);
-        buttons2.add(jText);
-        final JLabel label = new JLabel(PERCENTAGE);
-        buttons2.add(label);
-        final JButton jb2 = new JButton(REMOVE_FROM_SALE);
-        removeFromSale2.add(jb2);
-        buttons2.add(jb2);
-        center2.add(buttons2);
+            final JPanel areas = new JPanel(new BorderLayout());
+            final JTextArea textArea = new JTextArea();
+            area2.add(textArea);
+            textArea.setEditable(false);
+            textArea.setSize(DIM);
+            final JScrollPane jsp = new JScrollPane(textArea);
+            jsp.setAutoscrolls(true);
+            areas.add(jsp);
+            textArea.setText((lotToPass.getDescription()));
+            lots2.add(lotToPass);
+            center2.add(areas);
+            final JButton jb = new JButton(SET_ON_SALE);
+            buttons2.add(jb);
+            setOnSale2.add(jb);
+            final JTextField jText = new JTextField(String.valueOf(valueToSet));
+            jText.setColumns(COLS);
+            texts2.add(jText);
+            buttons2.add(jText);
+            final JLabel label = new JLabel(PERCENTAGE);
+            buttons2.add(label);
+            final JButton jb2 = new JButton(REMOVE_FROM_SALE);
+            removeFromSale2.add(jb2);
+            buttons2.add(jb2);
+            center2.add(buttons2);
     }
 }

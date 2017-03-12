@@ -7,8 +7,13 @@ package view;
 
 public interface View {
     /**
-     * update the view.
+     * Update the view.
      */
     void update();
 
+    /**
+     * Show an error message.
+     * @param message Message to show
+     */
+    void errorMessage(String message);
 }

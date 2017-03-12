@@ -12,12 +12,6 @@ import view.View;
 public class SubjectImpl implements Subject {
 
     private final Collection<View> views = Collections.synchronizedCollection(new LinkedList<>());
-/**
- * 
- */
-    public SubjectImpl() {
-       // this.views = Collections.synchronizedCollection(new LinkedList<>());
-    }
 
     @Override
     public void attachView(final View view) {
@@ -25,17 +19,12 @@ public class SubjectImpl implements Subject {
     }
 
     @Override
-    public void unattachView() {
-        if (!this.views.isEmpty()) { // this method has been implementedd
-                                     // considering that the maximum number of
-                                     // observers is 1
-            this.views.clear();
-        }
-    }
-
-    @Override
     public void updateView() {
         views.forEach(v -> v.update());
+    }
+    @Override
+    public void showMessageErrorView(final String message) {
+        views.forEach(v -> v.errorMessage(message));
     }
 
 }

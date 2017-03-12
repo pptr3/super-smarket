@@ -102,7 +102,7 @@ public class LotImpl implements LotWithActions, Serializable {
     @Override
     public void removeElements(final int n) {
         if (this.currentQuantity < n) {
-            throw new IllegalStateException("Cannot remove more elements than the current quantity");
+            throw new IllegalStateException("Cannot remove more elements than the current quantity.");
         }
         this.currentQuantity -= n;
     }
@@ -115,7 +115,7 @@ public class LotImpl implements LotWithActions, Serializable {
     @Override
     public void setOnSale(final int amount) {
         if (this.isOnSale()) {
-            throw new IllegalStateException("The lot is already on sale");
+            throw new IllegalStateException("The lot is already on sale.");
         }
         this.onSale = true;
         this.salePercentage = amount;
@@ -124,7 +124,7 @@ public class LotImpl implements LotWithActions, Serializable {
     @Override
     public void removeFromSale() {
         if (!this.isOnSale()) {
-            throw new IllegalStateException("The lot was not on sale");
+            throw new IllegalStateException("The lot was not on sale.");
         }
         this.onSale = false;
         this.salePercentage = 0;

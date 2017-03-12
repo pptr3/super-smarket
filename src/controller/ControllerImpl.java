@@ -18,6 +18,9 @@ import model.discountstrategies.DiscountStrategyFactoryImpl;
 import model.modifylists.ModifyList;
 import view.View;
 
+/*
+ * TODO: there is bugs with the right writing sentences to show in exceptions.
+ */
 /**
  * Implementation of Controller interface.
  *
@@ -40,16 +43,26 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void initialize(final String filepath) throws IOException {
-        final ObjectInputStream ostream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filepath)));
-        this.model.initialize(Optional.of(ostream));
-        ostream.close();
+    public void initialize(final String filepath) throws FileNotFoundException, IOException {
+        try {
+            final ObjectInputStream ostream = new ObjectInputStream(
+                    new BufferedInputStream(new FileInputStream(filepath)));
+            this.model.initialize(Optional.of(ostream));
+            ostream.close();
+        } catch (Exception e) {
+            this.subject.showMessageErrorView("Illegal file format.");
+        }
     }
 
     @Override
     public void saveFile(final String filepath) throws FileNotFoundException, IOException {
-        final ObjectOutputStream ostream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filepath)));
-        this.model.serializeModel(ostream);
+        final ObjectOutputStream ostream = new ObjectOutputStream(
+                new BufferedOutputStream(new FileOutputStream(filepath)));
+        try {
+            this.model.serializeModel(ostream);
+        } catch (Exception e) {
+            this.subject.showMessageErrorView(e.getMessage());
+        }
         ostream.close();
     }
 
@@ -65,7 +78,11 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void removeFromLotto(final int id, final int n) {
-        this.model.removeFromLot(id, n);
+        try {
+            this.model.removeFromLot(id, n);
+        } catch (Exception e) {
+            this.subject.showMessageErrorView("Insert a non negative integer please.");
+        }
     }
 
     @Override
@@ -75,26 +92,42 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void setOnSale(final int id, final int discountAmount) {
-        this.model.setOnSale(id, discountAmount);
+        try {
+            this.model.setOnSale(id, discountAmount);
+        } catch (Exception e) {
+            this.subject.showMessageErrorView("This lot has not items.");
+        }
     }
 
     @Override
     public void removeFromSale(final int id) {
-        this.model.removeFromSale(id);
+        try {
+            this.model.removeFromSale(id);
+        } catch (IllegalArgumentException e) {
+            this.subject.showMessageErrorView(e.getMessage());
+        } catch (Exception e) {
+            this.subject.showMessageErrorView("This lot has not items.");
+        }
     }
 
     @Override
     public void dontSuggestAnymore(final Lot l) {
-      this.model.dontSuggestAnymore(l);
+        this.model.dontSuggestAnymore(l);
     }
 
     @Override
     public void resetSuggestions() {
         this.model.resetSuggestions();
     }
+
     @Override
     public void registerView(final View view) {
         this.subject.attachView(view);
+    }
+
+    @Override
+    public Subject getSubject() {
+        return this.subject;
     }
 
     @Override
@@ -126,9 +159,9 @@ public class ControllerImpl implements Controller {
         private volatile boolean stoppable;
         private final Integer sleepTime = 500;
 
-/*
- * package visible
- */
+        /*
+         * package visible
+         */
         Agent() {
             this.stoppable = false;
         }

@@ -52,7 +52,6 @@ public class Warehouse implements Model {
         }
     }
 
-
   @Override
     public void serializeModel(final ObjectOutputStream output) {
         try {
@@ -88,7 +87,7 @@ public class Warehouse implements Model {
 
     @Override
     public void removeFromLot(final int id, final int n) {
-        if (!isInMagazine(id)) {
+        if ((!isInMagazine(id)) || n < 0) {
             throw new IllegalArgumentException();
         }
         this.lots.forEach(l -> {
@@ -104,7 +103,7 @@ public class Warehouse implements Model {
 
     @Override
     public Map<Lot, Integer> getDiscountable(final DiscountStrategy ds) {
-        List<Lot> discountCandidates = this.getList(null); 
+        final List<Lot> discountCandidates = this.getList(null); 
         return ds.suggestDiscounts(discountCandidates.stream().
                 filter(l -> !lotsNotToSuggest.contains(l.getId())).
                 collect(Collectors.toList()));
@@ -114,6 +113,8 @@ public class Warehouse implements Model {
     public void setOnSale(final int id, final int discountAmount) {
         if (!isInMagazine(id)) {
             throw new IllegalArgumentException();
+        } else if (discountAmount > 100 || discountAmount < 0) {
+            throw new IllegalArgumentException("Insert a non negative integer please.");
         }
         this.lots.forEach(l -> {
             if (l.getId() == id) {
@@ -155,7 +156,7 @@ public class Warehouse implements Model {
 
 
     private boolean isInMagazine(final int id) {
-        List<LotWithActions> item = this.lots.stream().filter(l -> l.getId() == id).collect(Collectors.toList());
+        final List<LotWithActions> item = this.lots.stream().filter(l -> l.getId() == id).collect(Collectors.toList());
         return item.size() == 1;
     }
 }

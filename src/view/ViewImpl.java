@@ -7,6 +7,8 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
 import controller.Controller;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import view.menu.OperationsMenu;
@@ -54,10 +56,9 @@ public class ViewImpl extends JFrame implements View {
         this.menuBar.add(this.scan);
         final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.getContentPane().add(menuBar, BorderLayout.NORTH);
-        this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 2,
-                Toolkit.getDefaultToolkit().getScreenSize().height / 1);
-        this.setLocation((dim.width - this.getSize().width) / 2, (dim.height - this.getSize().height) / 2);
-        this.pack();
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
+                Toolkit.getDefaultToolkit().getScreenSize().height);
+        this.setLocation((dim.width - this.getSize().width), (dim.height - this.getSize().height));
         this.setVisible(true);
     }
     /**
@@ -66,5 +67,11 @@ public class ViewImpl extends JFrame implements View {
     public void update() {
         new OperationsFramesFactoryImpl().getDiscountableListOfLots(controller,
                 new DiscountStrategyFactoryImpl().expiresWithinOneDay());
+    }
+    /**
+     * @param message message to show
+     */
+    public void errorMessage(final String message) {
+        JOptionPane.showMessageDialog(this, message);
     }
 }
