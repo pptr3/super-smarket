@@ -17,3 +17,4 @@ public interface View {
      */
     void errorMessage(String message);
 }
+

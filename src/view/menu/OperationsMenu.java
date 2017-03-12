@@ -6,6 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
+import view.enums.OperationsNames;
 import view.frames.AddLotsFrame;
 import view.frames.OperationsFramesFactoryImpl;
 
@@ -24,38 +25,41 @@ public class OperationsMenu extends JMenu {
      */
 
     public OperationsMenu(final Controller controller) {
-        super("Operations");
-        JMenuItem menuItem = new JMenuItem("Add Lot");
+        super(OperationsNames.TITLE.getName());
+        JMenuItem menuItem = new JMenuItem(OperationsNames.ADD_LOT.getName());
         menuItem.addActionListener(e -> {
                new AddLotsFrame(controller);
         });
         this.add(menuItem);
 
-        menuItem = new JMenuItem("Save");
+        menuItem = new JMenuItem(OperationsNames.SAVE.getName());
         menuItem.addActionListener(e -> {
             final int retVal = this.fileChooser.showSaveDialog(this);
             if (retVal == JFileChooser.APPROVE_OPTION) {
                 try {
                     controller.saveFile(this.fileChooser.getSelectedFile().getPath());
                 } catch (IOException e1) {
+                    controller.getSubject().showMessageErrorView("Something goes wrong.");
                 }
             }
         });
         this.add(menuItem);
-
-        menuItem = new JMenuItem("Load");
+        final JMenuItem load = new JMenuItem(OperationsNames.LOAD_.getName());
+        menuItem = load;
         menuItem.addActionListener(e -> {
+            load.setEnabled(false);
             final int retVal = this.fileChooser.showOpenDialog(this);
             if (retVal == JFileChooser.APPROVE_OPTION) {
                 try {
                     controller.initialize((this.fileChooser.getSelectedFile().getPath()));
                     new OperationsFramesFactoryImpl().getListOfLots(controller, controller.getList(null));
                 } catch (Exception e1) {
+                    controller.getSubject().showMessageErrorView("Illegal file format.");
                 }
             }
         });
         this.add(menuItem);
-        menuItem = new JMenuItem("Reset suggestions");
+        menuItem = new JMenuItem(OperationsNames.RESET_SUGGESTIONS.getName());
         menuItem.addActionListener(e -> {
             controller.resetSuggestions();
         });

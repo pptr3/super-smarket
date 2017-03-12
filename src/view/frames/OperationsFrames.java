@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import controller.Controller;
 import model.Lot;
 import model.discountstrategies.DiscountStrategy;
+import view.enums.OperationsNames;
 
 
 /*
@@ -34,14 +35,9 @@ public class OperationsFrames extends CustomFrame {
     /**
      * 
      */
-    private static final String SET_ON_SALE = "Set on sale";
-    private static final String PERCENTAGE = "%";
-    private static final String DONT_SUGGEST_ANYMORE = "Don't suggest anymore";
-    private static final Integer DEFAUL_DISCOUNT = 10;
     private static final long serialVersionUID = 5926371999570025570L;
+    private static final Integer DEFAUL_DISCOUNT = 10;
     private static final Integer COLS = 2;
-    private static final String REMOVE_FROM_SALE = "Remove from sale";
-    private static final String REMOVE_LOT = "Remove";
     private static final Dimension DIM = Toolkit.getDefaultToolkit().getScreenSize();
     private final List<JTextField> texts = new ArrayList<>();
     private final List<JTextField> textForRemotion = new ArrayList<>();
@@ -76,7 +72,7 @@ public class OperationsFrames extends CustomFrame {
         for (final Map.Entry<Lot, Integer> lot : map.entrySet()) {
             final JPanel buttons = new JPanel(new FlowLayout());
             this.initializaFrame(buttons, center, this.area, this.lots, this.setOnSale, this.texts, this.removeFromSale, lot.getKey(), lot.getValue());
-            final JButton jb1 = new JButton(DONT_SUGGEST_ANYMORE);
+            final JButton jb1 = new JButton(OperationsNames.DONT_SUGGEST_ANYMORE.getName());
             buttons.add(jb1);
             this.discard.add(jb1);
             center.add(buttons);
@@ -116,7 +112,7 @@ public class OperationsFrames extends CustomFrame {
             final JPanel buttons = new JPanel(new FlowLayout());
             this.initializaFrame(buttons, center, this.area, this.lots, this.setOnSale, this.texts, this.removeFromSale,
                     loti, DEFAUL_DISCOUNT);
-            final JButton jb2 = new JButton(REMOVE_LOT);
+            final JButton jb2 = new JButton(OperationsNames.REMOVE_LOT.getName());
             buttons.add(jb2);
             this.removeLot.add(jb2);
             final JTextField text3 = new JTextField(COLS);
@@ -170,16 +166,16 @@ public class OperationsFrames extends CustomFrame {
             textArea.setText((lotToPass.getDescription()));
             lots2.add(lotToPass);
             center2.add(areas);
-            final JButton jb = new JButton(SET_ON_SALE);
+            final JButton jb = new JButton(OperationsNames.SET_ON_SALE.getName());
             buttons2.add(jb);
             setOnSale2.add(jb);
             final JTextField jText = new JTextField(String.valueOf(valueToSet));
             jText.setColumns(COLS);
             texts2.add(jText);
             buttons2.add(jText);
-            final JLabel label = new JLabel(PERCENTAGE);
+            final JLabel label = new JLabel(OperationsNames.PERCENTAGE.getName());
             buttons2.add(label);
-            final JButton jb2 = new JButton(REMOVE_FROM_SALE);
+            final JButton jb2 = new JButton(OperationsNames.REMOVE_FROM_SALE.getName());
             removeFromSale2.add(jb2);
             buttons2.add(jb2);
             center2.add(buttons2);

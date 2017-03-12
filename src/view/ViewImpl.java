@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import controller.Controller;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import view.menu.OperationsMenu;
+import view.enums.ApplicationsNames;
 import view.frames.OperationsFramesFactoryImpl;
 import view.menu.GetDiscountableMenu;
 import view.menu.GetLotsMenu;
@@ -49,7 +50,7 @@ public class ViewImpl extends JFrame implements View {
         this.scan = new ScanMenu(controller);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
-        this.setTitle("SuperSmarket");
+        this.setTitle(ApplicationsNames.TITLE.getName());
         this.menuBar.add(this.getLots);
         this.menuBar.add(this.getDiscountable);
         this.menuBar.add(this.operations);

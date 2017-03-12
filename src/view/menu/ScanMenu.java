@@ -3,6 +3,7 @@ package view.menu;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import controller.Controller;
+import view.enums.ScanNames;
 
 /**
  * Base menu.
@@ -21,9 +22,9 @@ public class ScanMenu extends JMenu {
      */
 
     public ScanMenu(final Controller controller) {
-        super("Scan");
-        final JButton startScan = new JButton("Start Scan");
-        final JButton stopScan = new JButton("Stop Scan");
+        super(ScanNames.TITLE.getName());
+        final JButton startScan = new JButton(ScanNames.START_SCAN.getName());
+        final JButton stopScan = new JButton(ScanNames.STOP_SCAN.getName());
         stopScan.setEnabled(false);
         startScan.addActionListener(e -> {
             controller.startScan();
