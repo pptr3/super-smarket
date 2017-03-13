@@ -34,18 +34,6 @@ public class OperationsMenu extends JMenu {
         });
         this.add(menuItem);
 
-        menuItem = new JMenuItem(OperationsNames.SAVE.getName());
-        menuItem.addActionListener(e -> {
-            final int retVal = this.fileChooser.showSaveDialog(this);
-            if (retVal == JFileChooser.APPROVE_OPTION) {
-                try {
-                    controller.saveFile(this.fileChooser.getSelectedFile().getPath());
-                } catch (IOException e1) {
-                    controller.getSubject().showMessageErrorView(ErrorNames.SOMETHING_GOES_WRONG.getName());
-                }
-            }
-        });
-        this.add(menuItem);
         final JMenuItem load = new JMenuItem(OperationsNames.LOAD_.getName());
         menuItem = load;
         menuItem.addActionListener(e -> {
@@ -63,6 +51,19 @@ public class OperationsMenu extends JMenu {
             }
         });
         this.add(menuItem);
+        menuItem = new JMenuItem(OperationsNames.SAVE.getName());
+        menuItem.addActionListener(e -> {
+            final int retVal = this.fileChooser.showSaveDialog(this);
+            if (retVal == JFileChooser.APPROVE_OPTION) {
+                try {
+                    controller.saveFile(this.fileChooser.getSelectedFile().getPath());
+                } catch (IOException e1) {
+                    controller.getSubject().showMessageErrorView(ErrorNames.SOMETHING_GOES_WRONG.getName());
+                }
+            }
+        });
+        this.add(menuItem);
+
         menuItem = new JMenuItem(OperationsNames.RESET_SUGGESTIONS.getName());
         menuItem.addActionListener(e -> {
             controller.resetSuggestions();
