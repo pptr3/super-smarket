@@ -19,14 +19,14 @@ import view.View;
 public interface Controller {
 
     /**
-     * If the file indicated by filepath exist, pass an Optional of
+     * If the file indicated by file path exist, pass an Optional of
      * ObjectInputStream, else pass an Optional.empty.
      * 
      * @throws IOException
      *             IOException
      * @throws FileNotFoundException
      *             file not found
-     * @param filepath filepath
+     * @param filepath file path
      */
     void initialize(String filepath) throws FileNotFoundException, IOException;
 
@@ -34,7 +34,7 @@ public interface Controller {
      * Saves the file to the given path.
      * 
      * @param filepath
-     *            filepath
+     *            file path
      * @throws IOException
      *             IOException
      * @throws FileNotFoundException
@@ -51,11 +51,11 @@ public interface Controller {
     List<Lot> getList(ModifyList mfl);
 
     /**
-     * @param lotto
-     *            adds lotto
+     * @param lot
+     *            adds a lot
      */
 
-    void addLotto(Lot lotto);
+    void addLotto(Lot lot);
 
     /**
      * Removes n products from the lot with the specified id.

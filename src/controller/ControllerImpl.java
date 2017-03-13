@@ -17,6 +17,7 @@ import model.discountstrategies.DiscountStrategy;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import model.modifylists.ModifyList;
 import view.View;
+import view.enums.ErrorNames;
 
 /*
  * TODO: there is bugs with the right writing sentences to show in exceptions.
@@ -44,14 +45,9 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void initialize(final String filepath) throws FileNotFoundException, IOException {
-        try {
-            final ObjectInputStream ostream = new ObjectInputStream(
-                    new BufferedInputStream(new FileInputStream(filepath)));
-            this.model.initialize(Optional.of(ostream));
-            ostream.close();
-        } catch (Exception e) {
-            this.subject.showMessageErrorView("Illegal file format.");
-        }
+        final ObjectInputStream ostream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filepath)));
+        this.model.initialize(Optional.of(ostream));
+        ostream.close();
     }
 
     @Override
@@ -81,7 +77,7 @@ public class ControllerImpl implements Controller {
         try {
             this.model.removeFromLot(id, n);
         } catch (Exception e) {
-            this.subject.showMessageErrorView("Insert a non negative integer please.");
+            this.subject.showMessageErrorView(e.getMessage());
         }
     }
 
@@ -95,7 +91,7 @@ public class ControllerImpl implements Controller {
         try {
             this.model.setOnSale(id, discountAmount);
         } catch (Exception e) {
-            this.subject.showMessageErrorView("This lot has not items.");
+            this.subject.showMessageErrorView(e.getMessage());
         }
     }
 
@@ -106,7 +102,7 @@ public class ControllerImpl implements Controller {
         } catch (IllegalArgumentException e) {
             this.subject.showMessageErrorView(e.getMessage());
         } catch (Exception e) {
-            this.subject.showMessageErrorView("This lot has not items.");
+            this.subject.showMessageErrorView(e.getMessage());
         }
     }
 

@@ -6,6 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
+import view.enums.ErrorNames;
 import view.enums.OperationsNames;
 import view.frames.AddLotsFrame;
 import view.frames.OperationsFramesFactoryImpl;
@@ -39,7 +40,7 @@ public class OperationsMenu extends JMenu {
                 try {
                     controller.saveFile(this.fileChooser.getSelectedFile().getPath());
                 } catch (IOException e1) {
-                    controller.getSubject().showMessageErrorView("Something goes wrong.");
+                    controller.getSubject().showMessageErrorView(ErrorNames.SOMETHING_GOES_WRONG.getName());
                 }
             }
         });
@@ -47,14 +48,13 @@ public class OperationsMenu extends JMenu {
         final JMenuItem load = new JMenuItem(OperationsNames.LOAD_.getName());
         menuItem = load;
         menuItem.addActionListener(e -> {
-            load.setEnabled(false);
             final int retVal = this.fileChooser.showOpenDialog(this);
             if (retVal == JFileChooser.APPROVE_OPTION) {
                 try {
                     controller.initialize((this.fileChooser.getSelectedFile().getPath()));
                     new OperationsFramesFactoryImpl().getListOfLots(controller, controller.getList(null));
                 } catch (Exception e1) {
-                    controller.getSubject().showMessageErrorView("Illegal file format.");
+                    controller.getSubject().showMessageErrorView(ErrorNames.ILLEGAL_FORMAT_FILE.getName());
                 }
             }
         });

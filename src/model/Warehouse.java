@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import model.discountstrategies.DiscountStrategy;
 import model.modifylists.ModifyList;
+import view.enums.ErrorNames;
 
 /**
  * Model implementation representing a warehouse in which lots are stored.
@@ -114,7 +115,7 @@ public class Warehouse implements Model {
         if (!isInMagazine(id)) {
             throw new IllegalArgumentException();
         } else if (discountAmount > 100 || discountAmount < 0) {
-            throw new IllegalArgumentException("Insert a non negative integer please.");
+            throw new IllegalArgumentException(ErrorNames.NOT_NEGATIVE_VALUE.getName());
         }
         this.lots.forEach(l -> {
             if (l.getId() == id) {

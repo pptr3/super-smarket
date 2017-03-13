@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import controller.Controller;
 import model.Lot;
 import model.discountstrategies.DiscountStrategy;
+import view.enums.ErrorNames;
 import view.enums.OperationsNames;
 
 
@@ -59,7 +60,7 @@ public class OperationsFrames extends CustomFrame {
         this.control = controller;
         final Map<Lot, Integer> map = controller.getDiscountable(ds);
         if (map.isEmpty()) {
-            controller.getSubject().showMessageErrorView("There is no lots.");
+            controller.getSubject().showMessageErrorView(ErrorNames.NO_LOTS.getName());
             return;
         }
         final JPanel center = new JPanel(new GridLayout(map.size(), COLS));

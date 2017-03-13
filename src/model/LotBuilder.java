@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Optional;
+import view.enums.ErrorNames;
 
 /**
  * Only access point for creating lots.
@@ -78,25 +79,31 @@ public class LotBuilder {
 
     /**
      * Actually builds the lot and assigns the id.
+     * 
      * @return the lot whose information were stored inside LotBuilder
      */
     public Lot build() {
         this.id = getNextId();
         setNextId(getNextId() + 1);
         if (this.name == null) {
-            throw new IllegalStateException("Missing name");
+            throw new IllegalStateException(ErrorNames.MISSING_NAME.getName());
         }
         if (this.initialQuantity <= 0) {
-            throw new IllegalStateException("Invalid initial quantity");
+            throw new IllegalStateException(ErrorNames.INVALID_INITIAL_QUANTITY.getName());
         }
         if (this.pricePerSingleItem <= 0) {
-            throw new IllegalStateException("Invalid price per item");
+            throw new IllegalStateException(ErrorNames.INVALID_PRICE_PER_ITEM.getName());
         }
-        return new LotImpl(this.id, this.name, this.checkInDate, this.expirationDate, this.initialQuantity, this.pricePerSingleItem);
+        if (this.expirationDate.get().getDifferenceInDays(MyCustomDateImpl.today()) < 0) {
+            throw new IllegalStateException(ErrorNames.INVALID_EXPIRATION_DATE.getName());
+        }
+        return new LotImpl(this.id, this.name, this.checkInDate, this.expirationDate, this.initialQuantity,
+                this.pricePerSingleItem);
     }
 
     /**
      * getter for nextId.
+     * 
      * @return the value of nextId
      */
     public static int getNextId() {

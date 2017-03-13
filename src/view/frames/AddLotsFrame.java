@@ -16,6 +16,7 @@ import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDate;
 import model.MyCustomDateImpl;
+import view.enums.ErrorNames;
 import view.enums.LotFeatures;
 import view.enums.OperationsNames;
 
@@ -56,18 +57,22 @@ public class AddLotsFrame extends CustomFrame {
          * need to refactor this part of builing lot
          */
         final ActionListener al = e -> {
-            Lot l = new LotBuilder()
-                    .name(this.jtext.get(0).getText())
-                    .checkInDate(initializeDate(this.jtext, 1))
-                    .expirationDate(initializeDate(this.jtext, 2))
-                    .quantity(Integer.parseInt(this.jtext.get(3).getText()))
-                    .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText()))
-                    .build();
-            this.jtext.clear();
-            controller.addLotto(l);
-            this.setVisible(false);
+            try {
+                Lot l = new LotBuilder().name(this.jtext.get(0).getText())
+                        .checkInDate(initializeDate(this.jtext, 1))
+                        .expirationDate(initializeDate(this.jtext, 2))
+                        .quantity(Integer.parseInt(this.jtext.get(3).getText()))
+                        .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText()))
+                        .build();
+                this.jtext.clear();
+                controller.addLotto(l);
+                this.setVisible(false);
+            } catch (IllegalStateException e2) {
+                controller.getSubject().showMessageErrorView(e2.getMessage());
+            } catch (Exception e3) {
+                controller.getSubject().showMessageErrorView(ErrorNames.FORMAT.getName());
+            }
         };
-
         final ActionListener al2 = e -> {
             this.setVisible(false);
         };

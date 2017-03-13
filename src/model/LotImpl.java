@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import java.util.Optional;
 
+import view.enums.ErrorNames;
+
 /**
  * Implementation of the LotWithActions interface. This should be used inside the Model implementation
  * but not in the view, since it also has methods for modifying the content of the lot. 
@@ -102,7 +104,7 @@ public class LotImpl implements LotWithActions, Serializable {
     @Override
     public void removeElements(final int n) {
         if (this.currentQuantity < n) {
-            throw new IllegalStateException("Cannot remove more elements than the current quantity.");
+            throw new IllegalStateException(ErrorNames.CANT_REMOVE_ELEMENTS.getName());
         }
         this.currentQuantity -= n;
     }
@@ -115,7 +117,7 @@ public class LotImpl implements LotWithActions, Serializable {
     @Override
     public void setOnSale(final int amount) {
         if (this.isOnSale()) {
-            throw new IllegalStateException("The lot is already on sale.");
+            throw new IllegalStateException(ErrorNames.ALREADY_ON_SALE.getName());
         }
         this.onSale = true;
         this.salePercentage = amount;
@@ -124,7 +126,7 @@ public class LotImpl implements LotWithActions, Serializable {
     @Override
     public void removeFromSale() {
         if (!this.isOnSale()) {
-            throw new IllegalStateException("The lot was not on sale.");
+            throw new IllegalStateException(ErrorNames.NOT_ON_SALE.getName());
         }
         this.onSale = false;
         this.salePercentage = 0;
@@ -136,18 +138,10 @@ public class LotImpl implements LotWithActions, Serializable {
     }
 
     @Override
-    public String toString() {
-        return " Id=" + id + "\n" + "Name=" + name + "\n" + "ExpirationDate=" + expirationDate + "\n" + "CheckInDate="
-                + checkInDate + "\n" + " InitialQuantity=" + initialQuantity + "\n" + "CurrentQuantity=" + currentQuantity
-                + "\n" + "PricePerSingleItem=" + pricePerSingleItem + "\n" + "OnSale=" + onSale + "\n" + "SalePercentage="
-                + salePercentage + "\n\n";
-    }
-
-    @Override
     public String getDescription() {
-        return "Name=" + name + "\n" + "ExpirationDate=" + expirationDate.get().getDateToString() + "\n" + "CheckInDate="
-                + checkInDate.getDateToString() + "\n" + " InitialQuantity=" + initialQuantity + "\n" + "CurrentQuantity=" + currentQuantity
-                + "\n" + "PricePerSingleItem=" + pricePerSingleItem + "\n" + "OnSale=" + onSale + "\n" + "SalePercentage="
+        return "Name: " + name + "\n" + "ExpirationDate: " + expirationDate.get().getDateToString() + "\n" + "CheckInDate: "
+                + checkInDate.getDateToString() + "\n" + " InitialQuantity: " + initialQuantity + "\n" + "CurrentQuantity: " + currentQuantity
+                + "\n" + "PricePerSingleItem: " + pricePerSingleItem + "\n" + "OnSale: " + onSale + "\n" + "SalePercentage: "
                 + salePercentage + "\n\n";
     }
 
