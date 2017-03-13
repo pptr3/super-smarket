@@ -17,7 +17,6 @@ import model.discountstrategies.DiscountStrategy;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import model.modifylists.ModifyList;
 import view.View;
-import view.enums.ErrorNames;
 
 /*
  * TODO: there is bugs with the right writing sentences to show in exceptions.

@@ -53,9 +53,7 @@ public class AddLotsFrame extends CustomFrame {
 
         final JButton confirm = new JButton(OperationsNames.CONFIRM.getName());
         panel.add(confirm);
-        /*
-         * need to refactor this part of builing lot
-         */
+
         final ActionListener al = e -> {
             try {
                 Lot l = new LotBuilder().name(this.jtext.get(0).getText())
