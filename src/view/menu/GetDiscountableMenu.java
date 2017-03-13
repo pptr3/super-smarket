@@ -4,6 +4,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
+import view.enums.TitlesNames;
 import view.enums.GetDiscountableNames;
 import view.frames.OperationsFramesFactoryImpl;
 
@@ -24,7 +25,7 @@ public class GetDiscountableMenu extends JMenu {
      */
 
     public GetDiscountableMenu(final Controller controller) {
-        super(GetDiscountableNames.TITLE.getName());
+        super(TitlesNames.GET_DISCOUNTABLE_TITLE.getName());
         JMenuItem menuItem = new JMenuItem(GetDiscountableNames.OVER_FIFTY_DISCOUNT.getName());
         menuItem.addActionListener(e -> {
             new OperationsFramesFactoryImpl().getDiscountableListOfLots(controller,

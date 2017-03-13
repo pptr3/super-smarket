@@ -5,10 +5,6 @@ package view.enums;
  */
 public enum GetLotsNames {
     /**
-     * Title for GetDiscountable.
-     */
-    TITLE("Get Lots"),
-    /**
      * 
      */
     ALFABETICALLY_SORTED("Alfabetically sorted"),

@@ -6,6 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
+import view.enums.TitlesNames;
 import view.enums.ErrorNames;
 import view.enums.OperationsNames;
 import view.frames.AddLotsFrame;
@@ -26,7 +27,7 @@ public class OperationsMenu extends JMenu {
      */
 
     public OperationsMenu(final Controller controller) {
-        super(OperationsNames.TITLE.getName());
+        super(TitlesNames.OPERATIONS_TITLE.getName());
         JMenuItem menuItem = new JMenuItem(OperationsNames.ADD_LOT.getName());
         menuItem.addActionListener(e -> {
                new AddLotsFrame(controller);
@@ -55,6 +56,9 @@ public class OperationsMenu extends JMenu {
                     new OperationsFramesFactoryImpl().getListOfLots(controller, controller.getList(null));
                 } catch (Exception e1) {
                     controller.getSubject().showMessageErrorView(ErrorNames.ILLEGAL_FORMAT_FILE.getName());
+                }
+                if (controller.getList(null).size() != 0) {
+                    load.setEnabled(false);
                 }
             }
         });

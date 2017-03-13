@@ -5,10 +5,6 @@ package view.enums;
  */
 public enum ScanNames {
     /**
-     * Title for GetDiscountable.
-     */
-    TITLE("Scan"),
-    /**
      * 
      */
     START_SCAN("Start scan"),

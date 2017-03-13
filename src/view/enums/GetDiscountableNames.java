@@ -5,10 +5,6 @@ package view.enums;
  */
 public enum GetDiscountableNames {
     /**
-     * Title for GetDiscountable.
-     */
-    TITLE("Get Discountable Lots"),
-    /**
      * 
      */
     OVER_FIFTY_DISCOUNT("Over fifty discount"),

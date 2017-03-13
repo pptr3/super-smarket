@@ -6,10 +6,6 @@ package view.enums;
  */
 public enum OperationsNames {
     /**
-     * Title for GetDiscountable.
-     */
-    TITLE("Operations"),
-    /**
      * 
      */
     ADD_LOT("Add lot"),

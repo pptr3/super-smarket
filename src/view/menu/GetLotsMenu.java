@@ -5,6 +5,7 @@ import javax.swing.JMenuItem;
 import controller.Controller;
 import model.modifylists.ModifyList;
 import model.modifylists.ModifyListFactoryImpl;
+import view.enums.TitlesNames;
 import view.enums.GetLotsNames;
 import view.frames.OperationsFramesFactoryImpl;
 
@@ -24,7 +25,7 @@ public class GetLotsMenu extends JMenu {
  * @param controller controller
  */
     public GetLotsMenu(final Controller controller) {
-        super(GetLotsNames.TITLE.getName());
+        super(TitlesNames.GET_LOTS_TITLE.getName());
         JMenuItem menuItem = new JMenuItem(GetLotsNames.ALFABETICALLY_SORTED.getName());
         menuItem.addActionListener(e -> {
             setTextArea(controller, new ModifyListFactoryImpl().alphabeticalSorting());
