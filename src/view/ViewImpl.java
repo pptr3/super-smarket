@@ -10,9 +10,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
 import controller.Controller;
+import controller.enums.TitlesNames;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import view.menu.OperationsMenu;
-import view.enums.TitlesNames;
 import view.frames.OperationsFramesFactoryImpl;
 import view.menu.GetDiscountableMenu;
 import view.menu.GetLotsMenu;

@@ -1,7 +1,8 @@
 package model;
 
 import java.util.Optional;
-import view.enums.ErrorNames;
+
+import controller.enums.ErrorNames;
 
 /**
  * Only access point for creating lots.

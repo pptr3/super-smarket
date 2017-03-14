@@ -3,8 +3,8 @@ package view.menu;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import controller.Controller;
-import view.enums.TitlesNames;
-import view.enums.ScanNames;
+import controller.enums.ScanNames;
+import controller.enums.TitlesNames;
 
 /**
  * Base menu.

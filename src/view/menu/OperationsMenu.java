@@ -6,9 +6,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
-import view.enums.TitlesNames;
-import view.enums.ErrorNames;
-import view.enums.OperationsNames;
+import controller.enums.ErrorNames;
+import controller.enums.OperationsNames;
+import controller.enums.TitlesNames;
 import view.frames.AddLotsFrame;
 import view.frames.OperationsFramesFactoryImpl;
 

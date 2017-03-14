@@ -1,4 +1,4 @@
-package view.enums;
+package controller.enums;
 /**
  * Names for main Application.
  *

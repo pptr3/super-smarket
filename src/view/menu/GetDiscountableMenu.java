@@ -3,9 +3,9 @@ package view.menu;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
+import controller.enums.GetDiscountableNames;
+import controller.enums.TitlesNames;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
-import view.enums.TitlesNames;
-import view.enums.GetDiscountableNames;
 import view.frames.OperationsFramesFactoryImpl;
 
 /**

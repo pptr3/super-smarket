@@ -3,10 +3,10 @@ package view.menu;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
+import controller.enums.GetLotsNames;
+import controller.enums.TitlesNames;
 import model.modifylists.ModifyList;
 import model.modifylists.ModifyListFactoryImpl;
-import view.enums.TitlesNames;
-import view.enums.GetLotsNames;
 import view.frames.OperationsFramesFactoryImpl;
 
 /**

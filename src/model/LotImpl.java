@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.Optional;
 
-import view.enums.ErrorNames;
+import controller.enums.ErrorNames;
 
 /**
  * Implementation of the LotWithActions interface. This should be used inside the Model implementation

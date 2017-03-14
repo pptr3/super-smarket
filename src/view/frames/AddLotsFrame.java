@@ -12,13 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import controller.Controller;
+import controller.enums.ErrorNames;
+import controller.enums.LotFeatures;
+import controller.enums.OperationsNames;
 import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDate;
 import model.MyCustomDateImpl;
-import view.enums.ErrorNames;
-import view.enums.LotFeatures;
-import view.enums.OperationsNames;
 
 /**
  *

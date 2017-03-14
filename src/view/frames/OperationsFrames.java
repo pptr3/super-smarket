@@ -16,10 +16,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import controller.Controller;
+import controller.enums.ErrorNames;
+import controller.enums.OperationsNames;
 import model.Lot;
 import model.discountstrategies.DiscountStrategy;
-import view.enums.ErrorNames;
-import view.enums.OperationsNames;
 
 
 /*

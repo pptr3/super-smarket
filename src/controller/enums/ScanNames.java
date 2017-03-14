@@ -1,17 +1,17 @@
-package view.enums;
+package controller.enums;
 /**
- * Enum for titles of Get Discountable frames.
+ * Enum for names of scan frame.
  *
  */
-public enum GetDiscountableNames {
+public enum ScanNames {
     /**
      * 
      */
-    OVER_FIFTY_DISCOUNT("Over fifty discount"),
+    START_SCAN("Start scan"),
     /**
      * 
      */
-    EXPIRES_WITHIN_A_WEEK("Expires within a week");
+    STOP_SCAN("Stop scan");
 
     private final String name;
 
@@ -20,7 +20,8 @@ public enum GetDiscountableNames {
      * @param str
      *            the title to set
      */
-    private GetDiscountableNames(final String str) {
+
+    private ScanNames(final String str) {
         this.name = str;
     }
 
@@ -31,5 +32,4 @@ public enum GetDiscountableNames {
     public String getName() {
         return this.name;
     }
-
 }

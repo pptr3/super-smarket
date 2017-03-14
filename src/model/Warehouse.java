@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import controller.enums.ErrorNames;
 import model.discountstrategies.DiscountStrategy;
 import model.modifylists.ModifyList;
-import view.enums.ErrorNames;
 
 /**
  * Model implementation representing a warehouse in which lots are stored.
