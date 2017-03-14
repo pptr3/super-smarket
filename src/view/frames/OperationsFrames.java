@@ -21,14 +21,8 @@ import controller.enums.OperationsNames;
 import model.Lot;
 import model.discountstrategies.DiscountStrategy;
 
-
-/*
- * TODO: NOTE: implement what appen when there is no Lots
- * TODO: Un po di refactor per codice duplicato
- */
-
 /**
- * Abstract class for Template Method.
+ * 
  *
  */
 public class OperationsFrames extends CustomFrame {
@@ -49,6 +43,7 @@ public class OperationsFrames extends CustomFrame {
     private final List<Lot> lots = new ArrayList<>();
     private final List<JTextArea> area = new ArrayList<>();
     private final Controller control;
+    private final BasicOperationsOnLots test = new BasicOperationsOnLots();
     /**
      * 
      * @param controller
@@ -67,7 +62,8 @@ public class OperationsFrames extends CustomFrame {
 
         final ActionListener al3 = e -> {
             JButton jb = (JButton) e.getSource();
-            controller.dontSuggestAnymore(this.lots.get(this.discard.indexOf(jb)));
+            this.test.dontSuggest(controller, this.lots.get(this.discard.indexOf(jb)));
+           // controller.dontSuggestAnymore(this.lots.get(this.discard.indexOf(jb)));
         };
 
         for (final Map.Entry<Lot, Integer> lot : map.entrySet()) {
@@ -93,7 +89,7 @@ public class OperationsFrames extends CustomFrame {
     public OperationsFrames(final Controller controller, final List<Lot> lot) {
         this.control = controller;
         if (lot.isEmpty()) {
-            controller.getSubject().showMessageErrorView("There is no lots.");
+            controller.getSubject().showMessageErrorView(ErrorNames.NO_LOTS.getName());
             return;
         }
         final JPanel center = new JPanel(new GridLayout(lot.size(), COLS));
@@ -101,9 +97,10 @@ public class OperationsFrames extends CustomFrame {
         final ActionListener al = e -> {
             JButton jb = (JButton) e.getSource();
             try {
-            controller.removeFromLotto(this.lots.get(this.removeLot.indexOf(jb)).getId(),
-                    Integer.parseInt(this.textForRemotion.get(this.removeLot.indexOf(jb)).getText()));
-            this.area.get(this.removeLot.indexOf(jb)).setText(lot.get(this.removeLot.indexOf(jb)).getDescription());
+                this.test.removeFromLot(controller, this.lots.get(this.removeLot.indexOf(jb)).getId(),
+                        Integer.parseInt(this.textForRemotion.get(this.removeLot.indexOf(jb)).getText()));
+                this.test.updateText(this.area.get(this.removeLot.indexOf(jb)),
+                        lot.get(this.removeLot.indexOf(jb)).getDescription());
             } catch (Exception e1) {
                 controller.getSubject().showMessageErrorView(e1.getMessage());
             }
@@ -131,8 +128,7 @@ public class OperationsFrames extends CustomFrame {
         final ActionListener al2 = e -> {
             try {
                 final JButton jb = (JButton) e.getSource();
-                cont.setOnSale(lot.get(sale.indexOf(jb)).getId(),
-                        Integer.parseInt(text.get(sale.indexOf(jb)).getText()));
+               this.test.setLotOnSale(cont, lot.get(sale.indexOf(jb)).getId(), Integer.parseInt(text.get(sale.indexOf(jb)).getText()));
                 jArea.get(sale.indexOf(jb)).setText(lot.get(sale.indexOf(jb)).getDescription());
             } catch (Exception e2) {
                 this.control.getSubject().showMessageErrorView(e2.getMessage());
@@ -141,8 +137,8 @@ public class OperationsFrames extends CustomFrame {
         final ActionListener al4 = e -> {
             try {
                 final JButton jb = (JButton) e.getSource();
-                cont.removeFromSale((lot.get(remove.indexOf(jb)).getId()));
-                jArea.get(remove.indexOf(jb)).setText(lot.get(remove.indexOf(jb)).getDescription());
+                this.test.removeFromSale(cont, (lot.get(remove.indexOf(jb)).getId()));
+                this.test.updateText(jArea.get(remove.indexOf(jb)), lot.get(remove.indexOf(jb)).getDescription());
             } catch (Exception e1) {
                 this.control.getSubject().showMessageErrorView(e1.getMessage());
             }

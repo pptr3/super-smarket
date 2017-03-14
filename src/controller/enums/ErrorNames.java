@@ -28,7 +28,7 @@ public enum ErrorNames {
     /**
      * 
      */
-    NOT_NEGATIVE_VALUE("Insert a not negative integer please."),
+    NOT_NEGATIVE_VALUE("Insert a not negative integer fewer than 100 please."),
     /**
      * 
      */
