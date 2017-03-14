@@ -13,5 +13,4 @@ public class SetOnSale extends BasicOperationsOnLots {
     public void operation(final Controller controller, final Integer id, final Integer quantity) {
         controller.setOnSale(id, quantity);
     }
-
 }

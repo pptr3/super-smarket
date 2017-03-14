@@ -9,14 +9,15 @@ import model.Lot;
  */
 public abstract class BasicOperationsOnLots {
 
-/**
- * 
- * @param area area
- * @param text text
- */
+    /**
+     * 
+     * @param area area
+     * @param text text 
+     */
     public void updateText(final JTextArea area, final String text) {
         area.setText(text);
     }
+
 /**
  * 
  * @param controller controller
