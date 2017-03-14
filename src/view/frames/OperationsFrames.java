@@ -43,7 +43,8 @@ public class OperationsFrames extends CustomFrame {
     private final List<Lot> lots = new ArrayList<>();
     private final List<JTextArea> area = new ArrayList<>();
     private final Controller control;
-    private final BasicOperationsOnLots test = new BasicOperationsOnLots();
+    private final SetOnSale sale = new SetOnSale();
+    private final RemoveFromLot remove = new RemoveFromLot();
     /**
      * 
      * @param controller
@@ -62,8 +63,7 @@ public class OperationsFrames extends CustomFrame {
 
         final ActionListener al3 = e -> {
             JButton jb = (JButton) e.getSource();
-            this.test.dontSuggest(controller, this.lots.get(this.discard.indexOf(jb)));
-           // controller.dontSuggestAnymore(this.lots.get(this.discard.indexOf(jb)));
+            this.sale.dontSuggest(controller, this.lots.get(this.discard.indexOf(jb)));
         };
 
         for (final Map.Entry<Lot, Integer> lot : map.entrySet()) {
@@ -97,9 +97,9 @@ public class OperationsFrames extends CustomFrame {
         final ActionListener al = e -> {
             JButton jb = (JButton) e.getSource();
             try {
-                this.test.removeFromLot(controller, this.lots.get(this.removeLot.indexOf(jb)).getId(),
+                this.remove.operation(controller, this.lots.get(this.removeLot.indexOf(jb)).getId(),
                         Integer.parseInt(this.textForRemotion.get(this.removeLot.indexOf(jb)).getText()));
-                this.test.updateText(this.area.get(this.removeLot.indexOf(jb)),
+                this.sale.updateText(this.area.get(this.removeLot.indexOf(jb)),
                         lot.get(this.removeLot.indexOf(jb)).getDescription());
             } catch (Exception e1) {
                 controller.getSubject().showMessageErrorView(e1.getMessage());
@@ -124,12 +124,12 @@ public class OperationsFrames extends CustomFrame {
     }
 
     private void setActionListeners(final JPanel panel, final List<JTextArea> jArea, final Controller cont,
-            final List<Lot> lot, final List<JButton> sale, final List<JTextField> text, final List<JButton> remove) {
+            final List<Lot> lot, final List<JButton> sales, final List<JTextField> text, final List<JButton> removes) {
         final ActionListener al2 = e -> {
             try {
                 final JButton jb = (JButton) e.getSource();
-               this.test.setLotOnSale(cont, lot.get(sale.indexOf(jb)).getId(), Integer.parseInt(text.get(sale.indexOf(jb)).getText()));
-                jArea.get(sale.indexOf(jb)).setText(lot.get(sale.indexOf(jb)).getDescription());
+               this.sale.operation(cont, lot.get(sales.indexOf(jb)).getId(), Integer.parseInt(text.get(sales.indexOf(jb)).getText()));
+                jArea.get(sales.indexOf(jb)).setText(lot.get(sales.indexOf(jb)).getDescription());
             } catch (Exception e2) {
                 this.control.getSubject().showMessageErrorView(e2.getMessage());
             }
@@ -137,14 +137,14 @@ public class OperationsFrames extends CustomFrame {
         final ActionListener al4 = e -> {
             try {
                 final JButton jb = (JButton) e.getSource();
-                this.test.removeFromSale(cont, (lot.get(remove.indexOf(jb)).getId()));
-                this.test.updateText(jArea.get(remove.indexOf(jb)), lot.get(remove.indexOf(jb)).getDescription());
+                this.sale.removeFromSale(cont, (lot.get(removes.indexOf(jb)).getId()));
+                this.sale.updateText(jArea.get(removes.indexOf(jb)), lot.get(removes.indexOf(jb)).getDescription());
             } catch (Exception e1) {
                 this.control.getSubject().showMessageErrorView(e1.getMessage());
             }
         };
-        sale.forEach(l -> l.addActionListener(al2));
-        remove.forEach(l -> l.addActionListener(al4));
+        sales.forEach(l -> l.addActionListener(al2));
+        removes.forEach(l -> l.addActionListener(al4));
         getContentPane().add(panel, BorderLayout.CENTER);
         initializeSizeAndLocation();
     }
