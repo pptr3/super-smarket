@@ -3,10 +3,9 @@ package view.menu;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
-import controller.enums.GetLotsNames;
-import controller.enums.TitlesNames;
 import model.modifylists.ModifyList;
 import model.modifylists.ModifyListFactoryImpl;
+import view.ResourceBound;
 import view.frames.OperationsFramesFactoryImpl;
 
 /**
@@ -20,23 +19,24 @@ public class GetLotsMenu extends JMenu {
      * 
      */
     private static final long serialVersionUID = -2993920227347864515L;
+    private final ResourceBound res = new ResourceBound();
 /**
  * 
  * @param controller controller
  */
     public GetLotsMenu(final Controller controller) {
-        super(TitlesNames.GET_LOTS_TITLE.getName());
-        JMenuItem menuItem = new JMenuItem(GetLotsNames.ALFABETICALLY_SORTED.getName());
+        super("Get Lots");
+        JMenuItem menuItem = new JMenuItem(this.res.setName("ALFABETICALLY_SORTED"));
         menuItem.addActionListener(e -> {
             setTextArea(controller, new ModifyListFactoryImpl().alphabeticalSorting());
         });
         this.add(menuItem);
-        menuItem = new JMenuItem(GetLotsNames.ONLY_EXPIRING.getName());
+        menuItem = new JMenuItem(this.res.setName("ONLY_EXPIRING"));
         menuItem.addActionListener(e -> {
             setTextArea(controller, new ModifyListFactoryImpl().onlyExpiring());
         });
         this.add(menuItem);
-        menuItem = new JMenuItem(GetLotsNames.ALL.getName());
+        menuItem = new JMenuItem(this.res.setName("ALL"));
         /*
          * with null  @param, @return the list of lots order by insertion 
          */

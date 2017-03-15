@@ -1,11 +1,13 @@
 package view;
 
-import static org.junit.Assert.*;
 
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
 import controller.Controller;
 import controller.ControllerImpl;
 import model.Lot;
@@ -54,7 +56,6 @@ public class ViewTesting {
         c.addLotto(l);
         assertEquals(c.getList(null).size(), 1);
         assertEquals(c.getList(null).get(0).getName(), "Milk - brand");
-        //continuare a fare test della view, andare indietro nella linea dei commit e ripredere il test per il controller
-        
+        //continuare a fare test della view, andare indietro nella linea dei commit e ripredere il test per il controller  
     }
 }

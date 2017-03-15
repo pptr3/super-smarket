@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.Optional;
 
-import controller.enums.ErrorNames;
+import view.ResourceBound;
 
 /**
  * Implementation of the LotWithActions interface. This should be used inside the Model implementation
@@ -28,7 +28,7 @@ public class LotImpl implements LotWithActions, Serializable {
     private int pricePerSingleItem;
     private boolean onSale;
     private int salePercentage;
-
+    private final ResourceBound res;
     /**
      * Basic constructor with all the needed parameters.
      * @param iid given by the builder
@@ -50,6 +50,8 @@ public class LotImpl implements LotWithActions, Serializable {
         this.pricePerSingleItem = ipricePerSingleItem;
         this.onSale = false;
         this.salePercentage = 0;
+        this.res = new ResourceBound();
+
         if (iexpirationDate.isPresent()) {
             this.expirationDateSerialization = this.expirationDate.get().getDateToString();
         } else {
@@ -104,7 +106,7 @@ public class LotImpl implements LotWithActions, Serializable {
     @Override
     public void removeElements(final int n) {
         if (this.currentQuantity < n) {
-            throw new IllegalStateException(ErrorNames.CANT_REMOVE_ELEMENTS.getName());
+            throw new IllegalStateException((this.res.setName("CANT_REMOVE_ELEMENTS")));
         }
         this.currentQuantity -= n;
     }
@@ -117,7 +119,7 @@ public class LotImpl implements LotWithActions, Serializable {
     @Override
     public void setOnSale(final int amount) {
         if (this.isOnSale()) {
-            throw new IllegalStateException(ErrorNames.ALREADY_ON_SALE.getName());
+            throw new IllegalStateException((this.res.setName("ALREADY_ON_SALE")));
         }
         this.onSale = true;
         this.salePercentage = amount;
@@ -126,7 +128,7 @@ public class LotImpl implements LotWithActions, Serializable {
     @Override
     public void removeFromSale() {
         if (!this.isOnSale()) {
-            throw new IllegalStateException(ErrorNames.NOT_ON_SALE.getName());
+            throw new IllegalStateException((this.res.setName("NOT_ON_SALE")));
         }
         this.onSale = false;
         this.salePercentage = 0;

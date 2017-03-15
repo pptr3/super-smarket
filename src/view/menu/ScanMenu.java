@@ -3,8 +3,7 @@ package view.menu;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import controller.Controller;
-import controller.enums.ScanNames;
-import controller.enums.TitlesNames;
+import view.ResourceBound;
 
 /**
  * Base menu.
@@ -17,15 +16,16 @@ public class ScanMenu extends JMenu {
      * 
      */
     private static final long serialVersionUID = -2993920227347864515L;
+    private final ResourceBound res = new ResourceBound();
     /**
      * 
      * @param controller controller
      */
 
     public ScanMenu(final Controller controller) {
-        super(TitlesNames.SCAN_TITLE.getName());
-        final JButton startScan = new JButton(ScanNames.START_SCAN.getName());
-        final JButton stopScan = new JButton(ScanNames.STOP_SCAN.getName());
+        super("Scan");
+        final JButton startScan = new JButton(this.res.setName("START_SCAN"));
+        final JButton stopScan = new JButton(this.res.setName("STOP_SCAN"));
         stopScan.setEnabled(false);
         startScan.addActionListener(e -> {
             controller.startScan();

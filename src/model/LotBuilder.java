@@ -2,7 +2,7 @@ package model;
 
 import java.util.Optional;
 
-import controller.enums.ErrorNames;
+import view.ResourceBound;
 
 /**
  * Only access point for creating lots.
@@ -17,6 +17,7 @@ public class LotBuilder {
     private MyCustomDate checkInDate;
     private int initialQuantity = 0;
     private int pricePerSingleItem = 0;
+    private final ResourceBound res;
 
     /**
      * Default constructor, initializes expiration date to empty.
@@ -24,6 +25,7 @@ public class LotBuilder {
     public LotBuilder() {
         this.expirationDate = Optional.empty();
         this.checkInDate = MyCustomDateImpl.today();
+        this.res = new ResourceBound();
     }
 
 
@@ -87,17 +89,17 @@ public class LotBuilder {
         this.id = getNextId();
         setNextId(getNextId() + 1);
         if (this.name == null) {
-            throw new IllegalStateException(ErrorNames.MISSING_NAME.getName());
+            throw new IllegalStateException(this.res.setName("MISSING_NAME"));
         }
         if (this.initialQuantity <= 0) {
-            throw new IllegalStateException(ErrorNames.INVALID_INITIAL_QUANTITY.getName());
+            throw new IllegalStateException(this.res.setName("INVALID_INITIAL_QUANTITY"));
         }
         if (this.pricePerSingleItem <= 0) {
-            throw new IllegalStateException(ErrorNames.INVALID_PRICE_PER_ITEM.getName());
+            throw new IllegalStateException(this.res.setName("INVALID_PRICE_PER_ITEM"));
         }
         if (this.expirationDate.isPresent()) {
             if (this.expirationDate.get().getDifferenceInDays(MyCustomDateImpl.today()) < 0) {
-                throw new IllegalStateException(ErrorNames.INVALID_EXPIRATION_DATE.getName());
+                throw new IllegalStateException(this.res.setName("INVALID_EXPIRATION_DATE"));
             }
         }
         return new LotImpl(this.id, this.name, this.checkInDate, this.expirationDate, this.initialQuantity,

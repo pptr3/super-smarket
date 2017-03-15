@@ -1,11 +1,8 @@
 package view.frames;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  * This will be the superclass of all the classes that use JFrame. 
@@ -29,16 +26,4 @@ public class CustomFrame extends JFrame {
         this.setVisible(true);
 
     }
-    /**
-     * Create a new panel containing a new component with the given orientation.
-     * @param component component
-     * @param orientation orientation
-     * @return new JPanel
-     */
-    protected static JPanel wrapperPanel(final JComponent component, final int orientation) {
-        final JPanel panel = new JPanel(new FlowLayout(orientation));
-        panel.add(component);
-        return panel;
-    }
-
 }

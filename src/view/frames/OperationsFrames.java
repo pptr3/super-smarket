@@ -16,10 +16,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import controller.Controller;
-import controller.enums.ErrorNames;
-import controller.enums.OperationsNames;
 import model.Lot;
 import model.discountstrategies.DiscountStrategy;
+import view.ResourceBound;
 
 /**
  * 
@@ -45,6 +44,7 @@ public class OperationsFrames extends CustomFrame {
     private final Controller control;
     private final SetOnSale sale = new SetOnSale();
     private final RemoveFromLot remove = new RemoveFromLot();
+    private final ResourceBound res = new ResourceBound();
     /**
      * 
      * @param controller
@@ -56,7 +56,7 @@ public class OperationsFrames extends CustomFrame {
         this.control = controller;
         final Map<Lot, Integer> map = controller.getDiscountable(ds);
         if (map.isEmpty()) {
-            controller.getSubject().showMessageErrorView(ErrorNames.NO_LOTS.getName());
+            controller.getSubject().showMessageErrorView(this.res.setName("NO_LOTS"));
             return;
         }
         final JPanel center = new JPanel(new GridLayout(map.size(), COLS));
@@ -69,7 +69,7 @@ public class OperationsFrames extends CustomFrame {
         for (final Map.Entry<Lot, Integer> lot : map.entrySet()) {
             final JPanel buttons = new JPanel(new FlowLayout());
             this.initializaFrame(buttons, center, this.area, this.lots, this.setOnSale, this.texts, this.removeFromSale, lot.getKey(), lot.getValue());
-            final JButton jb1 = new JButton(OperationsNames.DONT_SUGGEST_ANYMORE.getName());
+            final JButton jb1 = new JButton(this.res.setName("DONT_SUGGEST_ANYMORE"));
             buttons.add(jb1);
             this.discard.add(jb1);
             center.add(buttons);
@@ -89,7 +89,7 @@ public class OperationsFrames extends CustomFrame {
     public OperationsFrames(final Controller controller, final List<Lot> lot) {
         this.control = controller;
         if (lot.isEmpty()) {
-            controller.getSubject().showMessageErrorView(ErrorNames.NO_LOTS.getName());
+            controller.getSubject().showMessageErrorView(this.res.setName("NO_LOTS"));
             return;
         }
         final JPanel center = new JPanel(new GridLayout(lot.size(), COLS));
@@ -110,7 +110,7 @@ public class OperationsFrames extends CustomFrame {
             final JPanel buttons = new JPanel(new FlowLayout());
             this.initializaFrame(buttons, center, this.area, this.lots, this.setOnSale, this.texts, this.removeFromSale,
                     loti, DEFAUL_DISCOUNT);
-            final JButton jb2 = new JButton(OperationsNames.REMOVE_LOT.getName());
+            final JButton jb2 = new JButton(this.res.setName("REMOVE_LOT"));
             buttons.add(jb2);
             this.removeLot.add(jb2);
             final JTextField text3 = new JTextField(COLS);
@@ -163,16 +163,16 @@ public class OperationsFrames extends CustomFrame {
             textArea.setText((lotToPass.getDescription()));
             lots2.add(lotToPass);
             center2.add(areas);
-            final JButton jb = new JButton(OperationsNames.SET_ON_SALE.getName());
+            final JButton jb = new JButton(this.res.setName("SET_ON_SALE"));
             buttons2.add(jb);
             setOnSale2.add(jb);
             final JTextField jText = new JTextField(String.valueOf(valueToSet));
             jText.setColumns(COLS);
             texts2.add(jText);
             buttons2.add(jText);
-            final JLabel label = new JLabel(OperationsNames.PERCENTAGE.getName());
+            final JLabel label = new JLabel(this.res.setName("PERCENTAGE"));
             buttons2.add(label);
-            final JButton jb2 = new JButton(OperationsNames.REMOVE_FROM_SALE.getName());
+            final JButton jb2 = new JButton(this.res.setName("REMOVE_FROM_SALE"));
             removeFromSale2.add(jb2);
             buttons2.add(jb2);
             center2.add(buttons2);

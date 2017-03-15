@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import controller.enums.ErrorNames;
 import model.discountstrategies.DiscountStrategy;
 import model.modifylists.ModifyList;
+import view.ResourceBound;
 
 /**
  * Model implementation representing a warehouse in which lots are stored.
@@ -23,13 +22,14 @@ public class Warehouse implements Model {
     private List<LotWithActions> lots;
     //Keeps the IDs of the lots which should not be suggested as discount in the current session
     private List<Integer> lotsNotToSuggest;
-
+    private ResourceBound res;
     /**
      * Default constructor that initializes the internal list.
      */
     public Warehouse() {
         this.lots = new ArrayList<>();
         this.lotsNotToSuggest = new ArrayList<>();
+        this.res = new ResourceBound();
     }
 
     @Override
@@ -91,7 +91,7 @@ public class Warehouse implements Model {
     public void removeFromLot(final int id, final int n) {
         checkInMagazine(id);
         if (n < 0) {
-            throw new IllegalArgumentException(ErrorNames.NOT_NEGATIVE_VALUE.getName());
+            throw new IllegalArgumentException(this.res.setName("NOT_NEGATIVE_VALUE"));
         }
         this.lots.forEach(l -> {
             if (l.getId() == id) {
@@ -116,7 +116,7 @@ public class Warehouse implements Model {
     public void setOnSale(final int id, final int discountAmount) {
         checkInMagazine(id);
         if (discountAmount > 100 || discountAmount < 0) {
-            throw new IllegalArgumentException(ErrorNames.INVALID_SALE_VALUE.getName());
+            throw new IllegalArgumentException(this.res.setName("INVALID_SALE_VALUE"));
         }
         this.lots.forEach(l -> {
             if (l.getId() == id) {
@@ -137,7 +137,7 @@ public class Warehouse implements Model {
 
     private void checkInMagazine(final int id) {
         if (!isInMagazine(id)) {
-            throw new IllegalArgumentException(ErrorNames.INVALID_OPERATION.getName());
+            throw new IllegalArgumentException(this.res.setName("INVALID_OPERATION"));
         }
     }
 
