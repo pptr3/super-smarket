@@ -95,8 +95,10 @@ public class LotBuilder {
         if (this.pricePerSingleItem <= 0) {
             throw new IllegalStateException(ErrorNames.INVALID_PRICE_PER_ITEM.getName());
         }
-        if (this.expirationDate.get().getDifferenceInDays(MyCustomDateImpl.today()) < 0) {
-            throw new IllegalStateException(ErrorNames.INVALID_EXPIRATION_DATE.getName());
+        if (this.expirationDate.isPresent()) {
+            if (this.expirationDate.get().getDifferenceInDays(MyCustomDateImpl.today()) < 0) {
+                throw new IllegalStateException(ErrorNames.INVALID_EXPIRATION_DATE.getName());
+            }
         }
         return new LotImpl(this.id, this.name, this.checkInDate, this.expirationDate, this.initialQuantity,
                 this.pricePerSingleItem);
