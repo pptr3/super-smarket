@@ -1,18 +1,24 @@
-package controller;
+package controller.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import controller.Controller;
+import controller.ControllerImpl;
 import model.Lot;
 import model.LotBuilder;
+import model.Model;
 import model.MyCustomDateImpl;
 import model.Warehouse;
 import model.discountstrategies.DiscountStrategy;
@@ -89,7 +95,7 @@ public class BasicControllerTest {
     }
 
     @org.junit.Test
-    public void D_testSetOnSale() {
+    public void D_testRemoveFromSale() {
 
         buildPasta();
         buildMilk();
@@ -109,7 +115,7 @@ public class BasicControllerTest {
     }
 
     @org.junit.Test
-    public void E_testSetOnSale() {
+    public void E_testOverFiftyDiscount() {
 
         Lot lot = new LotBuilder()
                 .name("Eggs - brand2")
@@ -125,7 +131,6 @@ public class BasicControllerTest {
         assertEquals(l.size(), 1);
         
     }
-
     
     private void buildMilk() {
         lot = new LotBuilder().name("Milk - brand")

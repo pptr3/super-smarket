@@ -1,8 +1,11 @@
-package model;
+package integrationtesting;
 
 //CHECKSTYLE:OFF
 
 import org.junit.Test;
+
+import model.Model;
+import model.Warehouse;
 
 public class BasicExceptionTest {
 
