@@ -17,10 +17,6 @@ import model.discountstrategies.DiscountStrategy;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import model.modifylists.ModifyList;
 import view.View;
-
-/*
- * TODO: c'è una gestione non gestita.
- */
 /**
  * Implementation of Controller interface.
  *
@@ -127,12 +123,13 @@ public class ControllerImpl implements Controller {
 
     @Override
     public synchronized void startScan() {
-        try {if (agent == null) {
-            this.agent = new Agent();
-            this.agent.start();
-        } else {
-            throw new IllegalStateException();
-        }
+        try {
+            if (agent == null) {
+                this.agent = new Agent();
+                this.agent.start();
+            } else {
+                throw new IllegalStateException();
+            }
         } catch (Exception e) {
             this.subject.showMessageErrorView(e.getMessage());
         }
@@ -140,14 +137,14 @@ public class ControllerImpl implements Controller {
 
     @Override
     public synchronized void stopScan() {
-        if (agent == null) {
-            throw new IllegalStateException();
-        }
-        this.agent.stopScanning();
         try {
+            if (agent == null) {
+                throw new IllegalStateException();
+            }
+            this.agent.stopScanning();
             this.agent.join();
         } catch (InterruptedException e) {
-            throw new IllegalStateException(e);
+            this.subject.showMessageErrorView(e.getMessage());
         }
         agent = null;
     }
@@ -173,7 +170,7 @@ public class ControllerImpl implements Controller {
                     }
                     Thread.sleep(sleepTime);
                 } catch (InterruptedException ex) {
-                    throw new IllegalStateException();
+                    ControllerImpl.this.subject.showMessageErrorView(ex.getMessage());
                 }
             }
         }

@@ -29,15 +29,18 @@ public class ScanMenu extends JMenu {
         stopScan.setEnabled(false);
         startScan.addActionListener(e -> {
             controller.startScan();
-            startScan.setEnabled(false);
-            stopScan.setEnabled(true);
+            setEnables(startScan, stopScan, false);
         });
         this.add(startScan);
         stopScan.addActionListener(e -> {
             controller.stopScan();
-            startScan.setEnabled(true);
-            stopScan.setEnabled(false);
+            setEnables(startScan, stopScan, true);
         });
         this.add(stopScan);
+    }
+
+    private void setEnables(final JButton start, final JButton stop, final boolean state) {
+        start.setEnabled(state);
+        stop.setEnabled(!state);
     }
 }
