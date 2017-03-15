@@ -52,7 +52,12 @@ public enum ErrorNames {
     /**
      * 
      */
-    INVALID_EXPIRATION_DATE("Invalid expiration date.");
+    INVALID_EXPIRATION_DATE("Invalid expiration date."),
+    /**
+     * 
+     */
+    INVALID_OPERATION("Invalid operation.");
+
     private final String name;
 
     /**

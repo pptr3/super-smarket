@@ -89,8 +89,9 @@ public class Warehouse implements Model {
 
     @Override
     public void removeFromLot(final int id, final int n) {
-        if ((!isInMagazine(id)) || n < 0) {
-            throw new IllegalArgumentException();
+        checkInMagazine(id);
+        if (n < 0) {
+            throw new IllegalArgumentException(ErrorNames.NOT_NEGATIVE_VALUE.getName());
         }
         this.lots.forEach(l -> {
             if (l.getId() == id) {
@@ -113,9 +114,8 @@ public class Warehouse implements Model {
 
     @Override
     public void setOnSale(final int id, final int discountAmount) {
-        if (!isInMagazine(id)) {
-            throw new IllegalArgumentException();
-        } else if (discountAmount > 100 || discountAmount < 0) {
+        checkInMagazine(id);
+        if (discountAmount > 100 || discountAmount < 0) {
             throw new IllegalArgumentException(ErrorNames.NOT_NEGATIVE_VALUE.getName());
         }
         this.lots.forEach(l -> {
@@ -127,14 +127,18 @@ public class Warehouse implements Model {
 
     @Override
     public void removeFromSale(final int id) {
-        if (!isInMagazine(id)) {
-            throw new IllegalArgumentException();
-        }
+        checkInMagazine(id);
         this.lots.forEach(l -> {
             if (l.getId() == id) {
                 l.removeFromSale();
             }
         });
+    }
+
+    private void checkInMagazine(final int id) {
+        if (!isInMagazine(id)) {
+            throw new IllegalArgumentException(ErrorNames.INVALID_OPERATION.getName());
+        }
     }
 
     @Override
