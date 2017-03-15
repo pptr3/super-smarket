@@ -35,27 +35,9 @@ public class ViewTesting {
         try {
             v.errorMessage("Test");
         } catch(Exception e) {
-            assertTrue(e.getMessage() != "");
+            assertTrue(e.getMessage() == "Test");
         }
     
     }
-   
-    @Test
-    public void B_Test() {
-        final Model m = new Warehouse();
-        final Controller c = new ControllerImpl(m);
-        final View v = new ViewImpl(c);
-        c.registerView(v);
-        Lot l = new LotBuilder()
-                .name("Milk - brand")
-                .checkInDate(new MyCustomDateImpl(2017,03,15))
-                .expirationDate(new MyCustomDateImpl(2017,03,16))
-                .quantity(36)
-                .pricePerSingleItem(50)
-                .build();
-        c.addLotto(l);
-        assertEquals(c.getList(null).size(), 1);
-        assertEquals(c.getList(null).get(0).getName(), "Milk - brand");
         //continuare a fare test della view, andare indietro nella linea dei commit e ripredere il test per il controller  
-    }
 }
