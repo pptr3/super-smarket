@@ -127,11 +127,14 @@ public class ControllerImpl implements Controller {
 
     @Override
     public synchronized void startScan() {
-        if (agent == null) {
+        try {if (agent == null) {
             this.agent = new Agent();
             this.agent.start();
         } else {
             throw new IllegalStateException();
+        }
+        } catch (Exception e) {
+            this.subject.showMessageErrorView(e.getMessage());
         }
     }
 
