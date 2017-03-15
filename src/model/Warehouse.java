@@ -116,7 +116,7 @@ public class Warehouse implements Model {
     public void setOnSale(final int id, final int discountAmount) {
         checkInMagazine(id);
         if (discountAmount > 100 || discountAmount < 0) {
-            throw new IllegalArgumentException(ErrorNames.NOT_NEGATIVE_VALUE.getName());
+            throw new IllegalArgumentException(ErrorNames.INVALID_SALE_VALUE.getName());
         }
         this.lots.forEach(l -> {
             if (l.getId() == id) {
