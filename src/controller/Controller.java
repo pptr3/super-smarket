@@ -1,12 +1,9 @@
 package controller;
 
 import java.io.FileNotFoundException;
-
 import java.io.IOException;
 import java.util.List;
-
 import java.util.Map;
-
 import model.Lot;
 import model.discountstrategies.DiscountStrategy;
 import model.modifylists.ModifyList;

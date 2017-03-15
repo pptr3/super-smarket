@@ -3,7 +3,6 @@ package controller;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
-
 import view.View;
 /**
  * Implementation of Subject interface.

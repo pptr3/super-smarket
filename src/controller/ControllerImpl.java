@@ -19,7 +19,7 @@ import model.modifylists.ModifyList;
 import view.View;
 
 /*
- * TODO: there is bugs with the right writing sentences to show in exceptions.
+ * TODO: c'è una gestione non gestita.
  */
 /**
  * Implementation of Controller interface.
