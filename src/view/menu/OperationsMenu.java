@@ -6,12 +6,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import controller.Controller;
-import view.ResourceBound;
+import model.resourcebundle.ResourceBound;
 import view.frames.AddLotsFrame;
 import view.frames.OperationsFramesFactoryImpl;
 
 /**
- *
+ * Base OperationsMenu of View.
  */
 public class OperationsMenu extends JMenu {
 
@@ -27,13 +27,13 @@ public class OperationsMenu extends JMenu {
 
     public OperationsMenu(final Controller controller) {
         super("Operations");
+        final JMenuItem load = new JMenuItem(this.res.setName("LOAD"));
         JMenuItem menuItem = new JMenuItem(this.res.setName("ADD_LOT"));
         menuItem.addActionListener(e -> {
-               new AddLotsFrame(controller);
+            new AddLotsFrame(controller);
         });
         this.add(menuItem);
 
-        final JMenuItem load = new JMenuItem(this.res.setName("LOAD"));
         menuItem = load;
         menuItem.addActionListener(e -> {
             final int retVal = this.fileChooser.showOpenDialog(this);

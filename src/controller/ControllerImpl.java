@@ -63,12 +63,12 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void addLotto(final Lot lotto) {
+    public void addLot(final Lot lotto) {
         this.model.addLotto(lotto);
     }
 
     @Override
-    public void removeFromLotto(final int id, final int n) {
+    public void removeFromLot(final int id, final int n) {
         try {
             this.model.removeFromLot(id, n);
         } catch (Exception e) {

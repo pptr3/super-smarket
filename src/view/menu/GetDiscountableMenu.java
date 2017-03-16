@@ -1,13 +1,14 @@
 package view.menu;
 
 import javax.swing.JMenu;
+
 import javax.swing.JMenuItem;
 import controller.Controller;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
-import view.ResourceBound;
+import model.resourcebundle.ResourceBound;
 import view.frames.OperationsFramesFactoryImpl;
 /**
- * 
+ * The GetDiscountable menu of View.
  *
  */
 public class GetDiscountableMenu extends JMenu {

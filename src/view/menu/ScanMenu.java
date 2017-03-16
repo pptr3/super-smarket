@@ -3,10 +3,10 @@ package view.menu;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import controller.Controller;
-import view.ResourceBound;
+import model.resourcebundle.ResourceBound;
 
 /**
- * Base menu.
+ * ScanMenu of View.
  *
  */
 

@@ -30,8 +30,8 @@ public class SerializationTest {
         Model m = new Warehouse();
         Controller c = new ControllerImpl(m);
         
-        c.addLotto(l);
-        c.addLotto(p);
+        c.addLot(l);
+        c.addLot(p);
         
         try {
             c.saveFile("file.txt");

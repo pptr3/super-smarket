@@ -13,7 +13,7 @@ public interface View {
 
     /**
      * Show an error message.
-     * @param message Message to show
+     * @param message message to show
      */
     void errorMessage(String message);
 }

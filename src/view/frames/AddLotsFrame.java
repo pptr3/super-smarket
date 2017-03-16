@@ -17,7 +17,7 @@ import model.Lot;
 import model.LotBuilder;
 import model.MyCustomDate;
 import model.MyCustomDateImpl;
-import view.ResourceBound;
+import model.resourcebundle.ResourceBound;
 
 /**
  *
@@ -64,7 +64,7 @@ public class AddLotsFrame extends CustomFrame {
                         .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText()))
                         .build();
                 this.jtext.clear();
-                controller.addLotto(l);
+                controller.addLot(l);
                 this.setVisible(false);
             } catch (IllegalStateException e2) {
                 controller.getSubject().showMessageErrorView(e2.getMessage());
@@ -85,9 +85,9 @@ public class AddLotsFrame extends CustomFrame {
     }
 /**
  * 
- * @param text tet to set
+ * @param text the text to set
  * @param index index
- * @return new MyCustimDate object
+ * @return new MyCustomDate object
  */
     private MyCustomDate initializeDate(final List<JTextField> text, final Integer index) {
         return new MyCustomDateImpl(Integer.parseInt(text.get(index).getText().substring(0, 4)),

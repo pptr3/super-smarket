@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import controller.Controller;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
+import model.resourcebundle.ResourceBound;
 import view.menu.OperationsMenu;
 import view.frames.OperationsFramesFactoryImpl;
 import view.menu.GetDiscountableMenu;

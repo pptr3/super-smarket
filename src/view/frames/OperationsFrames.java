@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import controller.Controller;
 import model.Lot;
 import model.discountstrategies.DiscountStrategy;
-import view.ResourceBound;
+import model.resourcebundle.ResourceBound;
 
 /**
  * 

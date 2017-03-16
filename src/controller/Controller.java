@@ -42,17 +42,17 @@ public interface Controller {
     /**
      * @param mfl
      *            modify list
-     * @return the List of Lot
+     * @return the list of Lot
      */
 
     List<Lot> getList(ModifyList mfl);
 
     /**
      * @param lot
-     *            adds a lot
+     *            the lot to add
      */
 
-    void addLotto(Lot lot);
+    void addLot(Lot lot);
 
     /**
      * Removes n products from the lot with the specified id.
@@ -62,7 +62,7 @@ public interface Controller {
      * @param n
      *            how many products to remove
      */
-    void removeFromLotto(int id, int n);
+    void removeFromLot(int id, int n);
 
     /**
      * Suggests which lots should be discounted.
@@ -78,7 +78,7 @@ public interface Controller {
      * Set on sale the lot with specified id of discoutAmount amount.
      * 
      * @param id
-     *            id of the lot
+     *            id of lot
      * @param discountAmount
      *            amount
      */
@@ -86,27 +86,25 @@ public interface Controller {
     void setOnSale(int id, int discountAmount);
 
     /**
-     * The object with the given id will not be in discount after that method is
-     * called.
-     * 
+     * Remove from discount the lot with specified id.
      * @param id
      *            the id of the lot to be removed from sale
      */
     void removeFromSale(int id);
 
     /**
-     * Starts the strategy that alert you if some products need to be
+     * Starts the strategy that alerts if some lots need to be
      * discounted.
      */
     void startScan();
 
     /**
-     * Stops the strategy that alert you if some products need to be discounted.
+     * Stops the strategy that alerts if some lots need to be discounted.
      */
     void stopScan();
 
     /**
-     * Registers a new view to be controlled (pattern Observer).
+     * Registers a view to be controlled (pattern Observer).
      * 
      * @param view
      *            the view to register
@@ -128,7 +126,7 @@ public interface Controller {
      */
     void resetSuggestions();
 
-    /**
+    /**Getter that return the subject.
      * @return the Subject
      */
     Subject getSubject();

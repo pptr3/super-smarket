@@ -5,11 +5,11 @@ import javax.swing.JMenuItem;
 import controller.Controller;
 import model.modifylists.ModifyList;
 import model.modifylists.ModifyListFactoryImpl;
-import view.ResourceBound;
+import model.resourcebundle.ResourceBound;
 import view.frames.OperationsFramesFactoryImpl;
 
 /**
- * Base menu.
+ * The GetLotsMenu of View.
  *
  */
 
@@ -38,7 +38,7 @@ public class GetLotsMenu extends JMenu {
         this.add(menuItem);
         menuItem = new JMenuItem(this.res.setName("ALL"));
         /*
-         * with null  @param, @return the list of lots order by insertion 
+         * with null  @param, @return the list of lots ordered by insertion 
          */
         menuItem.addActionListener(e -> {
             setTextArea(controller, null);

@@ -1,4 +1,4 @@
-package view;
+package model.resourcebundle;
 
 import java.io.Serializable;
 import java.util.Locale;

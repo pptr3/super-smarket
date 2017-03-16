@@ -7,7 +7,7 @@ import model.Lot;
 import model.discountstrategies.DiscountStrategy;
 
 /**
- * Basic implementation of DiscountStrategyFactory, with all the discount strategies of the model.
+ * Implementation of OperationsFramesFactory.
  */
 public class OperationsFramesFactoryImpl implements OperationsFramesFactory {
 

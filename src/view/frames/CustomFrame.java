@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 /**
  * This will be the superclass of all the classes that use JFrame. 
- * It provides some common methods to avoid duplicated code.
+ * It provides a common method to avoid duplicated code.
  */
 public class CustomFrame extends JFrame {
 

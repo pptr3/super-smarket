@@ -8,7 +8,7 @@ import model.discountstrategies.DiscountStrategy;
 
 /**
  * 
- * Factory that instantiates OperationsFrames objects.
+ * Factory that instantiates OperationsFrames.
  *
  */
 public interface OperationsFramesFactory {
@@ -18,7 +18,7 @@ public interface OperationsFramesFactory {
      * 
      * @param controller controller
      * @param lot list of lots
-     * @return An OperationsFrames object
+     * @return an OperationsFrames
      */
     OperationsFrames getListOfLots(Controller controller, List<Lot> lot);
 
@@ -27,7 +27,7 @@ public interface OperationsFramesFactory {
      * 
      * @param controller controller
      * @param ds discount strategy
-     * @return An OperationsFrames object
+     * @return an OperationsFrames
      */
     OperationsFrames getDiscountableListOfLots(Controller controller, DiscountStrategy ds);
 }

@@ -11,7 +11,7 @@ import model.LotBuilder;
 import model.Model;
 import model.MyCustomDateImpl;
 import model.Warehouse;
-import view.ResourceBound;
+import model.resourcebundle.ResourceBound;
 import view.View;
 import view.ViewImpl;
 
@@ -47,7 +47,7 @@ public class ViewTesting {
         } catch(Exception e) {
             assertEquals(e.getMessage(), null);
         }
-       // v.errorMessage("Super Smarket");
+        v.errorMessage("Super Smarket");
     }
        
 }

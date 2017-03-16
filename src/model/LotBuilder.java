@@ -2,7 +2,7 @@ package model;
 
 import java.util.Optional;
 
-import view.ResourceBound;
+import model.resourcebundle.ResourceBound;
 
 /**
  * Only access point for creating lots.

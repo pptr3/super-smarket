@@ -1,9 +1,12 @@
 package model;
 
 import java.io.Serializable;
+
 import java.util.Optional;
 
-import view.ResourceBound;
+import model.resourcebundle.ResourceBound;
+
+
 
 /**
  * Implementation of the LotWithActions interface. This should be used inside the Model implementation

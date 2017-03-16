@@ -15,7 +15,7 @@ public interface Subject {
     void attachView(View view);
 
     /**
-     * update the observers.
+     * Update the observers.
      */
     void updateView();
 
