@@ -144,14 +144,15 @@ public class LotImpl implements LotWithActions, Serializable {
 
     @Override
     public String getDescription() {
-        return "Name: " + name + "\n" + "ExpirationDate: " + expirationDate.get().getDateToString() + "\n" + "CheckInDate: "
-                + checkInDate.getDateToString() + "\n" + " InitialQuantity: " + initialQuantity + "\n" + "CurrentQuantity: " + currentQuantity
-                + "\n" + "PricePerSingleItem: " + pricePerSingleItem + "\n" + "OnSale: " + onSale + "\n" + "SalePercentage: "
-                + salePercentage + "\n\n";
+        return "Name: " + name + "\n" + "CheckInDate: " + checkInDate.getDateToString() + "\n" + "ExpirationDate: "
+                + expirationDate.get().getDateToString() + "\n" + " InitialQuantity: " + initialQuantity + "\n"
+                + "CurrentQuantity: " + currentQuantity + "\n" + "PricePerSingleItem: " + pricePerSingleItem + "\n"
+                + "OnSale: " + onSale + "\n" + "SalePercentage: " + salePercentage + "\n\n";
     }
 
     /**
-     * This method should be call after loading the model from file. It's used because Optional is not serializable. 
+     * This method should be call after loading the model from file. It's used
+     * because Optional is not serializable.
      */
     public void initializeExpirationDateAfterDeserialization() {
         if (this.expirationDateSerialization.equals(emptyOptionalString)) {

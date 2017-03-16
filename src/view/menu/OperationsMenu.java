@@ -30,7 +30,7 @@ public class OperationsMenu extends JMenu {
         final JMenuItem load = new JMenuItem(this.res.setName("LOAD"));
         JMenuItem menuItem = new JMenuItem(this.res.setName("ADD_LOT"));
         menuItem.addActionListener(e -> {
-            new AddLotsFrame(controller);
+            new AddLotsFrame(controller, load);
         });
         this.add(menuItem);
 
@@ -44,9 +44,7 @@ public class OperationsMenu extends JMenu {
                 } catch (Exception e1) {
                     controller.getSubject().showMessageErrorView(this.res.setName("ILLEGAL_FORMAT_FILE"));
                 }
-                if (controller.getList(null).size() != 0) {
-                    load.setEnabled(false);
-                }
+                checkEnable(controller.getList(null).size(), load);
             }
         });
         this.add(menuItem);
@@ -68,5 +66,18 @@ public class OperationsMenu extends JMenu {
             controller.resetSuggestions();
         });
         this.add(menuItem);
+    }
+
+    /**
+     * 
+     * @param size
+     *            size to check
+     * @param load
+     *            load
+     */
+    public static void checkEnable(final Integer size, final JMenuItem load) {
+        if (size > 0) {
+            load.setEnabled(false);
+        }
     }
 }

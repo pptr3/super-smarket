@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import controller.Controller;
@@ -18,6 +19,7 @@ import model.LotBuilder;
 import model.MyCustomDate;
 import model.MyCustomDateImpl;
 import model.resourcebundle.ResourceBound;
+import view.menu.OperationsMenu;
 
 /**
  *
@@ -36,8 +38,10 @@ public class AddLotsFrame extends CustomFrame {
     /**
      * @param controller
      *            controller
+     *@param load
+     *            load
      */
-    public AddLotsFrame(final Controller controller) {
+    public AddLotsFrame(final Controller controller, final JMenuItem load) {
         final JPanel center = new JPanel(new GridLayout(0, 2));
         for (int i = 0; i < this.list.size(); i++) {
             center.add(wrapperPanel(new JLabel(this.list.get(i)), FlowLayout.LEFT));
@@ -57,7 +61,8 @@ public class AddLotsFrame extends CustomFrame {
 
         final ActionListener al = e -> {
             try {
-                Lot l = new LotBuilder().name(this.jtext.get(0).getText())
+                Lot l = new LotBuilder()
+                        .name(this.jtext.get(0).getText())
                         .checkInDate(initializeDate(this.jtext, 1))
                         .expirationDate(initializeDate(this.jtext, 2))
                         .quantity(Integer.parseInt(this.jtext.get(3).getText()))
@@ -65,6 +70,7 @@ public class AddLotsFrame extends CustomFrame {
                         .build();
                 this.jtext.clear();
                 controller.addLot(l);
+                OperationsMenu.checkEnable(controller.getList(null).size(), load);
                 this.setVisible(false);
             } catch (IllegalStateException e2) {
                 controller.getSubject().showMessageErrorView(e2.getMessage());
