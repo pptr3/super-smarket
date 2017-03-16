@@ -1,4 +1,4 @@
-package view.test;
+package test.view;
 
 import java.time.LocalDate;
 import static org.junit.Assert.assertEquals;
@@ -47,7 +47,7 @@ public class ViewTesting {
         } catch(Exception e) {
             assertEquals(e.getMessage(), null);
         }
-        v.errorMessage("Super Smarket");
+       // v.errorMessage("Super Smarket");
     }
        
 }

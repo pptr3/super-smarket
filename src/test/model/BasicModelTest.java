@@ -1,4 +1,4 @@
-package model;
+package test.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -14,6 +14,11 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import model.Lot;
+import model.LotBuilder;
+import model.Model;
+import model.MyCustomDateImpl;
+import model.Warehouse;
 import model.discountstrategies.DiscountStrategyFactory;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import model.modifylists.ModifyListFactory;

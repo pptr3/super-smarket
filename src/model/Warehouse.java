@@ -150,7 +150,7 @@ public class Warehouse implements Model {
      * Returns the list of Lots that won't be suggested as discount in this session.
      * @return List of lots
      */
-    protected List<Lot> getNotSuggestingList() {
+    public List<Lot> getNotSuggestingList() {
         return lots.stream().filter(l -> lotsNotToSuggest.contains(l.getId())).
                 collect(Collectors.toList());
     }

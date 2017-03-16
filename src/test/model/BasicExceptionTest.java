@@ -1,4 +1,4 @@
-package integrationtesting;
+package test.model;
 
 //CHECKSTYLE:OFF
 

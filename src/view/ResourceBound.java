@@ -1,14 +1,19 @@
 package view;
 
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.ResourceBundle;
 /**
  * 
  *
  */
-public class ResourceBound {
+public class ResourceBound implements Serializable {
 
-    private final ResourceBundle res;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3325080430848316075L;
+    private final transient ResourceBundle res;
     /**
      * 
      */

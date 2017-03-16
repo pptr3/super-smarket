@@ -1,4 +1,4 @@
-package integrationtesting;
+package test.model;
 
 //CHECKSTYLE:OFF
 
@@ -49,10 +49,8 @@ public class SerializationTest {
         try {
             c2.initialize("file.txt");
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -64,7 +62,7 @@ public class SerializationTest {
         l = new LotBuilder()
                 .name("Milk - brand")
                 .checkInDate(new MyCustomDateImpl(2017,2,3))
-                .expirationDate(new MyCustomDateImpl(2017,2,13))
+                .expirationDate(new MyCustomDateImpl(3017,2,13))
                 .quantity(36)
                 .pricePerSingleItem(50)
                 .build();
@@ -74,6 +72,7 @@ public class SerializationTest {
         p = new LotBuilder()
                 .name("Pasta - brand2")
                 .checkInDate(new MyCustomDateImpl(2017,2,8))
+                .expirationDate(new MyCustomDateImpl(3017,2,13))
                 .quantity(72)
                 .pricePerSingleItem(60)
                 .build();
