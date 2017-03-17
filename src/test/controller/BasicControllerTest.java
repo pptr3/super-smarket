@@ -65,8 +65,7 @@ public class BasicControllerTest {
         controller.removeFromLot(controller.getList(null).get(0).getId(), 10);
         assertEquals(controller.getList(null).get(0).getCurrentQuantity(), 36);
         assertEquals(controller.getList(null).get(1).getCurrentQuantity(), 36); 
-        
-    }
+       }
 
     @org.junit.Test
     public void C_testSetOnSale() {
@@ -76,7 +75,7 @@ public class BasicControllerTest {
         Controller controller = new ControllerImpl(new Warehouse());
         controller.addLot(lot2);
         assertEquals(controller.getList(null).size(), 1);
-        assertEquals(controller.getList(null).get(0).getId(),3); //the ID changes
+        assertEquals(controller.getList(null).get(0).getId(), 3);
         assertFalse(controller.getList(null).get(0).isOnSale());
         controller.setOnSale(lot2.getId(), 20);
         assertTrue(controller.getList(null).get(0).isOnSale());
@@ -111,7 +110,7 @@ public class BasicControllerTest {
         Lot lot = new LotBuilder()
                 .name("Eggs - brand2")
                 .checkInDate(new MyCustomDateImpl(1017, 03, 15))
-                .expirationDate(new MyCustomDateImpl(2017, 03, 16))
+                .expirationDate(new MyCustomDateImpl(3017, 03, 16))
                 .quantity(72)
                 .pricePerSingleItem(60)
                 .build();

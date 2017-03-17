@@ -145,9 +145,21 @@ public class LotImpl implements LotWithActions, Serializable {
     @Override
     public String getDescription() {
         return "Name: " + name + "\n" + "CheckInDate: " + checkInDate.getDateToString() + "\n" + "ExpirationDate: "
-                + expirationDate.get().getDateToString() + "\n" + " InitialQuantity: " + initialQuantity + "\n"
+                + checkIfPresent(expirationDate) + "\n" + " InitialQuantity: " + initialQuantity + "\n"
                 + "CurrentQuantity: " + currentQuantity + "\n" + "PricePerSingleItem: " + pricePerSingleItem + "\n"
                 + "OnSale: " + onSale + "\n" + "SalePercentage: " + salePercentage + "\n\n";
+    }
+/**
+ * 
+ * @param expirationDate
+ * @return
+ */
+    private String checkIfPresent(final Optional<MyCustomDate> expirationDate) {
+        if (expirationDate.isPresent()) {
+            return expirationDate.get().getDateToString();
+        } else {
+            return this.res.setName("NO_EXPIRATION_DATE");
+        }
     }
 
     /**
