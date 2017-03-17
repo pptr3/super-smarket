@@ -1,5 +1,7 @@
 package view.menu;
 
+import java.util.Arrays;
+
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import controller.Controller;
@@ -38,9 +40,9 @@ public class ScanMenu extends JMenu {
         });
         this.add(stopScan);
     }
-
     private void setEnables(final JButton start, final JButton stop, final boolean state) {
         start.setEnabled(state);
         stop.setEnabled(!state);
     }
+
 }

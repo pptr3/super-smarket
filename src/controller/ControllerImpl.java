@@ -8,9 +8,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import javax.swing.JButton;
+import org.junit.rules.Stopwatch;
 import model.Lot;
 import model.Model;
 import model.discountstrategies.DiscountStrategy;
@@ -133,6 +137,7 @@ public class ControllerImpl implements Controller {
         } catch (Exception e) {
             this.subject.showMessageErrorView(e.getMessage());
         }
+
     }
 
     @Override
@@ -166,7 +171,7 @@ public class ControllerImpl implements Controller {
                 try {
                     if (!getDiscountable(new DiscountStrategyFactoryImpl().expiresWithinOneDay()).isEmpty()) {
                         ControllerImpl.this.subject.updateView();
-                        Thread.sleep(sleepTime * 10);
+                        stopScanning();
                     }
                     Thread.sleep(sleepTime);
                 } catch (InterruptedException ex) {
