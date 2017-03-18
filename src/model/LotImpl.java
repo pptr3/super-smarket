@@ -152,11 +152,11 @@ public class LotImpl implements LotWithActions, Serializable {
 /**
  * 
  * @param expirationDate
- * @return
+ * @return a string representing the toString of expirationdate.
  */
-    private String checkIfPresent(final Optional<MyCustomDate> expirationDate) {
-        if (expirationDate.isPresent()) {
-            return expirationDate.get().getDateToString();
+    private String checkIfPresent(final Optional<MyCustomDate> expirationdate) {
+        if (expirationdate.isPresent()) {
+            return expirationdate.get().getDateToString();
         } else {
             return this.res.setName("NO_EXPIRATION_DATE");
         }

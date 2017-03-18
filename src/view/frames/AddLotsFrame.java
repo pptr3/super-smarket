@@ -1,15 +1,13 @@
 package view.frames;
 
-import java.awt.BorderLayout;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -64,25 +62,17 @@ public class AddLotsFrame extends CustomFrame {
 
         final ActionListener al = e -> {
             try {
-                Lot l;
-                if (this.jtext.get(2).getText().isEmpty()) {
-                    l = new LotBuilder()
-                            .name(this.jtext.get(0).getText())
-                            .checkInDate(initializeDate(this.jtext, 1))
-                            .quantity(Integer.parseInt(this.jtext.get(3).getText()))
-                            .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText()))
-                            .build();
-                } else {
-                    l = new LotBuilder()
-                            .name(this.jtext.get(0).getText())
-                            .checkInDate(initializeDate(this.jtext, 1))
-                            .expirationDate(initializeDate(this.jtext, 2))
-                            .quantity(Integer.parseInt(this.jtext.get(3).getText()))
-                            .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText()))
-                            .build();
+                LotBuilder l = new LotBuilder()
+                        .name(this.jtext.get(0).getText())
+                        .checkInDate(initializeDate(this.jtext, 1))
+                        .quantity(Integer.parseInt(this.jtext.get(3).getText()))
+                        .pricePerSingleItem(Integer.parseInt(this.jtext.get(4).getText()));
+                if (!this.jtext.get(2).getText().isEmpty()) {
+                    l.expirationDate(initializeDate(this.jtext, 2));
                 }
+                Lot lot = l.build();
                 this.jtext.clear();
-                controller.addLot(l);
+                controller.addLot(lot);
                 OperationsMenu.checkEnable(controller.getList(null).size(), load);
                 this.setVisible(false);
             } catch (IllegalStateException e2) {

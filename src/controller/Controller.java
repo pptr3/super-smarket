@@ -4,9 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
-import javax.swing.JButton;
-
 import model.Lot;
 import model.discountstrategies.DiscountStrategy;
 import model.modifylists.ModifyList;

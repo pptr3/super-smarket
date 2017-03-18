@@ -55,8 +55,8 @@ public class OperationsFrames extends CustomFrame {
     public OperationsFrames(final Controller controller, final DiscountStrategy ds) {
         this.control = controller;
         final Map<Lot, Integer> map = controller.getDiscountable(ds);
-        if (map.isEmpty()) {
-            controller.getSubject().showMessageErrorView(this.res.setName("NO_LOTS"));
+
+        if (checkLot(map.isEmpty())) {
             return;
         }
         final JPanel center = new JPanel(new GridLayout(map.size(), COLS));
@@ -88,8 +88,7 @@ public class OperationsFrames extends CustomFrame {
      */
     public OperationsFrames(final Controller controller, final List<Lot> lot) {
         this.control = controller;
-        if (lot.isEmpty()) {
-            controller.getSubject().showMessageErrorView(this.res.setName("NO_LOTS"));
+        if (checkLot(lot.isEmpty())) {
             return;
         }
         final JPanel center = new JPanel(new GridLayout(lot.size(), COLS));
@@ -176,5 +175,12 @@ public class OperationsFrames extends CustomFrame {
             removeFromSale2.add(jb2);
             buttons2.add(jb2);
             center2.add(buttons2);
+    }
+    private boolean checkLot(final boolean test) {
+        if (test) {
+            this.control.getSubject().showMessageErrorView(this.res.setName("NO_LOTS"));
+            return true;
+        }
+        return false;
     }
 }
