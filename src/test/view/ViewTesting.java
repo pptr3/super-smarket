@@ -37,13 +37,9 @@ public class ViewTesting {
             assertEquals(e.getMessage(), new ResourceBound().setName("INVALID_INITIAL_QUANTITY"));
         }
        
-        c.startScan();
-        c.stopScan();
-        c.startScan();
-        
         try {
-            c.stopScan();
-            c.stopScan();
+            c.startScan();
+            c.startScan();           
         } catch(Exception e) {
             assertEquals(e.getMessage(), null);
         }

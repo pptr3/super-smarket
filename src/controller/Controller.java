@@ -99,11 +99,6 @@ public interface Controller {
     void startScan();
 
     /**
-     * Stops the strategy that alerts if some lots need to be discounted.
-     */
-    void stopScan();
-
-    /**
      * Registers a view to be controlled (pattern Observer).
      * 
      * @param view

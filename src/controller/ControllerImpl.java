@@ -136,24 +136,11 @@ public class ControllerImpl implements Controller {
 
     }
 
-    @Override
-    public synchronized void stopScan() {
-        try {
-            if (agent == null) {
-                throw new IllegalStateException();
-            }
-            this.agent.stopScanning();
-            this.agent.join();
-        } catch (InterruptedException e) {
-            this.subject.showMessageErrorView(e.getMessage());
-        }
-        agent = null;
-    }
-
     private class Agent extends Thread {
 
         private volatile boolean stoppable;
-        private final Integer sleepTime = 500;
+        private final Integer sleepTime = 1000;
+        private final Integer mul = 10;
 
         /*
          * package visible
@@ -167,17 +154,12 @@ public class ControllerImpl implements Controller {
                 try {
                     if (!getDiscountable(new DiscountStrategyFactoryImpl().expiresWithinOneDay()).isEmpty()) {
                         ControllerImpl.this.subject.updateView();
-                        stopScanning();
                     }
-                    Thread.sleep(sleepTime);
+                    Thread.sleep(sleepTime * mul);
                 } catch (InterruptedException ex) {
                     ControllerImpl.this.subject.showMessageErrorView(ex.getMessage());
                 }
             }
         }
-
-        public void stopScanning() {
-            this.stoppable = true;
-        }
-    }
+}
 }

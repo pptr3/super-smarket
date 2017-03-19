@@ -14,7 +14,7 @@ import view.menu.OperationsMenu;
 import view.frames.OperationsFramesFactoryImpl;
 import view.menu.GetDiscountableMenu;
 import view.menu.GetLotsMenu;
-import view.menu.ScanMenu;
+
 
 /**
  * Implementation of View interface.
@@ -33,7 +33,7 @@ public class ViewImpl extends JFrame implements View {
     private final GetLotsMenu getLots;
     private final GetDiscountableMenu getDiscountable;
     private final JMenu operations;
-    private final ScanMenu scan;
+    //private final ScanMenu scan;
     private final ResourceBound res;
 
     /**
@@ -47,14 +47,15 @@ public class ViewImpl extends JFrame implements View {
         this.operations = new OperationsMenu(controller);
         this.getDiscountable = new GetDiscountableMenu(this.controller);
         this.getLots = new GetLotsMenu(controller);
-        this.scan = new ScanMenu(controller);
+       // this.scan = new ScanMenu(controller);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.setTitle(this.res.setName("TITLE_APPLICATION"));
         this.menuBar.add(this.getLots);
         this.menuBar.add(this.getDiscountable);
         this.menuBar.add(this.operations);
-        this.menuBar.add(this.scan);
+       // this.menuBar.add(this.scan);
+        controller.startScan();
         final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.getContentPane().add(menuBar, BorderLayout.NORTH);
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
