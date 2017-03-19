@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 import controller.Controller;
 import model.discountstrategies.DiscountStrategyFactoryImpl;
 import model.resourcebundle.ResourceBound;
@@ -33,7 +35,6 @@ public class ViewImpl extends JFrame implements View {
     private final GetLotsMenu getLots;
     private final GetDiscountableMenu getDiscountable;
     private final JMenu operations;
-    //private final ScanMenu scan;
     private final ResourceBound res;
 
     /**
@@ -47,14 +48,12 @@ public class ViewImpl extends JFrame implements View {
         this.operations = new OperationsMenu(controller);
         this.getDiscountable = new GetDiscountableMenu(this.controller);
         this.getLots = new GetLotsMenu(controller);
-       // this.scan = new ScanMenu(controller);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.setTitle(this.res.setName("TITLE_APPLICATION"));
         this.menuBar.add(this.getLots);
         this.menuBar.add(this.getDiscountable);
         this.menuBar.add(this.operations);
-       // this.menuBar.add(this.scan);
         controller.startScan();
         final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.getContentPane().add(menuBar, BorderLayout.NORTH);
@@ -67,7 +66,7 @@ public class ViewImpl extends JFrame implements View {
      * 
      */
     public void update() {
-        errorMessage(this.res.setName("LOT_TO_DISCOUNT"));
+        SwingUtilities.invokeLater(() -> errorMessage(this.res.setName("LOT_TO_DISCOUNT")));
         new OperationsFramesFactoryImpl().getDiscountableListOfLots(controller,
                 new DiscountStrategyFactoryImpl().expiresWithinOneDay());
     }
