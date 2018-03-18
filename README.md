@@ -1,29 +1,8 @@
-# README #
+# Supersmarket #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This application has been developed using Java, so ensure to have it installed on your system.
 
-### What is this repository for? ###
+### How to do download ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up :
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Make sure to have Git installed on your system and then just clone the repository
+* `git clone https://github.com/Pptr95/Supersmarket.git`
